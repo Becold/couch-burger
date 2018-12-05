@@ -20,10 +20,6 @@ public class LoginController {
     public String home(Model model,
                        @ModelAttribute(value=Constants.USER_DETAILS) UserEntity userDetails,
                        BindingResult errors) {
-        for (FieldError error : errors.getFieldErrors() ) {
-            System.out.println (error.getObjectName() + " - " + error.getDefaultMessage());
-        }
-
         model.addAttribute("title", "Connexion");
         return "integrated:login";
     }

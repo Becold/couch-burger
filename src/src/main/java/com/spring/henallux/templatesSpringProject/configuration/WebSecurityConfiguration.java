@@ -24,16 +24,22 @@ import java.io.IOException;
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     public static final String LOGIN_REQUEST = "/login";
-    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/", "/css/**", "/images/**", "/js/**", "/webfonts/**"};
+    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{
+            "/",
+            "/css/**",
+            "/images/**",
+            "/js/**",
+            "/webfonts/**",
+
+            "/register"
+    };
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/admin"};
 
-    private RedirectStrategy redirectStrategy;
     private UserDetailsService userDetailsServiceImpl;
 
     @Autowired
     public WebSecurityConfiguration(UserDetailsService userDetailsServiceImpl) {
         this.userDetailsServiceImpl = userDetailsServiceImpl;
-        this.redirectStrategy = new DefaultRedirectStrategy();
     }
 
     @Autowired
@@ -46,25 +52,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http
-            .authorizeRequests()
-            .antMatchers(AUTHORIZED_REQUESTS_ADMIN).hasRole("ADMIN")
-            .antMatchers(AUTHORIZED_REQUESTS_ANYBODY).permitAll()
-            .anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers(AUTHORIZED_REQUESTS_ADMIN).hasRole("ADMIN")
+                .antMatchers(AUTHORIZED_REQUESTS_ANYBODY).permitAll()
+                .anyRequest().authenticated()
 
-            .and()
-            .formLogin()
-            .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-            .loginPage(LOGIN_REQUEST)
-            .successHandler(new AuthenticationSuccessHandler() {
-                @Override
-                public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                    redirectStrategy.sendRedirect(request, response, "/authenticated");
-                }
-            })
-            .permitAll()
+                .and()
+                .formLogin()
+                .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
+                .loginPage(LOGIN_REQUEST)
+                .permitAll()
 
-            .and()
-            .logout()
-            .permitAll();
+                .and()
+                .logout()
+                .permitAll();
     }
 }

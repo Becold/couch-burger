@@ -9,13 +9,3 @@
 
     <img src='<spring:url value="/images/romain.jpg" />' width="120px" height="auto" />
 </div>
-
-<form:form action="/send"
-           method="POST"
-           modelAttribute="magicKeyForm">
-
-    <form:label path="magicKey">Magic key :</form:label>
-    <form:input path="magicKey" />
-
-    <form:button>Send</form:button>
-</form:form>

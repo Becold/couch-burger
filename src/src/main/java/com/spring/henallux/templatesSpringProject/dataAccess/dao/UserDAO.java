@@ -25,4 +25,14 @@ public class UserDAO {
         this.userRepository.save(userEntity);
         return user;
     }
+
+    public User findByUsername(String username) {
+        UserEntity userEntity = this.userRepository.findByUsername(username);
+        User user = new ProviderConverter().userEntityToUserModel(userEntity);
+        return user;
+    }
+
+    public boolean existsByUsername(String username) {
+        return this.userRepository.existsByUsername(username);
+    }
 }

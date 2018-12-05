@@ -60,7 +60,7 @@
                     <a class="btn btn-outline mr-sm-2" href="<spring:url value='/register'/>">S'inscrire</a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    Bonjour ${pageContext.request.userPrincipal.name}
+                    ${pageContext.request.userPrincipal.name}
 
 
                     <div>
@@ -69,6 +69,9 @@
                                 Parametres
                             </a>
                             <div class="dropdown-menu" aria-labelledby="settingDropdown">
+                                <a class="dropdown-item" href="<spring:url value='/authenticated'/>">
+                                    Mon profil
+                                </a>
                                 <a class="dropdown-item" href="<spring:url value='/logout'/>">
                                     Se déconnecter
                                 </a>

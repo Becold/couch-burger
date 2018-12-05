@@ -8,4 +8,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface UserRepository extends JpaRepository<UserEntity, String> {
     UserEntity findByUsername(String userName);
+    boolean existsByUsername(String username);
 }

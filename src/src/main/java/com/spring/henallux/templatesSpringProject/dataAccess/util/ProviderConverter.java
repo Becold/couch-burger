@@ -7,19 +7,47 @@ public class ProviderConverter {
 
     public UserEntity userModelToUserEntity(User user) {
         UserEntity userEntity = new UserEntity();
-//        userEntity.setAge(user.getAge());
-//        userEntity.setHobby(user.getHobby());
-//        userEntity.setMale(user.getMale());
-//        userEntity.setName(user.getName());
+        userEntity.setUserId(user.getUserId());
+        userEntity.setUsername(user.getUsername());
+        userEntity.setPassword(user.getPassword());
+        userEntity.setAuthorities(user.getAuthorities());
+        userEntity.setAccountNonExpired(user.getAccountNonExpired());
+        userEntity.setAccountNonLocked(user.getAccountNonLocked());
+        userEntity.setCredentialsNonExpired(user.getCredentialsNonExpired());
+        userEntity.setEnabled(user.getEnabled());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setFirstname(user.getFirstname());
+        userEntity.setName(user.getName());
+        userEntity.setAddressStreetName(user.getAddressStreetName());
+        userEntity.setAddressNumber(user.getAddressNumber());
+        userEntity.setAddressBox(user.getAddressBox());
+        userEntity.setAddressLocality(user.getAddressLocality());
+        userEntity.setAddressPostalCode(user.getAddressPostalCode());
+        userEntity.setPhoneNumber(user.getPhoneNumber());
+        userEntity.setSexe(user.getSexe());
         return userEntity;
     }
 
     public User userEntityToUserModel(UserEntity userEntity) {
         User user = new User();
-//        user.setAge(userEntity.getAge());
-//        user.setHobby(userEntity.getHobby());
-//        user.setMale(userEntity.getMale());
-//        user.setName(userEntity.getName());
+        user.setUserId(userEntity.getUserId());
+        user.setUsername(userEntity.getUsername());
+        user.setPassword(userEntity.getPassword());
+        user.setAuthorities(userEntity.getAuthorities());
+        user.setAccountNonExpired(userEntity.getAccountNonExpired());
+        user.setAccountNonLocked(userEntity.getAccountNonLocked());
+        user.setCredentialsNonExpired(userEntity.getCredentialsNonExpired());
+        user.setEnabled(userEntity.getEnabled());
+        user.setEmail(userEntity.getEmail());
+        user.setFirstname(userEntity.getFirstname());
+        user.setName(userEntity.getName());
+        user.setAddressStreetName(userEntity.getAddressStreetName());
+        user.setAddressNumber(userEntity.getAddressNumber());
+        user.setAddressBox(userEntity.getAddressBox());
+        user.setAddressLocality(userEntity.getAddressLocality());
+        user.setAddressPostalCode(userEntity.getAddressPostalCode());
+        user.setPhoneNumber(userEntity.getPhoneNumber());
+        user.setSexe(userEntity.getSexe());
         return user;
     }
 }

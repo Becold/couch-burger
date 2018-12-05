@@ -17,7 +17,6 @@ public class AuthenticatedController {
         UserEntity userDetails = (UserEntity) authentication.getPrincipal();
         model.addAttribute("title", "Authentifié");
 
-        System.out.println(userDetails.getUsername());
         return "integrated:authenticated";
     }
 }
