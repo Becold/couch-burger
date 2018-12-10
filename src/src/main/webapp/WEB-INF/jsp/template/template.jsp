@@ -47,12 +47,6 @@
                     <a class="nav-link" href="#">Mon Panier <span class="badge badge-danger">3</span></a>
                 </li>
             </ul>
-            <!-- TODO Une barre de recherche ?
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un article" aria-label="Rechercher un article">
-                <button class="btn btn-outline-success mr-sm-2" type="submit">Rechercher</button>
-            </form>
-            -->
 
             <div class="d-inline mr-5">
                 <sec:authorize access="!isAuthenticated()">

@@ -13,11 +13,6 @@ import java.util.List;
 import static org.springframework.util.StringUtils.isEmpty;
 
 public class User {
-    // TODO retirer
-    //    @Size(min=4, max=15)
-    //    @NotBlank
-    //    @Min(value=1)
-    //    @Max(value=12)
 
     private Integer userId;
 
