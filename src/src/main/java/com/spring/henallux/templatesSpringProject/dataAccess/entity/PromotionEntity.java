@@ -21,11 +21,11 @@ public class PromotionEntity {
     private String typeChoosenItem;
 
     @ManyToOne
-    @JoinColumn(name="categoryId")
+    @JoinColumn(name="categoryId",referencedColumnName = "categoryId")
     private CategoryEntity category;
 
     @ManyToOne
-    @JoinColumn(name="productId")
+    @JoinColumn(name="productId",referencedColumnName = "productId")
     private ProductEntity product;
 
     @Column(name = "typeReduction")

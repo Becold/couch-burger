@@ -10,7 +10,7 @@ public class ProductEntity {
     private Integer productId;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "categoryId",referencedColumnName = "categoryId")
     private CategoryEntity category;
 
     @Column(name = "unitPrice")
