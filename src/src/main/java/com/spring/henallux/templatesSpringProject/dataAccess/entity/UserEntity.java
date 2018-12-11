@@ -73,6 +73,8 @@ public class UserEntity implements UserDetails {
     @Column(name = "sexe")
     private String sexe;
 
+    public UserEntity() { }
+
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
