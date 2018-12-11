@@ -22,7 +22,7 @@ public class ProductEntity {
     private Integer type;
 
     @Column(name = "isSparkling")
-    private Boolean isSParkling;
+    private Boolean isSparkling;
 
     @Column(name = "isSpicy")
     private Boolean isSpicy;
