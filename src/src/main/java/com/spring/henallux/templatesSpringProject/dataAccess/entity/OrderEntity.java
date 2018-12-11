@@ -2,9 +2,7 @@ package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 
 import com.spring.henallux.templatesSpringProject.model.User;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.GregorianCalendar;
 
 public class OrderEntity {
@@ -13,7 +11,8 @@ public class OrderEntity {
     @Column(name = "orderId")
     private Integer orderId;
 
-    @Column(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "userId")
     private User user;
 
     @Column(name = "creationDate")
