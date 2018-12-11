@@ -78,17 +78,6 @@ CREATE TABLE promotion
 	CONSTRAINT categoryId_fk FOREIGN KEY (categoryId) REFERENCES category(categoryId)
 )ENGINE = InnoDB;
 
-CREATE TABLE translationProduct
-(	translationId int(255) NOT NULL AUTO_INCREMENT,
-	productId int(255) NOT NULL,
-	languageId int(255) NOT NULL,
-	name varchar(100) NOT NULL,
-	description varchar(200) NOT NULL,
-	CONSTRAINT translationId PRIMARY KEY(translationId),
-	CONSTRAINT productId_fk FOREIGN KEY (productId) REFERENCES product(productId),
-	CONSTRAINT languageId_fk FOREIGN KEY (languageId) REFERENCES language(languageId)
-)ENGINE = InnoDB;
-
 CREATE TABLE translationCategory
 (	translationId int(255) NOT NULL AUTO_INCREMENT,
 	categoryId int(255) NOT NULL,
