@@ -12,7 +12,7 @@ public class OrderEntity {
     private Integer orderId;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId",referencedColumnName = "userId")
     private User user;
 
     @Column(name = "creationDate")

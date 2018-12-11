@@ -12,11 +12,11 @@ public class TranslationCategoryEntity {
     private Integer translationId;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "categoryId",referencedColumnName = "categoryId")
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "languageId")
+    @JoinColumn(name = "languageId",referencedColumnName = "languageId")
     private LanguageEntity language;
 
     @Column

@@ -11,7 +11,7 @@ public class OrderLineEntity {
     private Integer orderLineId;
 
     @ManyToOne
-    @JoinColumn(name="orderId")
+    @JoinColumn(name="orderId",referencedColumnName = "orderId")
     private OrderEntity order;
 
     @Column(name = "unitPrice")
