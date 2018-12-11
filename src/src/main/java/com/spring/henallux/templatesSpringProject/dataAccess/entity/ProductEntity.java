@@ -1,4 +1,98 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 
+import javax.persistence.*;
+
+@Entity(name = "Product")
 public class ProductEntity {
+    @Id
+    @Column(name = "productId")
+    @GeneratedValue
+    private Integer productId;
+
+    @ManyToOne
+    private CategoryEntity category;
+
+    @Column(name = "unitPrice")
+    private Double unitPrice;
+
+    @Column(name = "vatRate")
+    private Double vatRate;
+
+    @Column(name = "type")
+    private Integer type;
+
+    @Column(name = "isSparkling")
+    private Boolean isSParkling;
+
+    @Column(name = "isSpicy")
+    private Boolean isSpicy;
+
+    @Column(name = "isSweet")
+    private Boolean isSweet;
+
+    public ProductEntity() { }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Double getVatRate() {
+        return vatRate;
+    }
+
+    public void setVatRate(Double vatRate) {
+        this.vatRate = vatRate;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Boolean getSParkling() {
+        return isSParkling;
+    }
+
+    public void setSParkling(Boolean SParkling) {
+        isSParkling = SParkling;
+    }
+
+    public Boolean getSpicy() {
+        return isSpicy;
+    }
+
+    public void setSpicy(Boolean spicy) {
+        isSpicy = spicy;
+    }
+
+    public Boolean getSweet() {
+        return isSweet;
+    }
+
+    public void setSweet(Boolean sweet) {
+        isSweet = sweet;
+    }
 }
