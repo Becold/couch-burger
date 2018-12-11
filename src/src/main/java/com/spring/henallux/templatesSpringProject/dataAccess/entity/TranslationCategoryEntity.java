@@ -22,7 +22,7 @@ public class TranslationCategoryEntity {
     @Column
     private String content;
 
-    public TranslationCategory() { }
+    public TranslationCategoryEntity() { }
 
     public Integer getTranslationId() {
         return translationId;
