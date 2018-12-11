@@ -1,9 +1,23 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.util;
 
+import com.spring.henallux.templatesSpringProject.dataAccess.entity.CategoryEntity;
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.UserEntity;
+import com.spring.henallux.templatesSpringProject.model.Category;
 import com.spring.henallux.templatesSpringProject.model.User;
 
 public class ProviderConverter {
+
+    public CategoryEntity categoryModelToCategoryEntity(Category category) {
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setCategoryId(category.getCategoryId());
+        return categoryEntity;
+    }
+
+    public Category categoryEntityToCategoryModel(CategoryEntity categoryEntity) {
+        Category category = new Category();
+        category.setCategoryId(categoryEntity.getCategoryId());
+        return category;
+    }
 
     public UserEntity userModelToUserEntity(User user) {
         UserEntity userEntity = new UserEntity();
