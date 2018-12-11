@@ -10,6 +10,7 @@ public class ProductEntity {
     private Integer productId;
 
     @ManyToOne
+    @JoinColumn(name = "categoryId")
     private CategoryEntity category;
 
     @Column(name = "unitPrice")
