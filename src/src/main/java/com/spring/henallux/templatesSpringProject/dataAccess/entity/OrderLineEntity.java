@@ -10,12 +10,12 @@ public class OrderLineEntity {
     @GeneratedValue
     private Integer orderLineId;
 
-    @ManyToOne
     @JoinColumn(name="orderId",referencedColumnName = "orderId")
+    @ManyToOne
     private OrderEntity order;
 
     @Column(name = "unitPrice")
-    private double unitPrice;
+    private Double unitPrice;
 
     @Column(name = "quantity")
     private Integer quantity;

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CategoryDAO implements ICategoryDAO {
+public class CategoryDAO {
 
     private CategoryRepository categoryRepository;
 

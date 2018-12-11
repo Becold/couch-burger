@@ -3,17 +3,18 @@ package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import com.spring.henallux.templatesSpringProject.model.TranslationCategory;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+@Entity(name = "translationcategory")
 public class TranslationCategoryEntity {
     @Column
+    @Id
+    @GeneratedValue
     private Integer translationId;
 
     @ManyToOne
     @JoinColumn(name = "categoryId",referencedColumnName = "categoryId")
-    private Category category;
+    private CategoryEntity category;
 
     @ManyToOne
     @JoinColumn(name = "languageId",referencedColumnName = "languageId")
@@ -32,11 +33,11 @@ public class TranslationCategoryEntity {
         this.translationId = translationId;
     }
 
-    public Category getCategory() {
+    public CategoryEntity getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryEntity category) {
         this.category = category;
     }
 

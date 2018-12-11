@@ -4,7 +4,7 @@ package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 import javax.persistence.*;
 import java.util.GregorianCalendar;
 
-@Entity(name = "Promotion")
+@Entity(name = "promotion")
 public class PromotionEntity {
     @Id
     @Column(name = "promotionId")

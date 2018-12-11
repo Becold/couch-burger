@@ -2,7 +2,7 @@ package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 
 import javax.persistence.*;
 
-@Entity(name = "Product")
+@Entity(name = "product")
 public class ProductEntity {
     @Id
     @Column(name = "productId")

@@ -5,6 +5,7 @@ import com.spring.henallux.templatesSpringProject.model.User;
 import javax.persistence.*;
 import java.util.GregorianCalendar;
 
+@Entity(name = "order")
 public class OrderEntity {
     @Id
     @GeneratedValue
@@ -13,7 +14,7 @@ public class OrderEntity {
 
     @ManyToOne
     @JoinColumn(name = "userId",referencedColumnName = "userId")
-    private User user;
+    private UserEntity user;
 
     @Column(name = "creationDate")
     private GregorianCalendar creationDate;
@@ -31,11 +32,11 @@ public class OrderEntity {
         this.orderId = orderId;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

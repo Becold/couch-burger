@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class UserDAO implements IUserDAO {
+public class UserDAO {
 
     private UserRepository userRepository;
 

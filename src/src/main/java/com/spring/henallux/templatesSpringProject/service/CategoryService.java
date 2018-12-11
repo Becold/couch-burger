@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class CategoryService {
-    private ICategoryDAO categoryDAO;
+    private CategoryDAO categoryDAO;
 
     @Autowired
     public CategoryService(CategoryDAO categoryDAO) {
