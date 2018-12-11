@@ -1,14 +1,19 @@
 package com.spring.henallux.templatesSpringProject.model;
 
+import javax.validation.constraints.NotNull;
 import java.util.GregorianCalendar;
 
 public class Order {
+    @NotNull
     private Integer orderId;
 
+    @NotNull
     private User user;
 
+    @NotNull
     private GregorianCalendar creationDate;
 
+    @NotNull
     private Boolean isPaid;
 
     public Order() { }
