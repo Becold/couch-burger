@@ -72,12 +72,12 @@ public class ProductEntity {
         this.type = type;
     }
 
-    public Boolean getSParkling() {
-        return isSParkling;
+    public Boolean getSparkling() {
+        return isSparkling;
     }
 
-    public void setSParkling(Boolean SParkling) {
-        isSParkling = SParkling;
+    public void setSParkling(Boolean sparkling) {
+        isSparkling = sparkling;
     }
 
     public Boolean getSpicy() {
