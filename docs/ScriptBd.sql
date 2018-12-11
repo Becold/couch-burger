@@ -31,7 +31,7 @@ CREATE TABLE category
 	CONSTRAINT categoryId_pk PRIMARY KEY(categoryId)
 )ENGINE = InnoDB;
 
-CREATE TABLE order
+CREATE TABLE `order`
 (	orderId int(255) NOT NULL AUTO_INCREMENT,
 	userId int(255) NOT NULL,
 	creationDate Date NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE order
 CREATE TABLE product
 (	productId int(255) NOT NULL AUTO_INCREMENT,
 	categoryId int(255) NOT NULL,
-	unitPrice  decimal(100,2) NOT NULL,
+	unitPrice  decimal(65,2) NOT NULL,
 	vatRate int(100) NOT NULL,
 	type varchar(100) NOT NULL,
 	isSparkling tinyint(1),
@@ -57,10 +57,10 @@ CREATE TABLE orderLine
 (	orderLineId int(255) NOT NULL AUTO_INCREMENT,
 	productId int(255) NOT NULL,
 	orderId int(255) NOT NULL,
-	unitPrice  decimal(100,2) NOT NULL,
+	unitPrice  decimal(65,2) NOT NULL,
 	quantity int(100) NOT NULL,
 	CONSTRAINT orderLineId_pk PRIMARY KEY(orderLineId),
-	CONSTRAINT orderId_fk FOREIGN KEY (orderId) REFERENCES order(orderId),
+	CONSTRAINT orderId_fk FOREIGN KEY (orderId) REFERENCES `order`(orderId),
 	CONSTRAINT productId_fk FOREIGN KEY (productId) REFERENCES product(productId)
 )ENGINE = InnoDB;
 
@@ -72,21 +72,10 @@ CREATE TABLE promotion
 	categoryId int(255),
 	productId int(255),
 	typeReduction varchar(100) NOT NULL,
-	amountReduction decimal(100,2) NOT NULL,
+	amountReduction decimal(65,2) NOT NULL,
 	CONSTRAINT promotionId PRIMARY KEY(promotionId),
-	CONSTRAINT productId_fk FOREIGN KEY (productId) REFERENCES product(productId),
-	CONSTRAINT categoryId_fk FOREIGN KEY (categoryId) REFERENCES category(categoryId)
-)ENGINE = InnoDB;
-
-CREATE TABLE translationProduct
-(	translationId int(255) NOT NULL AUTO_INCREMENT,
-	productId int(255) NOT NULL,
-	languageId int(255) NOT NULL,
-	name varchar(100) NOT NULL,
-	description varchar(200) NOT NULL,
-	CONSTRAINT translationId PRIMARY KEY(translationId),
-	CONSTRAINT productId_fk FOREIGN KEY (productId) REFERENCES product(productId),
-	CONSTRAINT languageId_fk FOREIGN KEY (languageId) REFERENCES language(languageId)
+	CONSTRAINT promotion_productId_fk FOREIGN KEY (productId) REFERENCES product(productId),
+	CONSTRAINT promotion_categoryId_fk FOREIGN KEY (categoryId) REFERENCES category(categoryId)
 )ENGINE = InnoDB;
 
 CREATE TABLE translationCategory
@@ -95,6 +84,6 @@ CREATE TABLE translationCategory
 	languageId int(255) NOT NULL,
 	content varchar(200) NOT NULL,
 	CONSTRAINT translationId PRIMARY KEY(translationId),
-	CONSTRAINT categoryId_fk FOREIGN KEY (categoryId) REFERENCES category(categoryId),
-	CONSTRAINT languageId_fk FOREIGN KEY (languageId) REFERENCES language(languageId)
+	CONSTRAINT translationCategory_categoryId_fk FOREIGN KEY (categoryId) REFERENCES category(categoryId),
+	CONSTRAINT translationCategory_languageId_fk FOREIGN KEY (languageId) REFERENCES language(languageId)
 )ENGINE = InnoDB;
