@@ -80,10 +80,12 @@
                         Langue
                     </a>
                     <div class="dropdown-menu" aria-labelledby="langDropdown">
-                        <a class="dropdown-item" href="#">
+                        <spring:url var="localeFr" value=""><spring:param name="locale" value="fr" /></spring:url>
+                        <spring:url var="localeEn" value=""><spring:param name="locale" value="en" /></spring:url>
+                        <a class="dropdown-item" href="${localeFr}">
                             <img src="/images/flag/fr.png" width="32px" height="auto" /> Français
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="${localeEn}">
                             <img src="/images/flag/us.png" width="32px" height="auto" /> English
                         </a>
                     </div>
