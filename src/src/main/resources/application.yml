@@ -1,7 +1,0 @@
-server:
-  port: 8000
-  contextPath: /
-spring:
-  datasource:
-    password: sasa
-    url: jdbc:mysql://localhost:3306/javaweb?user=sa
