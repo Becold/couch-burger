@@ -31,4 +31,13 @@ public class CategoryDAO {
         }
         return categories;
     }
+
+    public Category find(Integer categoryId) {
+        CategoryEntity categoryEntity = this.categoryRepository.findByCategoryId(categoryId);
+        if (categoryEntity != null) {
+            Category category = new ProviderConverter().categoryEntityToCategoryModel(categoryEntity);
+            return category;
+        }
+        return null;
+    }
 }

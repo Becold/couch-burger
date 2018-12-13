@@ -1,5 +1,7 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 
+import com.spring.henallux.templatesSpringProject.model.Product;
+
 import javax.persistence.*;
 
 @Entity(name = "product")

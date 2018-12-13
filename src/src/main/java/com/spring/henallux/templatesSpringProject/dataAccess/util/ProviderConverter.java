@@ -1,8 +1,10 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.util;
 
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.CategoryEntity;
+import com.spring.henallux.templatesSpringProject.dataAccess.entity.ProductEntity;
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.UserEntity;
 import com.spring.henallux.templatesSpringProject.model.Category;
+import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.model.User;
 
 public class ProviderConverter {
@@ -63,5 +65,21 @@ public class ProviderConverter {
         user.setPhoneNumber(userEntity.getPhoneNumber());
         user.setSexe(userEntity.getSexe());
         return user;
+    }
+
+    public Product productEntityToProductModel(ProductEntity productEntity) {
+        Product product = new Product();
+        product.setProductId(productEntity.getProductId());
+        product.setUnitPrice(productEntity.getUnitPrice());
+        product.setVatRate(productEntity.getVatRate());
+        product.setType(productEntity.getType());
+        product.setSparkling(productEntity.getSparkling());
+        product.setSpicy(productEntity.getSpicy());
+        product.setSweet(productEntity.getSweet());
+
+        Category category = this.categoryEntityToCategoryModel(productEntity.getCategory());
+        product.setCategory(category);
+
+        return product;
     }
 }

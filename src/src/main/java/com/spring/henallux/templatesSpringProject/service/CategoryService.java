@@ -20,4 +20,8 @@ public class CategoryService {
     public List<Category> findAll() {
         return this.categoryDAO.findAll();
     }
+
+    public Category find(Integer categoryId) {
+        return this.categoryDAO.find(categoryId);
+    }
 }

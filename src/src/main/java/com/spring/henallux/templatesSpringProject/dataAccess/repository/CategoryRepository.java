@@ -4,4 +4,5 @@ import com.spring.henallux.templatesSpringProject.dataAccess.entity.CategoryEnti
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, String> {
+    CategoryEntity findByCategoryId(Integer categoryId);
 }
