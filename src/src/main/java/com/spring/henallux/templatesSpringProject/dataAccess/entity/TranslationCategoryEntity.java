@@ -1,11 +1,8 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 
-import com.spring.henallux.templatesSpringProject.model.Category;
-import com.spring.henallux.templatesSpringProject.model.TranslationCategory;
-
 import javax.persistence.*;
 
-@Entity(name = "translationcategory")
+@Entity(name = "translationCategory")
 public class TranslationCategoryEntity {
     @Column
     @Id

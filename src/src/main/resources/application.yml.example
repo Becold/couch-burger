@@ -1,7 +1,0 @@
-server:
-  port: 8000
-  contextPath: /
-spring:
-  datasource:
-    password: passwordofusername
-    url: jdbc:mysql://localhost:3306/dbname?user=usernameofdb

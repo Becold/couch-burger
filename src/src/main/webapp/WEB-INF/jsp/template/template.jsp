@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../include/importTags.jsp" %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>${title}</title>
+    <title>Couch'Burger - ${title}</title>
 
     <link rel="icon" type="image/png" href="<spring:url value='/images/favicon.png' />" />
 
@@ -83,10 +82,10 @@
                         <spring:url var="localeFr" value=""><spring:param name="locale" value="fr" /></spring:url>
                         <spring:url var="localeEn" value=""><spring:param name="locale" value="en" /></spring:url>
                         <a class="dropdown-item" href="${localeFr}">
-                            <img src="/images/flag/fr.png" width="32px" height="auto" /> Français
+                            <img src="/images/flag/fr.png" width="32px" height="auto" /> <spring:message code="language.french" />
                         </a>
                         <a class="dropdown-item" href="${localeEn}">
-                            <img src="/images/flag/us.png" width="32px" height="auto" /> English
+                            <img src="/images/flag/us.png" width="32px" height="auto" /> <spring:message code="language.english" />
                         </a>
                     </div>
                 </li>
