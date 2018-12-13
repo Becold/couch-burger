@@ -1,7 +1,7 @@
 package com.spring.henallux.templatesSpringProject.service;
 
 import com.spring.henallux.templatesSpringProject.dataAccess.dao.CategoryDAO;
-import com.spring.henallux.templatesSpringProject.dataAccess.dao.ICategoryDAO;
+import com.spring.henallux.templatesSpringProject.exception.CategoryNotFoundException;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class CategoryService {
         return this.categoryDAO.findAll();
     }
 
-    public Category find(Integer categoryId) {
+    public Category find(Integer categoryId) throws CategoryNotFoundException {
         return this.categoryDAO.find(categoryId);
     }
 }

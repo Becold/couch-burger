@@ -1,5 +1,6 @@
 package com.spring.henallux.templatesSpringProject.controller;
 
+import com.spring.henallux.templatesSpringProject.exception.CategoryNotFoundException;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.service.CategoryService;
@@ -31,8 +32,9 @@ public class CategoryController {
                     method = RequestMethod.GET)
     public String getCategory(Model model,
                               @RequestParam Integer id) {
-        Category category = categoryService.find(id);
-        if (category != null) {
+        Category category = null;
+        try {
+            category = categoryService.find(id);
             model.addAttribute("category", category);
 
             List<Product> products = this.productsService.findByCategoryId(id);
@@ -41,8 +43,7 @@ public class CategoryController {
 
             model.addAttribute("title", "Category");
             return "integrated:category";
-        }
-        else {
+        } catch (CategoryNotFoundException e) {
             // TODO Erreur : Cette catégorie n'existe pas
             return "redirect:/";
         }

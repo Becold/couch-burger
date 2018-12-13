@@ -3,6 +3,7 @@ package com.spring.henallux.templatesSpringProject.dataAccess.dao;
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.CategoryEntity;
 import com.spring.henallux.templatesSpringProject.dataAccess.repository.CategoryRepository;
 import com.spring.henallux.templatesSpringProject.dataAccess.util.ProviderConverter;
+import com.spring.henallux.templatesSpringProject.exception.CategoryNotFoundException;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,12 +33,13 @@ public class CategoryDAO {
         return categories;
     }
 
-    public Category find(Integer categoryId) {
+    public Category find(Integer categoryId) throws CategoryNotFoundException {
         CategoryEntity categoryEntity = this.categoryRepository.findByCategoryId(categoryId);
-        if (categoryEntity != null) {
-            Category category = new ProviderConverter().categoryEntityToCategoryModel(categoryEntity);
-            return category;
+        if (categoryEntity == null) {
+            throw new CategoryNotFoundException();
         }
-        return null;
+
+        Category category = new ProviderConverter().categoryEntityToCategoryModel(categoryEntity);
+        return category;
     }
 }

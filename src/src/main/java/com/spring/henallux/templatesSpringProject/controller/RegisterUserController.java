@@ -57,8 +57,8 @@ public class RegisterUserController {
         }
 
         if (!userRegister.getPassword().equals(userRegister.getConfirmPassword())) {
-            ObjectError error = new ObjectError("confirmPassword", "Les mots de passes sont différents");
-            errors.addError(error);
+            // TODO Erreur personnalisée/traduites
+            // errors.rejectValue("confirmPassword", "invalid.register.differentPassword");
         }
 
         if (this.userService.existsByUsername(userRegister.getUsername())) {
