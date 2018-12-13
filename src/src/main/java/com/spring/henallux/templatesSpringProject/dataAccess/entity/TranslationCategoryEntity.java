@@ -16,7 +16,7 @@ public class TranslationCategoryEntity {
     @JoinColumn(name = "categoryId",referencedColumnName = "categoryId")
     private CategoryEntity category;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "languageId",referencedColumnName = "languageId")
     private LanguageEntity language;
 
