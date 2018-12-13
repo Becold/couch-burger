@@ -35,11 +35,12 @@ public class CategoryController {
         if (category != null) {
             model.addAttribute("category", category);
 
-            List<Product> products = productsService.findByCategoryId(id);
+            List<Product> products = this.productsService.findByCategoryId(id);
             model.addAttribute("products", products);
+            // TODO Gérer quand la catégorie ne possède pas de produits à afficher
 
             model.addAttribute("title", "Category");
-            return "integrated:category"; // TODO Template category.jps
+            return "integrated:category";
         }
         else {
             // TODO Erreur : Cette catégorie n'existe pas

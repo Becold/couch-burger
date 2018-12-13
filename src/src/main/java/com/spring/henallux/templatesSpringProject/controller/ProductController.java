@@ -29,6 +29,6 @@ public class ProductController {
         model.addAttribute("product", product);
          */
         model.addAttribute("title", "Article");
-        return "integrated:product"; // TODO Template category.jsp
+        return "integrated:product"; // TODO Template category.jsp.jsp
     }
 }
