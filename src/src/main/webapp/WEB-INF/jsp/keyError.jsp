@@ -1,3 +1,3 @@
 <div class="alert alert-danger">
-    Une erreur s'est produite.
+    <spring:message code="error.occured" />
 </div>

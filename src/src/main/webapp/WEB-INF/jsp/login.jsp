@@ -2,13 +2,13 @@
 
 <c:if test="${param.error}">
     <div class="alert alert-danger">
-        Nom d'utilisateur ou mot de passe invalide.
+        <spring:message code="login.invalid" />
     </div>
 </c:if>
 
 <c:if test="${param.logout}">
     <div class="alert alert-success">
-        Vous avez correctement été déconnecté.
+        <spring:message code="login.disconnect" />
     </div>
 </c:if>
 
@@ -18,7 +18,7 @@
     modelAttribute="userDetails">
 
     <div class="form-group row">
-        <form:label path="username" class="col-sm-4 col-form-label text-md-right">Nom d'utilisateur</form:label>
+        <form:label path="username" class="col-sm-4 col-form-label text-md-right"><spring:message code="login.username" /></form:label>
         <div class="col-md-6">
             <form:input type="text" class="form-control" path="username" /><br>
             <form:errors path="username" />
@@ -26,7 +26,7 @@
     </div>
 
     <div class="form-group row">
-        <form:label path="password" class="col-md-4 col-form-label text-md-right">Mot-de-passe</form:label>
+        <form:label path="password" class="col-md-4 col-form-label text-md-right"><spring:message code="login.password" /></form:label>
         <div class="col-md-6">
             <form:input type="password" class="form-control" path="password" /><br>
             <form:errors path="password" />
@@ -35,7 +35,7 @@
 
     <div class="form-group row mb-0">
         <div class="col-md-8 offset-md-4">
-            <form:button class="btn btn-primary">Me connecter</form:button>
+            <form:button class="btn btn-primary"><spring:message code="login.login" /></form:button>
         </div>
     </div>
 </form:form>

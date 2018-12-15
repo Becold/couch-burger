@@ -51,7 +51,7 @@ public class RegisterUserController {
     public String getFormData(Model model,
                               @Valid @ModelAttribute(Constants.USER_REGISTERING_DETAILS) User userRegister,
                               BindingResult errors) {
-
+        //Erreur affichées dans la console
         for (FieldError error : errors.getFieldErrors() ) {
             System.out.println (error.getField() + " - " + error.getDefaultMessage());
         }

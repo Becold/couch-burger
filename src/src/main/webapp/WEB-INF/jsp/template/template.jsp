@@ -27,11 +27,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active"> <!-- TODO page "active" à gérer -->
-                    <a class="nav-link" href="<spring:url value='/' />">Accueil</a>
+                    <a class="nav-link" href="<spring:url value='/' />"><spring:message code="menu.home" /></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Catégories
+                        <spring:message code="menu.category" />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Poulet</a>
@@ -43,7 +43,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mon Panier <span class="badge badge-danger">3</span></a>
+                    <a class="nav-link" href="#"><spring:message code="menu.cart" /> <span class="badge badge-danger">3</span></a>
                 </li>
             </ul>
 
@@ -52,7 +52,7 @@
                     <a class="btn btn-primary mr-sm-2" href="<spring:url value='/login'/>">
                         <spring:message code="menu.login" />
                     </a>
-                    <a class="btn btn-outline mr-sm-2" href="<spring:url value='/register'/>">S'inscrire</a>
+                    <a class="btn btn-outline mr-sm-2" href="<spring:url value='/register'/>"><spring:message code="menu.register" /></a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     ${pageContext.request.userPrincipal.name}
@@ -60,14 +60,14 @@
                     <div>
                         <li class="d-inline dropdown">
                             <a class="dropdown-toggle" href="#" id="settingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Parametres
+                                <spring:message code="menu.settings" />
                             </a>
                             <div class="dropdown-menu" aria-labelledby="settingDropdown">
                                 <a class="dropdown-item" href="<spring:url value='/authenticated'/>">
-                                    Mon profil
+                                    <spring:message code="menu.profile" />
                                 </a>
                                 <a class="dropdown-item" href="<spring:url value='/logout'/>">
-                                    Se déconnecter
+                                    <spring:message code="menu.disconnect" />
                                 </a>
                             </div>
                         </li>
@@ -77,7 +77,7 @@
             <div>
                 <li class="d-inline dropdown">
                     <a class="dropdown-toggle" href="#" id="langDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Langue
+                        <spring:message code="menu.language" />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="langDropdown">
                         <spring:url var="localeFr" value=""><spring:param name="locale" value="fr" /></spring:url>

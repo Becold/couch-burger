@@ -1,3 +1,3 @@
 <%@ include file="include/importTags.jsp" %>
 
-Bienvenue sur votre profil, ${pageContext.request.userPrincipal.name}
+<spring:message code="profil.welcome" /> ${pageContext.request.userPrincipal.name}
