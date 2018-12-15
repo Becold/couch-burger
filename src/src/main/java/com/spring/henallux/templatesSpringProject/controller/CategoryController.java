@@ -1,6 +1,7 @@
 package com.spring.henallux.templatesSpringProject.controller;
 
 import com.spring.henallux.templatesSpringProject.exception.CategoryNotFoundException;
+import com.spring.henallux.templatesSpringProject.exception.NoProductInCategoryException;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.service.CategoryService;
@@ -38,13 +39,18 @@ public class CategoryController {
             model.addAttribute("category", category);
 
             List<Product> products = this.productsService.findByCategoryId(id);
-            model.addAttribute("products", products);
-            // TODO Gérer quand la catégorie ne possède pas de produits à afficher
+            if (products.isEmpty()){
+                throw new NoProductInCategoryException();
+            }
 
+            model.addAttribute("products", products);
             model.addAttribute("title", "Category");
             return "integrated:category";
         } catch (CategoryNotFoundException e) {
-            // TODO Erreur : Cette catégorie n'existe pas
+            // TODO Erreur : Cette catégorie n'existe pas.
+            return "redirect:/";
+        } catch (NoProductInCategoryException e) {
+            // TODO Erreur : Il n'y a pas de produit dans cette catégorie.
             return "redirect:/";
         }
     }

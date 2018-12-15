@@ -49,12 +49,13 @@
 
             <div class="d-inline mr-5">
                 <sec:authorize access="!isAuthenticated()">
-                    <a class="btn btn-primary mr-sm-2" href="<spring:url value='/login'/>">Se connecter</a>
+                    <a class="btn btn-primary mr-sm-2" href="<spring:url value='/login'/>">
+                        <spring:message code="menu.login" />
+                    </a>
                     <a class="btn btn-outline mr-sm-2" href="<spring:url value='/register'/>">S'inscrire</a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     ${pageContext.request.userPrincipal.name}
-
 
                     <div>
                         <li class="d-inline dropdown">
