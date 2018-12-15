@@ -105,9 +105,6 @@
 
     <footer>
         <p>&copy; Couch'Burger 2018</p>
-        <sec:authorize access="hasRole('ADMIN')">
-            <a href="<spring:url value='/admin' />">Administration du site</a>
-        </sec:authorize>
     </footer>
 </div>
 
