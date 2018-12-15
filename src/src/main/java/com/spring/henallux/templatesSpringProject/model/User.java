@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,6 +56,8 @@ public class User {
     private String addressLocality;
 
     @NotBlank
+    @Min(1000)
+    @Max(9999)
     private String addressPostalCode;
 
     @NotBlank

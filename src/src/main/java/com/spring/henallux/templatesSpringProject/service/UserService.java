@@ -1,6 +1,5 @@
 package com.spring.henallux.templatesSpringProject.service;
 
-import com.spring.henallux.templatesSpringProject.dataAccess.dao.IUserDAO;
 import com.spring.henallux.templatesSpringProject.dataAccess.dao.UserDAO;
 import com.spring.henallux.templatesSpringProject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

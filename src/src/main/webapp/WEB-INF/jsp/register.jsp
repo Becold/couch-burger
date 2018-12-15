@@ -94,7 +94,7 @@
             <div class="form-group row">
                 <label path="addressPostalCode" class="col-md-4 col-form-label text-md-right">Code postal</label>
                 <div class="col-md-6">
-                    <form:input id="addressPostalCode" type="text" class="form-control" path="addressPostalCode" /><br>
+                    <form:input id="addressPostalCode" type="number" class="form-control" path="addressPostalCode" /><br>
                     <form:errors path="addressPostalCode" />
                 </div>
             </div>
@@ -118,8 +118,9 @@
             <div class="form-group row">
                 <label path="sexe" class="col-md-4 col-form-label text-md-right">Sexe (optionel)</label>
                 <div class="col-md-6">
-                    <form:input id="sexe" type="text" class="form-control" path="sexe" /><br>
-                    <form:errors path="sexe" />
+                    <label class="radio-inline"><form:radiobutton path="sexe" value="M" checked="true" /> M</label>
+                    <label class="radio-inline"><form:radiobutton path="sexe" value="F" /> F</label>
+                    <br><form:errors path="sexe" />
                 </div>
             </div>
 
