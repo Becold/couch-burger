@@ -96,14 +96,22 @@ INSERT INTO `language` (`name`)	VALUES ('fr'); #id= 1
 INSERT INTO `language` (`name`)	VALUES ('en'); #id= 2
 
 INSERT INTO `category` (`categoryId`) VALUES ('1');
-INSERT INTO `category` (`categoryId`) VALUES ('2');
+INSERT INTO `category` (`categoryId`) VALUES ('2');µ
+INSERT INTO `category` (`categoryId`) VALUES ('3');
+INSERT INTO `category` (`categoryId`) VALUES ('4');
 
 INSERT INTO `translationCategory` (`categoryId`, `languageId`, `content`)
 	VALUES
 	(1, 1, "Poulet"),
-	(1, 2, "Chicken");
-
-INSERT INTO `translationCategory` (`categoryId`, `languageId`, `content`)
-	VALUES
+	(1, 2, "Chicken"),
 	(2, 1, "Boissons"),
-	(2, 2, "Sodas");
+	(2, 2, "Sodas"),
+	(3, 1, "Sauce"),
+	(3, 2, "sauce"),
+	(4, 1, "Boeuf"),
+	(4, 2, "Beef"),
+	(5, 1, "Poisson"),
+	(5, 2, "Fish"),
+	(6, 1, "Vegetarien"),
+	(6, 2, "Veggie");
+
