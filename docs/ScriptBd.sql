@@ -42,10 +42,10 @@ CREATE TABLE `order` (
 
 CREATE TABLE `product` (
 	`productId` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` varchar(30) NOT NULL,
 	`categoryId` int(255) UNSIGNED NOT NULL,
 	`unitPrice`  decimal(65,2) NOT NULL,
 	`vatRate` decimal(5,2) NOT NULL,
-	`type` varchar(100) NOT NULL,
 	`isSparkling` tinyint(1),
 	`isSpicy` tinyint(1),
 	`isSweet` tinyint(1),
@@ -96,22 +96,53 @@ INSERT INTO `language` (`name`)	VALUES ('fr'); #id= 1
 INSERT INTO `language` (`name`)	VALUES ('en'); #id= 2
 
 INSERT INTO `category` (`categoryId`) VALUES ('1');
-INSERT INTO `category` (`categoryId`) VALUES ('2');µ
+INSERT INTO `category` (`categoryId`) VALUES ('2');
 INSERT INTO `category` (`categoryId`) VALUES ('3');
 INSERT INTO `category` (`categoryId`) VALUES ('4');
+INSERT INTO `category` (`categoryId`) VALUES ('5');
+INSERT INTO `category` (`categoryId`) VALUES ('6');
 
 INSERT INTO `translationCategory` (`categoryId`, `languageId`, `content`)
 	VALUES
 	(1, 1, "Poulet"),
 	(1, 2, "Chicken"),
-	(2, 1, "Boissons"),
-	(2, 2, "Sodas"),
-	(3, 1, "Sauce"),
-	(3, 2, "sauce"),
-	(4, 1, "Boeuf"),
-	(4, 2, "Beef"),
-	(5, 1, "Poisson"),
-	(5, 2, "Fish"),
-	(6, 1, "Vegetarien"),
-	(6, 2, "Veggie");
+	(2, 1, "Boeuf"),
+	(2, 2, "Beef"),
+	(3, 1, "Poisson"),
+	(3, 2, "Fish"),
+	(4, 1, "Vegetarien"),
+	(4, 2, "Veggie"),
+	(5, 1, "Boissons"),
+	(5, 2, "Drinks"),
+	(6, 1, "Sauce"),
+	(6, 2, "sauce");
+
+INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`isSparkling`,`isSpicy`,`isSweet`)
+	VALUES
+	(1,'Chicken Burger',5.00,12.00,0,0,0),
+	(1,'Spicytender Burger',6.00,12.00,0,0,1),
+	(1,'Birdy Burger',5.00,12.00,0,0,0),
+	(2,'Classic Burger',2.00,12.00,0,0,0),
+	(2,'Tiny Burger',0.50,12.00,0,0,0),
+	(2,'Spicy Burger',3.00,12.00,0,0,1),
+	(3,'Fish Burger',5.00,12.00,0,0,0),
+	(3,'Flipper Burger',4.00,12.00,0,0,0),
+	(3,'Goldfish Burger',2.00,12.00,0,0,0),
+	(4,'Forest Burger',4.00,12.00,0,0,0),
+	(4,'Jungle Burger',5.00,12.00,0,0,0),
+	(4,'Savana Burger',6.00,12.00,0,0,1),
+	(5,'Water',0.60,6.00,0,0,0),
+	(5,'Soda',1.00,6.00,1,0,0),
+	(5,'Cola',1.50,6.00,1,0,0),
+	(5,'Fanta',1.50,6.00,1,0,0),
+	(5,'Sprite',1.50,6.00,1,0,0),
+	(5,'Limonade',1.30,6.00,1,0,0),
+	(5,'Iced Tea',1.50,6.00,0,0,0),
+	(6,'Mayonnaise',0.30,6.00,0,0,0),
+	(6,'Ketchup',0.30,6.00,0,0,1),
+	(6,'Andalouse',0.30,6.00,0,1,0),
+	(6,'Samourai',0.30,6.00,0,1,0),
+	(6,'Curry',0.30,6.00,0,0,1),
+	(6,'Coktail',0.30,6.00,0,0,1),
+	(6,'Burger',0.30,6.00,0,0,0);
 
