@@ -70,6 +70,7 @@ public class ProviderConverter {
     public Product productEntityToProductModel(ProductEntity productEntity) {
         Product product = new Product();
         product.setProductId(productEntity.getProductId());
+        product.setName(productEntity.getName());
         product.setUnitPrice(productEntity.getUnitPrice());
         product.setVatRate(productEntity.getVatRate());
         product.setType(productEntity.getType());

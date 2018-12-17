@@ -11,6 +11,9 @@ public class ProductEntity {
     @GeneratedValue
     private Integer productId;
 
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "categoryId",referencedColumnName = "categoryId")
     private CategoryEntity category;
@@ -98,4 +101,10 @@ public class ProductEntity {
     public void setSweet(Boolean sweet) {
         isSweet = sweet;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public void setSparkling(Boolean sparkling) { isSparkling = sparkling; }
 }

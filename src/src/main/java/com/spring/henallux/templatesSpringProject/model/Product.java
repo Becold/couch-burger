@@ -2,6 +2,7 @@ package com.spring.henallux.templatesSpringProject.model;
 
 public class Product {
     private Integer productId;
+    private String name;
     private Category category;
     private Double unitPrice;
     private Double vatRate;
@@ -75,4 +76,8 @@ public class Product {
     public void setSweet(Boolean sweet) {
         isSweet = sweet;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 }
