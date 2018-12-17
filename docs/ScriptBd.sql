@@ -102,6 +102,8 @@ INSERT INTO `category` (`categoryId`) VALUES ('3');
 INSERT INTO `category` (`categoryId`) VALUES ('4');
 INSERT INTO `category` (`categoryId`) VALUES ('5');
 INSERT INTO `category` (`categoryId`) VALUES ('6');
+INSERT INTO `category` (`categoryId`) VALUES ('7');
+
 
 INSERT INTO `translationCategory` (`categoryId`, `languageId`, `content`)
 	VALUES
@@ -117,6 +119,8 @@ INSERT INTO `translationCategory` (`categoryId`, `languageId`, `content`)
 	(5, 2, "Drinks"),
 	(6, 1, "Sauce"),
 	(6, 2, "sauce");
+	(7, 1, "Accompagnements"),
+	(7, 2, "Sides");
 
 INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSparkling`,`isSpicy`,`isSweet`)
 	VALUES
@@ -146,4 +150,6 @@ INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSpa
 	(6,'Curry',0.30,6.00,'Sauce',0,0,1),
 	(6,'Coktail',0.30,6.00,'Sauce',0,0,1),
 	(6,'Burger',0.30,6.00,'Sauce',0,0,0);
+	(7,'Fries',1.00,12.00,'Sides',0,0,0);
+	(7,'Nuggets',4.00,12.00,'Sides',0,0,0);
 
