@@ -1,11 +1,7 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.util;
 
-import com.spring.henallux.templatesSpringProject.dataAccess.entity.CategoryEntity;
-import com.spring.henallux.templatesSpringProject.dataAccess.entity.ProductEntity;
-import com.spring.henallux.templatesSpringProject.dataAccess.entity.UserEntity;
-import com.spring.henallux.templatesSpringProject.model.Category;
-import com.spring.henallux.templatesSpringProject.model.Product;
-import com.spring.henallux.templatesSpringProject.model.User;
+import com.spring.henallux.templatesSpringProject.dataAccess.entity.*;
+import com.spring.henallux.templatesSpringProject.model.*;
 
 public class ProviderConverter {
 
@@ -82,5 +78,21 @@ public class ProviderConverter {
         product.setCategory(category);
 
         return product;
+    }
+
+    public TranslationCategory translationCategoryEntityToTranslationCategoryModel(TranslationCategoryEntity translationCategoryEntity) {
+        TranslationCategory translationCategory = new TranslationCategory();
+        translationCategory.setTranslationId(translationCategoryEntity.getTranslationId());
+        translationCategory.setLanguage(this.languageEntityToLanguageModel(translationCategoryEntity.getLanguage()));
+        translationCategory.setCategory(this.categoryEntityToCategoryModel(translationCategoryEntity.getCategory()));
+        translationCategory.setContent(translationCategoryEntity.getContent());
+        return translationCategory;
+    }
+
+    private Language languageEntityToLanguageModel(LanguageEntity languageEntity) {
+        Language language = new Language();
+        language.setLanguageId(languageEntity.getLanguageId());
+        language.setName(languageEntity.getName());
+        return language;
     }
 }

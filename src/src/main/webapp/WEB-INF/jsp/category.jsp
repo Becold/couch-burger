@@ -10,10 +10,16 @@
                   <img class="card-img-top" src="/images/products/${product.category.getCategoryId()}/${product.getProductId()}.png" alt="Poisson">
                   <div class="card-body">
                     <h3 class="card-title">${product.getName()}</h3>
-                    <a href="#" class="btn btn-primary">
-                        ${product.getUnitPrice()} €
-                        <i class="fas fa-shopping-basket"></i>
-                    </a>
+                    <form:form action="/cart/addProduct"
+                               method="post"
+                               modelAttribute="addProductToCart">
+                        <form:input type="hidden" path="productId" value="${product.getProductId()}" />
+                        <form:input type="hidden" path="quantity" value="1" />
+                        <form:button class="btn btn-primary">
+                            ${product.getFormattedUnitPrice()} €
+                            <i class="fas fa-shopping-basket"></i>
+                        </form:button>
+                    </form:form>
                   </div>
                 </div>
             </div>

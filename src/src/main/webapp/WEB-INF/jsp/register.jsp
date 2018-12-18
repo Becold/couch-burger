@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card card-default">
         <div class="card-header"><spring:message code="register.register" /></div>
-        //A supprimmer
+        <!-- TODO A supprimmer -->
         <spring:hasBindErrors name="userRegister">
             <c:forEach var="error" items="${errors.allErrors}">
                 <b><spring:message message="${error}" /></b>

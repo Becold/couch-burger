@@ -33,6 +33,10 @@ public class Product {
         return unitPrice;
     }
 
+    public String getFormattedUnitPrice() {
+        return String.format("%.2f", getUnitPrice());
+    }
+
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }

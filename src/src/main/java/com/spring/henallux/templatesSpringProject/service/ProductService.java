@@ -1,6 +1,7 @@
 package com.spring.henallux.templatesSpringProject.service;
 
 import com.spring.henallux.templatesSpringProject.dataAccess.dao.ProductDAO;
+import com.spring.henallux.templatesSpringProject.exception.ProductNotFoundException;
 import com.spring.henallux.templatesSpringProject.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,9 @@ public class ProductService {
 
     public List<Product> findByCategoryId(Integer categoryId) {
         return this.productDAO.findByCategoryId(categoryId);
+    }
+
+    public Product findOne(Integer productId) throws ProductNotFoundException {
+        return this.productDAO.findOne(productId);
     }
 }

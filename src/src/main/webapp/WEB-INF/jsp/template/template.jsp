@@ -35,16 +35,20 @@
                         <spring:message code="menu.category" />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Poulet</a>
-                        <a class="dropdown-item" href="#">Poisson</a>
-                        <a class="dropdown-item" href="#">Viande hachée</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Boisson</a>
-                        <a class="dropdown-item" href="#">Sauce</a>
+                        <c:forEach var="translation" items="${translations}">
+                            <a class="dropdown-item" href="<spring:url value='/category?id=${translation.category.getCategoryId()}' />">${translation.getContent()}</a>
+                        </c:forEach>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><spring:message code="menu.cart" /> <span class="badge badge-danger">3</span></a>
+                    <a class="nav-link" href="<spring:url value='/cart' />">
+                        <spring:message code="menu.cart" />
+                        <c:if test="${cartSize} > 0">
+                            <span class="badge badge-danger">
+                                    ${cartSize}
+                            </span>
+                        </c:if>
+                    </a>
                 </li>
             </ul>
 

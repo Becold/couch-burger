@@ -2,6 +2,7 @@ package com.spring.henallux.templatesSpringProject.dataAccess.repository;
 
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.CategoryEntity;
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.TranslationCategoryEntity;
+import com.spring.henallux.templatesSpringProject.model.TranslationCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface TranslationCategoryRepository extends JpaRepository<TranslationCategoryEntity, Integer> {
-    // List<CategoryEntity> TranslationCategoryByLanguage(String langCode);
+    List<TranslationCategoryEntity> findByLanguageName(String langCode);
 }
