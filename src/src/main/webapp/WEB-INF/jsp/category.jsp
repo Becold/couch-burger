@@ -1,3 +1,4 @@
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/importTags.jsp" %>
 
 <div class="container">
@@ -11,7 +12,7 @@
                     <h3 class="card-title">${product.getName()}</h3>
                     <a href="#" class="btn btn-primary">
                         ${product.getUnitPrice()} €
-                        <i class="fa fa-basket"></i>
+                        <i class="fas fa-shopping-basket"></i>
                     </a>
                   </div>
                 </div>

@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface CategoryRepository extends JpaRepository<CategoryEntity, Integer> {
-    CategoryEntity findByCategoryId(Integer categoryId);
+public interface TranslationCategoryRepository extends JpaRepository<TranslationCategoryEntity, Integer> {
+    // List<CategoryEntity> TranslationCategoryByLanguage(String langCode);
 }
