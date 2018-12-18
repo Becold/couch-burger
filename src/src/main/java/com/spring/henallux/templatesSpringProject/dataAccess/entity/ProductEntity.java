@@ -25,7 +25,7 @@ public class ProductEntity {
     private Double vatRate;
 
     @Column(name = "type")
-    private Integer type;
+    private String type;
 
     @Column(name = "isSparkling")
     private Boolean isSparkling;
@@ -70,11 +70,11 @@ public class ProductEntity {
         this.vatRate = vatRate;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

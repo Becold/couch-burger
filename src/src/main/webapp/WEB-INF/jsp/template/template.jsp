@@ -13,9 +13,10 @@
     <link rel="icon" type="image/png" href="<spring:url value='/images/favicon.png' />" />
 
     <link type="text/css" rel="Stylesheet" href="<spring:url value='/css/bootstrap.min.css' />" />
+    <link type="text/css" rel="Stylesheet" href="<spring:url value='/css/style.css' />" />
 </head>
 
-<body>
+<body class="${classCss}">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3" role="navigation">
     <div class="container">
@@ -96,9 +97,7 @@
 </nav>
 
 
-<div class="container">
-    <tiles:insertAttribute name="main-content" />
-</div>
+<tiles:insertAttribute name="main-content" />
 
 
 <div class="container">

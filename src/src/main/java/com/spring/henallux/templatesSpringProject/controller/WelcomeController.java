@@ -27,7 +27,7 @@ public class WelcomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("title", "Bienvenue sur la page d'accueil");
-        model.addAttribute("password", new BCryptPasswordEncoder().encode("1234"));
+        model.addAttribute("classCss", "home");
 
         List<Category> categories = categoryService.findAll();
         model.addAttribute("categories", categories);

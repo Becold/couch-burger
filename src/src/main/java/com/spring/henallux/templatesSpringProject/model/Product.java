@@ -6,7 +6,7 @@ public class Product {
     private Category category;
     private Double unitPrice;
     private Double vatRate;
-    private Integer type;
+    private String type;
     private Boolean isSparkling;
     private Boolean isSpicy;
     private Boolean isSweet;
@@ -45,11 +45,11 @@ public class Product {
         this.vatRate = vatRate;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

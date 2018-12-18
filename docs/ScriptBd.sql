@@ -118,7 +118,7 @@ INSERT INTO `translationCategory` (`categoryId`, `languageId`, `content`)
 	(5, 1, "Boissons"),
 	(5, 2, "Drinks"),
 	(6, 1, "Sauce"),
-	(6, 2, "sauce");
+	(6, 2, "sauce"),
 	(7, 1, "Accompagnements"),
 	(7, 2, "Sides");
 
@@ -132,7 +132,7 @@ INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSpa
 	(2,'Spicy Burger',3.00,12.00,'Burger',0,0,1),
 	(3,'Fish Burger',5.00,12.00,'Burger',0,0,0),
 	(3,'Flipper Burger',4.00,12.00,'Burger',0,0,0),
-	(3,'Goldfish Burger',2.00,12.00;'Burger',0,0,0),
+	(3,'Goldfish Burger',2.00,12.00,'Burger',0,0,0),
 	(4,'Forest Burger',4.00,12.00,'Burger',0,0,0),
 	(4,'Jungle Burger',5.00,12.00,'Burger',0,0,0),
 	(4,'Savana Burger',6.00,12.00,'Burger',0,0,1),
@@ -149,7 +149,7 @@ INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSpa
 	(6,'Samourai',0.30,6.00,'Sauce',0,1,0),
 	(6,'Curry',0.30,6.00,'Sauce',0,0,1),
 	(6,'Coktail',0.30,6.00,'Sauce',0,0,1),
-	(6,'Burger',0.30,6.00,'Sauce',0,0,0);
-	(7,'Fries',1.00,12.00,'Sides',0,0,0);
+	(6,'Burger',0.30,6.00,'Sauce',0,0,0),
+	(7,'Fries',1.00,12.00,'Sides',0,0,0),
 	(7,'Nuggets',4.00,12.00,'Sides',0,0,0);
 
