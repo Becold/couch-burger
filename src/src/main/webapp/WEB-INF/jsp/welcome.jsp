@@ -12,6 +12,13 @@
 
 
 <div class="container">
-    <h2>Bienvenue</h2>
-    <p>Vous êtes la bienvenue chez nous!</p>
+    <h2>Catégories de produit</h2> <!-- TODO Traduction -->
+    <div class="row">
+        <div class="col-6">
+            <c:forEach var="translation" items="${translations}">
+                <a href="<spring:url value='/category?id=${translation.category.getCategoryId()}' />">${translation.getContent()}</a><br>
+            </c:forEach>
+        </div>
+    </div>
+
 </div>

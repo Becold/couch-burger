@@ -70,9 +70,9 @@ public class ProviderConverter {
         product.setUnitPrice(productEntity.getUnitPrice());
         product.setVatRate(productEntity.getVatRate());
         product.setType(productEntity.getType());
-        product.setSparkling(productEntity.getSparkling());
-        product.setSpicy(productEntity.getSpicy());
-        product.setSweet(productEntity.getSweet());
+        product.setIsSparkling(productEntity.getIsSparkling());
+        product.setIsSpicy(productEntity.getIsSpicy());
+        product.setIsSweet(productEntity.getIsSweet());
 
         Category category = this.categoryEntityToCategoryModel(productEntity.getCategory());
         product.setCategory(category);
