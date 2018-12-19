@@ -118,7 +118,7 @@ INSERT INTO `translationCategory` (`categoryId`, `languageId`, `content`)
 	(5, 1, "Boissons"),
 	(5, 2, "Drinks"),
 	(6, 1, "Sauce"),
-	(6, 2, "sauce"),
+	(6, 2, "Sauce"),
 	(7, 1, "Accompagnements"),
 	(7, 2, "Sides");
 
@@ -143,13 +143,13 @@ INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSpa
 	(5,'Sprite',1.50,6.00,'Drink',1,0,0),
 	(5,'Limonade',1.30,6.00,'Drink',1,0,0),
 	(5,'Iced Tea',1.50,6.00,'Drink',1,0,0),
-	(6,'Mayonnaise',0.30,6.00,'Sauce',0,0,0),
-	(6,'Ketchup',0.30,6.00,'Sauce',0,0,1),
-	(6,'Andalouse',0.30,6.00,'Sauce',0,1,0),
-	(6,'Samourai',0.30,6.00,'Sauce',0,1,0),
-	(6,'Curry',0.30,6.00,'Sauce',0,0,1),
-	(6,'Coktail',0.30,6.00,'Sauce',0,0,1),
-	(6,'Burger',0.30,6.00,'Sauce',0,0,0),
+	(6,'Sauce Mayonnaise',0.30,6.00,'Sauce',0,0,0),
+	(6,'Sauce Ketchup',0.30,6.00,'Sauce',0,0,1),
+	(6,'Sauce Andalouse',0.30,6.00,'Sauce',0,1,0),
+	(6,'Sauce Samourai',0.30,6.00,'Sauce',0,1,0),
+	(6,'Sauce Curry',0.30,6.00,'Sauce',0,0,1),
+	(6,'Sauce Coktail',0.30,6.00,'Sauce',0,0,1),
+	(6,'Sauce Burger',0.30,6.00,'Sauce',0,0,0),
 	(7,'Fries',1.00,12.00,'Sides',0,0,0),
 	(7,'Nuggets',4.00,12.00,'Sides',0,0,0);
 
