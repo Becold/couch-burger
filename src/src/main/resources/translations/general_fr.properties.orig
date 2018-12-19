@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+﻿
+language.english=Anglais
+=======
 ﻿language.english=Anglais
+>>>>>>> d26601eac42a8525d1bfafabc1da680f19bb97d0
 language.french=Français
 menu.login=Se connecter
 menu.home=Accueil
