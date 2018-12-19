@@ -5,14 +5,14 @@ import com.spring.henallux.templatesSpringProject.model.Product;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public class AddProductForm {
+public class ProductForm {
     @NotNull
     private Integer productId;
 
     @Min(0)
     private Integer quantity;
 
-    public AddProductForm() {}
+    public ProductForm() {}
 
     public Integer getProductId() {
         return productId;

@@ -33,12 +33,16 @@ public class Product {
         return unitPrice;
     }
 
-    public String getFormattedUnitPriceWithVat() {
-        return String.format("%.2f", getUnitPrice() + getUnitPrice()*getVatRate()/100);
-    }
-
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public Double getUnitPriceWithVat() {
+        return getUnitPrice() + getUnitPrice()*getVatRate()/100;
+    }
+
+    public String getFormattedUnitPriceWithVat() {
+        return String.format("%.2f", this.getUnitPriceWithVat());
     }
 
     public Double getVatRate() {

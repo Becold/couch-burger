@@ -3,7 +3,7 @@ package com.spring.henallux.templatesSpringProject.controller;
 import com.spring.henallux.templatesSpringProject.Constants;
 import com.spring.henallux.templatesSpringProject.exception.ProductNotFoundException;
 import com.spring.henallux.templatesSpringProject.model.Product;
-import com.spring.henallux.templatesSpringProject.model.form.cart.AddProductForm;
+import com.spring.henallux.templatesSpringProject.model.form.cart.ProductForm;
 import com.spring.henallux.templatesSpringProject.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class ProductController {
                     method = RequestMethod.GET)
     public String getProduct(Model model,
                              @RequestParam Integer id,
-                             @ModelAttribute(Constants.ADD_PRODUCT_TO_CART_FORM) AddProductForm addProductForm) {
+                             @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm) {
         try {
             Product product = productService.findOne(id);
             model.addAttribute("product", product);

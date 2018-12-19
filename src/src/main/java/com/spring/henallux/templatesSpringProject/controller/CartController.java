@@ -3,9 +3,12 @@ package com.spring.henallux.templatesSpringProject.controller;
 import com.spring.henallux.templatesSpringProject.Constants;
 import com.spring.henallux.templatesSpringProject.exception.ProductNotFoundException;
 import com.spring.henallux.templatesSpringProject.model.Product;
-import com.spring.henallux.templatesSpringProject.model.form.cart.AddProductForm;
+import com.spring.henallux.templatesSpringProject.model.Promotion;
+import com.spring.henallux.templatesSpringProject.model.form.cart.ProductForm;
 import com.spring.henallux.templatesSpringProject.model.form.cart.ProductCart;
+import com.spring.henallux.templatesSpringProject.service.CartService;
 import com.spring.henallux.templatesSpringProject.service.ProductService;
+import com.spring.henallux.templatesSpringProject.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +16,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @SessionAttributes({Constants.CART})
 public class CartController {
 
     private ProductService productService;
+    private CartService cartService;
+    private PromotionService promotionService;
 
     @ModelAttribute(Constants.CART)
     public HashMap<Integer, ProductCart> cart() {
@@ -27,26 +34,32 @@ public class CartController {
     }
 
     @Autowired
-    public CartController(ProductService productService) {
+    public CartController(ProductService productService,
+                          CartService cartService,
+                          PromotionService promotionService) {
         this.productService = productService;
+        this.cartService = cartService;
+        this.promotionService = promotionService;
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public String getCart(Model model,
                           @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart) {
+        List<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
         model.addAttribute("title", "Mon panier");
+        model.addAttribute("totalPrice", this.cartService.getFormattedTotalPrice(cart, promotions));
         return "integrated:cart";
     }
 
     @RequestMapping(value = "/cart/addProduct",
                     method = RequestMethod.POST)
     public String postAddProduct(Model model,
-                                 @Valid @ModelAttribute(Constants.ADD_PRODUCT_TO_CART_FORM)AddProductForm addProductForm,
+                                 @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                                  @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                  BindingResult errors) {
         try {
-            Integer productId = addProductForm.getProductId();
-            Integer quantity = addProductForm.getQuantity();
+            Integer productId = productForm.getProductId();
+            Integer quantity = productForm.getQuantity();
             Product product = this.productService.findOne(productId);
 
             if (cart.containsKey(productId)) {
@@ -64,6 +77,26 @@ public class CartController {
             model.addAttribute("errorMessage", "");
             return "integrated:keyError";
         }
+    }
+
+    @RequestMapping(value = "/cart/removeProduct",
+                    method = RequestMethod.POST)
+    public String postRemoveProduct(Model model,
+                                    @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
+                                    @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
+                                    BindingResult errors) {
+
+        /*
+        if (cart.containsKey(productId)) {
+            if (cart.get(productId).getQuantity() < quantity) {
+                cart.remove(productId);
+            }
+            else {
+                cart.get(productId).removeQuantity(quantity);
+            }
+        }
+        */
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/cart/confirmCart", method = RequestMethod.POST)

@@ -27,7 +27,7 @@
                         Ajouter ce produit au panier :
                         <form:form action="/cart/addProduct"
                                    method="post"
-                                   modelAttribute="addProductToCart">
+                                   modelAttribute="productToCart">
                             <form:input type="hidden" path="productId" value="${product.getProductId()}" />
                             <form:input type="text" path="quantity" value="1" />
                             <form:button class="btn btn-primary">

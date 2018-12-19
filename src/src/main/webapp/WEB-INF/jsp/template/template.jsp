@@ -12,6 +12,7 @@
 
     <link rel="icon" type="image/png" href="<spring:url value='/images/favicon.png' />" />
 
+    <link type="text/css" rel="Stylesheet" href="<spring:url value='/css/all.min.css' />" />
     <link type="text/css" rel="Stylesheet" href="<spring:url value='/css/bootstrap.min.css' />" />
     <link type="text/css" rel="Stylesheet" href="<spring:url value='/css/style.css' />" />
 </head>
