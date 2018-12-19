@@ -33,8 +33,8 @@ public class Product {
         return unitPrice;
     }
 
-    public String getFormattedUnitPrice() {
-        return String.format("%.2f", getUnitPrice());
+    public String getFormattedUnitPriceWithVat() {
+        return String.format("%.2f", getUnitPrice() + getUnitPrice()*getVatRate()/100);
     }
 
     public void setUnitPrice(Double unitPrice) {
@@ -57,27 +57,27 @@ public class Product {
         this.type = type;
     }
 
-    public Boolean getSparkling() {
+    public Boolean getIsSparkling() {
         return isSparkling;
     }
 
-    public void setSparkling(Boolean sparkling) {
+    public void setIsSparkling(Boolean sparkling) {
         isSparkling = sparkling;
     }
 
-    public Boolean getSpicy() {
+    public Boolean getIsSpicy() {
         return isSpicy;
     }
 
-    public void setSpicy(Boolean spicy) {
+    public void setIsSpicy(Boolean spicy) {
         isSpicy = spicy;
     }
 
-    public Boolean getSweet() {
+    public Boolean getIsSweet() {
         return isSweet;
     }
 
-    public void setSweet(Boolean sweet) {
+    public void setIsSweet(Boolean sweet) {
         isSweet = sweet;
     }
 

@@ -7,7 +7,7 @@
         <c:forEach var="product" items="${products}">
             <div class="col-md-4">
                 <div class="card">
-                  <img class="card-img-top" src="/images/products/${product.category.getCategoryId()}/${product.getProductId()}.png" alt="Poisson">
+                  <img class="card-img-top" src="/images/products/${product.category.getCategoryId()}/${product.getProductId()}.png" alt="${product.getName()}">
                   <div class="card-body">
                     <h3 class="card-title">${product.getName()}</h3>
                     <form:form action="/cart/addProduct"
@@ -16,7 +16,7 @@
                         <form:input type="hidden" path="productId" value="${product.getProductId()}" />
                         <form:input type="hidden" path="quantity" value="1" />
                         <form:button class="btn btn-primary">
-                            ${product.getFormattedUnitPrice()} €
+                            ${product.getFormattedUnitPriceWithVat()} €
                             <i class="fas fa-shopping-basket"></i>
                         </form:button>
                     </form:form>

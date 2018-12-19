@@ -27,18 +27,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"> <!-- TODO page "active" à gérer -->
+                <li class="nav-item active">
                     <a class="nav-link" href="<spring:url value='/' />"><spring:message code="menu.home" /></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <spring:message code="menu.category" />
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <c:forEach var="translation" items="${translations}">
-                            <a class="dropdown-item" href="<spring:url value='/category?id=${translation.category.getCategoryId()}' />">${translation.getContent()}</a>
-                        </c:forEach>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<spring:url value='/cart' />">

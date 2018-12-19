@@ -58,7 +58,7 @@ public class RegisterUserController {
 
         if (!userRegister.getPassword().equals(userRegister.getConfirmPassword())) {
             // TODO Erreur personnalisée/traduites
-            // errors.rejectValue("confirmPassword", "invalid.register.differentPassword");
+            errors.rejectValue("confirmPassword", "invalid.register.differentPassword");
         }
 
         if (this.userService.existsByUsername(userRegister.getUsername())) {
