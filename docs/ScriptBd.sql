@@ -153,3 +153,6 @@ INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSpa
 	(7,'Fries',1.00,12.00,'Sides',0,0,0),
 	(7,'Nuggets',4.00,12.00,'Sides',0,0,0);
 
+INSERT INTO `promotion` (`starDate`, `endDate`, `typeChoosenItem`, `categoryId`, `productId`, `typeReduction`, `amountReduction`)
+	VALUES
+	('2018-12-15 00:00:01.000', '2018-09-30 23:59:59.000', 1, 1, null, 'fixe', 1, 0.5);
