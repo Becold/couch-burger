@@ -5,7 +5,6 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Couch'Burger</h1>
-        <spring:message code="welcome.banner" />
         <p> <spring:message code="welcome.banner" /></p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button"><spring:message code="welcome.more" /></a></p>
     </div>
