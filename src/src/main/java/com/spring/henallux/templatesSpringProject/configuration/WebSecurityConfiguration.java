@@ -32,6 +32,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/webfonts/**",
 
             "/register",
+            "/login",
 
             "/cart/**",
             "/category/**",
