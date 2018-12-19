@@ -19,7 +19,7 @@
                     <img class="card-img-top" src="/images/categories/${translation.category.getCategoryId()}.png" alt="${translation.getContent()}">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="<spring:url value="/category?id=${translation.category.getCategoryId()}'" />">
+                            <a href="<spring:url value='/category?id=${translation.category.getCategoryId()}' />">
                                 ${translation.getContent()}
                             </a>
                         </h4>
