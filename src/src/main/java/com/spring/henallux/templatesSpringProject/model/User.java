@@ -1,12 +1,12 @@
 package com.spring.henallux.templatesSpringProject.model;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -36,6 +36,7 @@ public class User {
     private Boolean enabled;
 
     @NotBlank
+    @Email
     private String email;
 
     @NotBlank
@@ -47,7 +48,8 @@ public class User {
     @NotBlank
     private String addressStreetName;
 
-    @Min(0)
+    @NotNull
+    @Min(1)
     private Integer addressNumber;
 
     private String addressBox;
@@ -61,6 +63,7 @@ public class User {
     private String addressPostalCode;
 
     @NotBlank
+    @Pattern(regexp = "^(((\\+|00)32\\s?|0)4(60|[789]\\d)(\\s?\\d{2}){3})$")
     private String phoneNumber;
 
     private String sexe;

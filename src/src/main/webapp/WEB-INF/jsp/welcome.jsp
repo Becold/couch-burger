@@ -10,7 +10,6 @@
     </div>
 </div>
 
-
 <div class="container">
     <h2>Catégories de produit</h2> <!-- TODO Traduction -->
     <div class="row">
