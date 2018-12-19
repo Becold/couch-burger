@@ -57,13 +57,15 @@ public class RegisterUserController {
         }
 
         if (!userRegister.getPassword().equals(userRegister.getConfirmPassword())) {
-            // TODO Erreur personnalisée/traduites
-            // errors.rejectValue("confirmPassword", "invalid.register.differentPassword");
+            errors.rejectValue("confirmPassword", "invalid.register.differentPassword");
         }
 
         if (this.userService.existsByUsername(userRegister.getUsername())) {
-            ObjectError error = new ObjectError("username", "Le pseudonyme existe déjà en base de données.");
-            errors.addError(error);
+            errors.rejectValue("username", "invalid.register.usernameTaken");
+        }
+
+        if(!userRegister.getSexe().equals("M") &&!userRegister.getSexe().equals("F")){
+            errors.rejectValue("sexe", "invalid.register.sexe");
         }
 
         if (errors.hasErrors()) {
