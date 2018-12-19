@@ -11,18 +11,18 @@
 </div>
 
 <div class="container">
-    <h2>Catégories de produit</h2> <!-- TODO Traduction -->
+    <h2 class="mb-2">Catégories de produit</h2> <!-- TODO Traduction -->
     <div class="row">
         <c:forEach var="translation" items="${translations}">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
                 <div class="card">
                     <img class="card-img-top" src="/images/categories/${translation.category.getCategoryId()}.png" alt="${translation.getContent()}">
                     <div class="card-body">
-                        <h3 class="card-title">
+                        <h4 class="card-title">
                             <a href="<spring:url value="/category?id=${translation.category.getCategoryId()}'" />">
                                 ${translation.getContent()}
                             </a>
-                        </h3>
+                        </h4>
                     </div>
                 </div>
             </div>
