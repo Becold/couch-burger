@@ -10,7 +10,7 @@
                   <img class="card-img-top" src="/images/products/${product.category.getCategoryId()}/${product.getProductId()}.png" alt="${product.getName()}">
                   <div class="card-body">
                     <h3 class="card-title">
-                        <a href="<spring:url value='/product?id=${product.getProductId()}' />">
+                        <a href="<spring:url value='/product/${product.getProductId()}' />">
                             ${product.getName()}
                         </a>
                     </h3>

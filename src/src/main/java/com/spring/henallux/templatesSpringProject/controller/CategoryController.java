@@ -11,10 +11,7 @@ import com.spring.henallux.templatesSpringProject.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,18 +28,16 @@ public class CategoryController {
         this.productsService = productsService;
     }
 
-    @RequestMapping(value = "/category",
-                    params={"id"},
+    @RequestMapping(value = "/category/{categoryId}",
                     method = RequestMethod.GET)
     public String getCategory(Model model,
-                              @RequestParam Integer id,
+                              @PathVariable("categoryId") Integer categoryId,
                               @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm) {
-        Category category = null;
         try {
-            category = categoryService.find(id);
+            Category category = categoryService.find(categoryId);
             model.addAttribute("category", category);
 
-            List<Product> products = this.productsService.findByCategoryId(id);
+            List<Product> products = this.productsService.findByCategoryId(categoryId);
             if (products.isEmpty()){
                 throw new NoProductInCategoryException();
             }
