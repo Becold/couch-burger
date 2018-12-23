@@ -11,7 +11,7 @@
 </div>
 
 <div class="container">
-    <h2 class="mb-2">Catégories de produit</h2> <!-- TODO Traduction -->
+    <h2 class="mb-2"><spring:message code="welcome.categories" /></h2> <!-- TODO Traduction -->
     <div class="row">
         <c:forEach var="translation" items="${translations}">
             <div class="col-md-3 mb-3">
