@@ -19,7 +19,9 @@ public class CartService {
     public Double getTotalPrice(HashMap<Integer, ProductCart> cart, List<Promotion> promotions) {
         Double totalPrice = 0.00;
         for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
-            totalPrice += entry.getValue().getProduct().getUnitPriceWithVat() * entry.getValue().getQuantity();
+            totalPrice += entry.getValue().getProduct().getUnitPriceWithVat() * (double)entry.getValue().getQuantity();
+            System.out.println(entry.getValue().getProduct().getUnitPriceWithVat());
+            System.out.println((double)entry.getValue().getQuantity());
         }
         return totalPrice;
     }

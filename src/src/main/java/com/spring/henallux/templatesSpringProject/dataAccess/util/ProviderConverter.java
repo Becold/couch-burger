@@ -2,6 +2,7 @@ package com.spring.henallux.templatesSpringProject.dataAccess.util;
 
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.*;
 import com.spring.henallux.templatesSpringProject.model.*;
+import com.spring.henallux.templatesSpringProject.util.DateProviderConverter;
 
 public class ProviderConverter {
 
@@ -94,5 +95,24 @@ public class ProviderConverter {
         language.setLanguageId(languageEntity.getLanguageId());
         language.setName(languageEntity.getName());
         return language;
+    }
+
+    private Order orderEntityToOrderModel(OrderEntity orderEntity) {
+        Order order = new Order();
+        order.setOrderId(orderEntity.getOrderId());
+        order.setCreationDate(DateProviderConverter.dateToGregorianCalendar(orderEntity.getCreationDate()));
+        order.setUser(this.userEntityToUserModel(orderEntity.getUser()));
+        order.setPaid(orderEntity.getPaid());
+        return order;
+    }
+
+    private OrderLine orderLineEntityToOrderLineModel(OrderLineEntity orderLineEntity) {
+        OrderLine orderLine = new OrderLine();
+        orderLine.setOrderLineId(orderLineEntity.getOrderLineId());
+        orderLine.setOrder(this.orderEntityToOrderModel(orderLineEntity.getOrder()));
+        orderLine.setProduct(this.productEntityToProductModel(orderLineEntity.getProduct()));
+        orderLine.setQuantity(orderLineEntity.getQuantity());
+        orderLine.setUnitPrice(orderLineEntity.getUnitPrice());
+        return orderLine;
     }
 }
