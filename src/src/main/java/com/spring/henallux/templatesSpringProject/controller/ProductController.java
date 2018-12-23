@@ -20,14 +20,13 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(value = "/product",
-                    params={"id"},
+    @RequestMapping(value = "/product/{productId}",
                     method = RequestMethod.GET)
     public String getProduct(Model model,
-                             @RequestParam Integer id,
+                             @PathVariable ("productId") Integer productId,
                              @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm) {
         try {
-            Product product = productService.findOne(id);
+            Product product = productService.findOne(productId);
             model.addAttribute("product", product);
             model.addAttribute("title", "Article");
             return "integrated:product";

@@ -10,6 +10,10 @@ public class OrderLineEntity {
     @GeneratedValue
     private Integer orderLineId;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productId")
+    private ProductEntity product;
+
     @JoinColumn(name="orderId",referencedColumnName = "orderId")
     @ManyToOne
     private OrderEntity order;
@@ -30,20 +34,28 @@ public class OrderLineEntity {
         this.orderLineId = orderLineId;
     }
 
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductEntity product) {
+        this.product = product;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
     public OrderEntity getOrder() {
         return order;
     }
 
     public void setOrder(OrderEntity order) {
         this.order = order;
-    }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
     }
 
     public Integer getQuantity() {

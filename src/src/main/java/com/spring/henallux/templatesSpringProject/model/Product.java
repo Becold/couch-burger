@@ -38,7 +38,7 @@ public class Product {
     }
 
     public Double getUnitPriceWithVat() {
-        return getUnitPrice() + getUnitPrice()*getVatRate()/100;
+        return getUnitPrice() + getUnitPrice()*getVatRate()/100.00;
     }
 
     public String getFormattedUnitPriceWithVat() {

@@ -1,9 +1,7 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 
-import com.spring.henallux.templatesSpringProject.model.User;
-
 import javax.persistence.*;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 @Entity(name = "order")
 public class OrderEntity {
@@ -16,8 +14,9 @@ public class OrderEntity {
     @JoinColumn(name = "userId",referencedColumnName = "userId")
     private UserEntity user;
 
-    @Column(name = "creationDate")
-    private GregorianCalendar creationDate;
+    @Column(name = "creationDate", columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
 
     @Column(name = "isPaid")
     private Boolean isPaid;
@@ -40,11 +39,11 @@ public class OrderEntity {
         this.user = user;
     }
 
-    public GregorianCalendar getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(GregorianCalendar creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 

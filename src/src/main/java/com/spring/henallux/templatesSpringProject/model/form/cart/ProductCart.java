@@ -1,5 +1,6 @@
 package com.spring.henallux.templatesSpringProject.model.form.cart;
 
+import com.spring.henallux.templatesSpringProject.exception.QuantityIsNegativeException;
 import com.spring.henallux.templatesSpringProject.model.Product;
 
 import javax.validation.constraints.Min;
@@ -26,11 +27,20 @@ public class ProductCart {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Integer quantity) throws QuantityIsNegativeException {
+        if (quantity <= 0)
+            throw new QuantityIsNegativeException();
         this.quantity = quantity;
     }
 
     public void addQuantity(Integer quantity) {
         this.quantity += quantity;
+    }
+
+    public void removeQuantity(Integer quantity) throws QuantityIsNegativeException {
+        if (this.quantity-quantity <= 0)
+            throw new QuantityIsNegativeException();
+
+        this.quantity -= quantity;
     }
 }

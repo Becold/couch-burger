@@ -15,16 +15,16 @@
     <div class="row">
         <c:forEach var="translation" items="${translations}">
             <div class="col-md-3 mb-3">
-                <div class="card">
-                    <img class="card-img-top" src="/images/categories/${translation.category.getCategoryId()}.png" alt="${translation.getContent()}">
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="<spring:url value='/category?id=${translation.category.getCategoryId()}' />">
+                <a href="<spring:url value='/category/${translation.category.getCategoryId()}' />">
+                    <div class="card">
+                        <img class="card-img-top" src="/images/categories/${translation.category.getCategoryId()}.png" alt="${translation.getContent()}">
+                        <div class="card-body">
+                            <h4 class="card-title">
                                 ${translation.getContent()}
-                            </a>
-                        </h4>
+                            </h4>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </c:forEach>
     </div>
