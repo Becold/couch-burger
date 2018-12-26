@@ -4,13 +4,13 @@
 <!-- TODO Traduction sur toute cette page -->
 
 <div class="container">
-    <h2 class="mt-5">Mon panier</h2>
-    <h3 class="mb-5">Vous avez ${cart.size()} article<c:if test="${cart.size()}>1">s</c:if></h3>
+    <h2 class="mt-5"><spring:message code="cart.myCart" /></h2>
+    <h3 class="mb-5"><spring:message code="cart.youHave" /> ${cart.size()} <spring:message code="cart.articles" /><c:if test="${cart.size()}>1">s</c:if></h3>
 
     <div class="row justify-content-center">
         <div class="col-8">
             <div class="card card-default">
-                <div class="card-header">Panier</div>
+                <div class="card-header"><spring:message code="cart.cart" /></div>
                 <div class="card-body">
 
                     <c:forEach var="item" items="${cart}">
@@ -35,6 +35,7 @@
                                 <h4><small>TVA: ${item.value.getProduct().getVatRate()}%</small></h4>
                             </div>
                             <div class="col text-right">
+                                <-- TODO retirer strong -->
                                 <h6><strong>${item.value.getProduct().getFormattedUnitPriceWithVat()} <span class="text-muted">x</span></strong></h6>
                             </div>
                             <div class="col-2">
@@ -76,12 +77,12 @@
                 <div class="card-footer">
                     <div class="row text-center">
                         <div class="col-9">
-                            <h4 class="text-right">Total <strong>${totalPrice} €</strong></h4>
+                            <h4 class="text-right"><spring:message code="cart.total" /> <strong>${totalPrice} €</strong></h4>
                         </div>
                         <div class="col-3">
                             <form:form action="/cart/confirmCart"
                                        method="post">
-                                <input type="submit" class="btn btn-success btn-block" value="Passer à la caisse" />
+                                <input type="submit" class="btn btn-success btn-block" value="<spring:message code="cart.pay" />" />
                             </form:form>
                         </div>
                     </div>
