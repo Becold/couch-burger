@@ -90,14 +90,14 @@ public class ProviderConverter {
         return translationCategory;
     }
 
-    private Language languageEntityToLanguageModel(LanguageEntity languageEntity) {
+    public Language languageEntityToLanguageModel(LanguageEntity languageEntity) {
         Language language = new Language();
         language.setLanguageId(languageEntity.getLanguageId());
         language.setName(languageEntity.getName());
         return language;
     }
 
-    private Order orderEntityToOrderModel(OrderEntity orderEntity) {
+    public Order orderEntityToOrderModel(OrderEntity orderEntity) {
         Order order = new Order();
         order.setOrderId(orderEntity.getOrderId());
         order.setCreationDate(DateProviderConverter.dateToGregorianCalendar(orderEntity.getCreationDate()));
@@ -106,7 +106,7 @@ public class ProviderConverter {
         return order;
     }
 
-    private OrderLine orderLineEntityToOrderLineModel(OrderLineEntity orderLineEntity) {
+    public OrderLine orderLineEntityToOrderLineModel(OrderLineEntity orderLineEntity) {
         OrderLine orderLine = new OrderLine();
         orderLine.setOrderLineId(orderLineEntity.getOrderLineId());
         orderLine.setOrder(this.orderEntityToOrderModel(orderLineEntity.getOrder()));
@@ -114,5 +114,14 @@ public class ProviderConverter {
         orderLine.setQuantity(orderLineEntity.getQuantity());
         orderLine.setUnitPrice(orderLineEntity.getUnitPrice());
         return orderLine;
+    }
+
+    public OrderEntity orderModelToOrderEntity(Order order) {
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setOrderId(order.getOrderId());
+        orderEntity.setCreationDate(DateProviderConverter.gregorianCalendarToSqlDate(order.getCreationDate()));
+        orderEntity.setUser(this.userModelToUserEntity(order.getUser()));
+        orderEntity.setPaid(order.getPaid());
+        return orderEntity;
     }
 }

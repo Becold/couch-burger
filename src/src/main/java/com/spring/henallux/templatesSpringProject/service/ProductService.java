@@ -3,6 +3,7 @@ package com.spring.henallux.templatesSpringProject.service;
 import com.spring.henallux.templatesSpringProject.dataAccess.dao.ProductDAO;
 import com.spring.henallux.templatesSpringProject.exception.ProductNotFoundException;
 import com.spring.henallux.templatesSpringProject.model.Product;
+import com.spring.henallux.templatesSpringProject.model.Promotion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,11 @@ public class ProductService {
 
     public Product findOne(Integer productId) throws ProductNotFoundException {
         return this.productDAO.findOne(productId);
+    }
+
+    public Double getPrice(Integer quantity, Product product, List<Promotion> promotions) {
+        // TODO Promotions
+        // TODO Est ce que la méthode "getUnitPriceWithVat" ne devrait pas plutôt se trouver dans ProductService ?
+        return product.getUnitPriceWithVat() * quantity;
     }
 }
