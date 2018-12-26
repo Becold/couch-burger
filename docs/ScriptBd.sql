@@ -17,18 +17,29 @@ CREATE TABLE `persistableUser` (
   `addressPostalCode` int(10) NOT NULL,
   `phoneNumber` varchar(20) NOT NULL,
   `sexe` varchar(1),
-  CONSTRAINT userId_pk PRIMARY KEY (`userId`)
+  CONSTRAINT userId_pk PRIMARY KEY (`userId`),
+  CHECK(`userId`>=0),
+  CHECK(`nonExpired` IS NULL OR `nonExpired` in (0,1)),
+  CHECK(`nonLocked` IS NULL OR `nonLocked` in (0,1)),
+  CHECK(`credentialsNonExpired` IS NULL OR `credentialsNonExpired` in (0,1)),
+  CHECK(`enabled` IS NULL OR `enabled` in (0,1)),
+  CHECK(`adressNumber`>0),
+  CHECK(`adressPostalCode` between 1000 and 9999),
+  CHECK(`phoneNumber` LIKE '^(((\\+|00)32\\s?|0)4(60|[789]\\d)(\\s?\\d{2}){3})$'),
+  CHECK(`sexe` in ('M','F'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `language` (
 	`languageId` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`name` varchar(100) NOT NULL,
-	CONSTRAINT languageId_pk PRIMARY KEY(languageId)
+	CONSTRAINT languageId_pk PRIMARY KEY(languageId),
+	CHECK(`languageId`>=0)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `category` (
 	`categoryId` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-	CONSTRAINT categoryId_pk PRIMARY KEY(categoryId)
+	CONSTRAINT categoryId_pk PRIMARY KEY(categoryId),
+	CHECK(`categoryId`>=0)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `order` (
@@ -37,7 +48,10 @@ CREATE TABLE `order` (
 	`creationDate` Date NOT NULL,
 	`isPaid` tinyint(1) UNSIGNED NOT NULL,
 	CONSTRAINT orderId_pk PRIMARY KEY(orderId),
-	CONSTRAINT userId_fk FOREIGN KEY (userId) REFERENCES persistableUser(userId)
+	CONSTRAINT userId_fk FOREIGN KEY (userId) REFERENCES persistableUser(userId),
+	CHECK(`orderId`>=0),
+	CHECK(`userId`>=0),
+	CHECK(`isPaid` in (0,1))
 ) ENGINE = InnoDB;
 
 CREATE TABLE `product` (
@@ -51,7 +65,15 @@ CREATE TABLE `product` (
 	`isSpicy` tinyint(1),
 	`isSweet` tinyint(1),
 	CONSTRAINT productId_pk PRIMARY KEY(productId),
-	CONSTRAINT categoryId_pk FOREIGN KEY (categoryId) REFERENCES category(categoryId)
+	CONSTRAINT categoryId_pk FOREIGN KEY (categoryId) REFERENCES category(categoryId),
+	CHECK(`productId`>=0),
+	CHECK(`categoryId`>=0),
+	CHECK(`unitPrice`>=0),
+	CHECK(`vatRate`>=0),
+	CHECK(`type` in ('Burger','Drink','Sauce','Sides')),
+	CHECK(`isSparkling` IS NULL OR `isSparkling` in (0,1)),
+	CHECK(`isSpicy` IS NULL OR `isSpicy` in (0,1)),
+	CHECK(`isSweet` IS NULL OR `isSweet` in (0,1))
 ) ENGINE = InnoDB;
 
 CREATE TABLE `orderLine` (
@@ -62,7 +84,12 @@ CREATE TABLE `orderLine` (
 	`quantity` int(100) NOT NULL,
 	CONSTRAINT orderLineId_pk PRIMARY KEY(orderLineId),
 	CONSTRAINT orderId_fk FOREIGN KEY (orderId) REFERENCES `order`(orderId),
-	CONSTRAINT productId_fk FOREIGN KEY (productId) REFERENCES product(productId)
+	CONSTRAINT productId_fk FOREIGN KEY (productId) REFERENCES product(productId),
+	CHECK(`orderLineId`>=0),
+	CHECK(`productId`>=0),
+	CHECK(`orderId`>=0),
+	CHECK(`unitPrice`>=0),
+	CHECK(`quantity`>=0)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `promotion` (
@@ -76,7 +103,13 @@ CREATE TABLE `promotion` (
 	`amountReduction` decimal(65,2) NOT NULL,
 	CONSTRAINT promotionId PRIMARY KEY(promotionId),
 	CONSTRAINT promotion_productId_fk FOREIGN KEY (productId) REFERENCES product(productId),
-	CONSTRAINT promotion_categoryId_fk FOREIGN KEY (categoryId) REFERENCES category(categoryId)
+	CONSTRAINT promotion_categoryId_fk FOREIGN KEY (categoryId) REFERENCES category(categoryId),
+	CHECK(`promotionId`>=0),
+	CHECK(`typeChoosenItem` in ('Burger','Drink','Sauce','Sides')),
+	CHECK(`categoryId`>=0),
+	CHECK(`productId`>=0),
+	CHECK(`typeReduction`>=0),
+	CHECK(`amountReduction`>=0)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `translationCategory` (
@@ -86,7 +119,10 @@ CREATE TABLE `translationCategory` (
 	`content` varchar(200) NOT NULL,
 	CONSTRAINT translationId PRIMARY KEY(translationId),
 	CONSTRAINT translationCategory_categoryId_fk FOREIGN KEY (categoryId) REFERENCES category(categoryId),
-	CONSTRAINT translationCategory_languageId_fk FOREIGN KEY (languageId) REFERENCES language(languageId)
+	CONSTRAINT translationCategory_languageId_fk FOREIGN KEY (languageId) REFERENCES language(languageId),
+	CHECK(`translationId`>=0),
+	CHECK(`categoryId`>=0),
+	CHECK(`languageId`>=0)
 ) ENGINE = InnoDB;
 
 INSERT INTO `persistableUser` (`username`, `password`, `authorities`, `nonExpired`, `nonLocked`, `credentialsNonExpired`, `enabled`, `email`, `firstName`, `name`, `addressStreetName`, `addressNumber`, `addressLocality`, `addressPostalCode`, `phoneNumber`, `sexe`)
