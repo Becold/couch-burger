@@ -27,7 +27,7 @@ public class CategoryDAO {
         List<Category> categories = new ArrayList<>();
         List<CategoryEntity> categoriesEntity = this.categoryRepository.findAll();
         for (CategoryEntity categoryEntity : categoriesEntity) {
-            Category category = new ProviderConverter().categoryEntityToCategoryModel(categoryEntity); // TODO category.jsp model to category.jsp entity
+            Category category = new ProviderConverter().categoryEntityToCategoryModel(categoryEntity);
             categories.add(category);
         }
         return categories;
@@ -38,8 +38,6 @@ public class CategoryDAO {
         if (categoryEntity == null) {
             throw new CategoryNotFoundException();
         }
-
-        Category category = new ProviderConverter().categoryEntityToCategoryModel(categoryEntity);
-        return category;
+        return new ProviderConverter().categoryEntityToCategoryModel(categoryEntity);
     }
 }
