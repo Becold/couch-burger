@@ -4,6 +4,7 @@ import com.spring.henallux.templatesSpringProject.Constants;
 import com.spring.henallux.templatesSpringProject.model.User;
 import com.spring.henallux.templatesSpringProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,20 +16,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 @Controller
 @RequestMapping(value="/register")
 public class RegisterUserController {
 
     private UserService userService;
+    private MessageSource messageSource;
 
     @Autowired
-    public RegisterUserController(UserService userService) {
+    public RegisterUserController(UserService userService,MessageSource messageSource) {
         this.userService = userService;
+        this.messageSource=messageSource;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model,
+                       Locale locale,
                        @ModelAttribute(Constants.USER_REGISTERING_DETAILS) User userRegister,
                        BindingResult errors) {
         userRegister.setUsername("Graham");
@@ -43,7 +48,7 @@ public class RegisterUserController {
         userRegister.setAddressPostalCode("1000");
         userRegister.setPhoneNumber("0123456789");
 
-        model.addAttribute("title", "Inscription");
+        model.addAttribute("title",  messageSource.getMessage("menu.register",null,locale));
         return "integrated:register";
     }
 

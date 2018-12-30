@@ -72,7 +72,7 @@ public class CartService {
                     item.getProduct(),
                     promotions
             ));
-            this.orderLineService.save(orderLine);
+            //this.orderLineService.save(orderLine);
         }
     }
 }

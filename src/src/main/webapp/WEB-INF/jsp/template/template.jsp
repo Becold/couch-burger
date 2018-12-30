@@ -31,7 +31,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<spring:url value='/' />"><spring:message code="menu.home" /></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="<spring:url value='/cart' />">
                         <spring:message code="menu.cart" />
                         <c:if test="${cartSize} > 0">
@@ -99,7 +99,7 @@
     <hr>
 
     <footer>
-        <p>&copy; Couch'Burger 2018</p>
+        <p>&copy; Couch'Burger 2018 <a style="float : right" href="<spring:url value='/more_details'/>"><spring:message code="menu.moreDetails" /></a></p>
     </footer>
 </div>
 

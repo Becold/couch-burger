@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/importTags.jsp" %>
 
-<!-- TODO Traduction sur toute cette page -->
+
 
 <div class="container">
     <h2 class="mt-5"><spring:message code="cart.myCart" /></h2>
@@ -28,7 +28,7 @@
                                 </form:form>
                             </div>
                             <div class="col-2">
-                                <img class="img-responsive" width="100px" height="auto" src="/images/products/${item.value.getProduct().category.getCategoryId()}/${item.value.getProduct().getProductId()}.png" alt="${item.value.getProduct().getName()}">
+                                <img class="borderburger img-responsive" width="100px" height="auto" src="/images/products/${item.value.getProduct().category.getCategoryId()}/${item.value.getProduct().getProductId()}.png" alt="${item.value.getProduct().getName()}">
                             </div>
                             <div class="col-4">
                                 <h4 class="product-name"><strong>${item.value.getProduct().getName()}</strong></h4>

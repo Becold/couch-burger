@@ -20,4 +20,8 @@ public class TranslationCategoryService {
     public List<TranslationCategory> findByLanguageName(String langCode) {
         return this.translationCategoryDAO.findByLanguageName(langCode);
     }
+
+    public TranslationCategory findByCategoryCategoryIdAndLanguageName(Integer categoryId, String langCode){
+        return this.translationCategoryDAO.findByCategoryCategoryIdAndLanguageName(categoryId,langCode);
+    }
 }

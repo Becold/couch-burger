@@ -1,3 +1,4 @@
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/importTags.jsp" %>
 
 <!-- TODO Traduction sur cette page -->
@@ -8,23 +9,23 @@
     <div class="row">
         <div class="row justify-content-center">
             <div class="card col-8">
-                <img class="card-img-top" src="/images/products/${product.category.getCategoryId()}/${product.getProductId()}.png" alt="${product.getName()}">
+                <img class="borderburger card-img-top" src="/images/products/${product.category.getCategoryId()}/${product.getProductId()}.png" alt="${product.getName()}">
                 <div class="card-body">
                     <c:if test="${product.getIsSparkling() || product.getIsSpicy() || product.getIsSweet()}">
                         <p class="card-text">
-                            Ce produit est :
+                                <spring:message code="product.is" />
                             <ul>
-                                <c:if test="${product.getIsSparkling()}"><li>pétillant</li></c:if>
-                                <c:if test="${product.getIsSpicy()}"><li>épicé</li></c:if>
-                                <c:if test="${product.getIsSweet()}"><li>sucré</li></c:if>
+                                <c:if test="${product.getIsSparkling()}"><li><spring:message code="product.sparkling" /></li></c:if>
+                                <c:if test="${product.getIsSpicy()}"><li><spring:message code="product.spicy" /></li></c:if>
+                                <c:if test="${product.getIsSweet()}"><li><spring:message code="product.sweet" /></li></c:if>
                             </ul>
                         </p>
                     </c:if>
                     <p class="card-text">
-                        Prix : ${product.getFormattedUnitPriceWithVat()}
+                        <spring:message code="product.price" /> ${product.getFormattedUnitPriceWithVat()} €
                     </p>
                     <p class="card-text">
-                        Ajouter ce produit au panier :
+                        <spring:message code="product.addToCart" />
                         <form:form action="/cart/addProduct"
                                    method="post"
                                    modelAttribute="productToCart">

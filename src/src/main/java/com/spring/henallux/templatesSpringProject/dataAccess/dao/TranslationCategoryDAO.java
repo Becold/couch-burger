@@ -28,4 +28,7 @@ public class TranslationCategoryDAO {
         }
         return categories;
     }
+    public TranslationCategory findByCategoryCategoryIdAndLanguageName(Integer categoryId, String langCode){
+        return new ProviderConverter().translationCategoryEntityToTranslationCategoryModel(this.translationCategoryRepository.findByCategoryCategoryIdAndLanguageName(categoryId,langCode));
+    }
 }
