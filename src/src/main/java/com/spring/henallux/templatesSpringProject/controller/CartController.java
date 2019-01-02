@@ -86,7 +86,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/cart/removeProduct",
-            method = RequestMethod.POST)
+                    method = RequestMethod.POST)
     public String postRemoveProduct(Model model,
                                     @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                                     @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,

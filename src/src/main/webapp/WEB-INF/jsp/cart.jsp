@@ -5,7 +5,7 @@
 
 <div class="container">
     <h2 class="mt-5"><spring:message code="cart.myCart" /></h2>
-    <h3 class="mb-5"><spring:message code="cart.youHave" /> ${cart.size()} <spring:message code="cart.articles" /><c:if test="${cart.size()}>1">s</c:if></h3>
+    <h3 class="mb-5"><spring:message code="cart.youHave" /> ${cart.size()} <spring:message code="cart.articles" /><c:if test="cart.size() > 1">s</c:if></h3>
 
     <div class="row justify-content-center">
         <div class="col-8">
@@ -17,11 +17,11 @@
                         <div class="row d-flex">
                             <div class="col-1">
 
-                                <form:form action="/cart/removeProduct"
+                                <form:form action="/cart/setProduct"
                                            method="post"
                                            modelAttribute="productToCart">
                                     <form:input type="hidden" path="productId" value="${item.value.getProduct().getProductId()}" />
-                                    <form:input type="hidden" path="quantity" value="${item.value.getQuantity()}" />
+                                    <form:input type="hidden" path="quantity" value="0" />
                                     <button type="submit" class="btn btn-link btn-xs">
                                         <i class="fas fa-times" style="color: red;"></i>
                                     </button>
@@ -31,11 +31,12 @@
                                 <img class="img-responsive" width="100px" height="auto" src="/images/products/${item.value.getProduct().category.getCategoryId()}/${item.value.getProduct().getProductId()}.png" alt="${item.value.getProduct().getName()}">
                             </div>
                             <div class="col-4">
+                                <!-- TODO retirer strong -->
                                 <h4 class="product-name"><strong>${item.value.getProduct().getName()}</strong></h4>
                                 <h4><small>TVA: ${item.value.getProduct().getVatRate()}%</small></h4>
                             </div>
                             <div class="col text-right">
-                                <-- TODO retirer strong -->
+                                <!-- TODO retirer strong -->
                                 <h6><strong>${item.value.getProduct().getFormattedUnitPriceWithVat()} <span class="text-muted">x</span></strong></h6>
                             </div>
                             <div class="col-2">
@@ -82,7 +83,11 @@
                         <div class="col-3">
                             <form:form action="/cart/confirmCart"
                                        method="post">
-                                <input type="submit" class="btn btn-success btn-block" value="<spring:message code="cart.pay" />" />
+                                <input type="submit"
+                                       class="btn btn-success btn-block"
+                                       value="<spring:message code="cart.pay" />"
+                                       onclick="return confirm('Etes vous sûr de vouloir passer la commande?');"
+                                />
                             </form:form>
                         </div>
                     </div>

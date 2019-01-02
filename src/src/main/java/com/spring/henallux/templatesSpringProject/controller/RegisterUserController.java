@@ -2,6 +2,7 @@ package com.spring.henallux.templatesSpringProject.controller;
 
 import com.spring.henallux.templatesSpringProject.Constants;
 import com.spring.henallux.templatesSpringProject.model.User;
+import com.spring.henallux.templatesSpringProject.model.form.register.RegisterForm;
 import com.spring.henallux.templatesSpringProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,7 +30,7 @@ public class RegisterUserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model,
-                       @ModelAttribute(Constants.USER_REGISTERING_DETAILS) User userRegister,
+                       @ModelAttribute(Constants.USER_REGISTERING_DETAILS) RegisterForm userRegister,
                        BindingResult errors) {
         userRegister.setUsername("Graham");
         userRegister.setPassword("1234");
@@ -49,7 +50,7 @@ public class RegisterUserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String getFormData(Model model,
-                              @Valid @ModelAttribute(Constants.USER_REGISTERING_DETAILS) User userRegister,
+                              @Valid @ModelAttribute(Constants.USER_REGISTERING_DETAILS) RegisterForm userRegister,
                               BindingResult errors) {
         //Erreur affichées dans la console
         for (FieldError error : errors.getFieldErrors() ) {
@@ -78,6 +79,7 @@ public class RegisterUserController {
         userRegister.setAccountNonLocked(true);
         userRegister.setCredentialsNonExpired(true);
         userRegister.setEnabled(true);
+
         userService.save(userRegister);
         return "redirect:/";
     }
