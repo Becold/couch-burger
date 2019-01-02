@@ -6,12 +6,12 @@
     <div class="container">
         <h1>Couch'Burger</h1>
         <p> <spring:message code="welcome.banner" /></p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button"><spring:message code="welcome.more" /></a></p>
+        <p><a class="btn btn-primary btn-lg" href="<spring:url value='/more_details'/>" role="button"><spring:message code="welcome.more" /></a></p>
     </div>
 </div>
 
 <div class="container">
-    <h2 class="mb-2"><spring:message code="welcome.categories" /></h2> <!-- TODO Traduction -->
+    <h2 class="mb-2"><spring:message code="welcome.categories" /></h2>
     <div class="row">
         <c:forEach var="translation" items="${translations}">
             <div class="col-md-3 mb-3">

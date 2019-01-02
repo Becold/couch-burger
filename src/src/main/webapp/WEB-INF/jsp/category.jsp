@@ -2,12 +2,14 @@
 <%@ include file="include/importTags.jsp" %>
 
 <div class="container">
-    <h2 class="my-5">Nom de la catégorie</h2> <!-- TODO Afficher le nom de la catégorie -->
+    <h2 class="my-5">${categoryTrans}</h2>
     <div class="row">
         <c:forEach var="product" items="${products}">
             <div class="col-md-4 mb-3">
                 <div class="card">
-                  <img class="card-img-top" src="/images/products/${product.category.getCategoryId()}/${product.getProductId()}.png" alt="${product.getName()}">
+                    <a href="<spring:url value='/product/${product.getProductId()}' />">
+                        <img class="borderburger card-img-top" src="/images/products/${product.category.getCategoryId()}/${product.getProductId()}.png" alt="${product.getName()}">
+                    </a>
                   <div class="card-body">
                     <h3 class="card-title">
                         <a href="<spring:url value='/product/${product.getProductId()}' />">

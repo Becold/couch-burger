@@ -7,6 +7,7 @@ import com.spring.henallux.templatesSpringProject.model.form.cart.ProductCart;
 import com.spring.henallux.templatesSpringProject.service.CategoryService;
 import com.spring.henallux.templatesSpringProject.service.TranslationCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ import java.util.Locale;
 public class WelcomeController {
 
     private TranslationCategoryService translationCategoryService;
+    private MessageSource messageSource;
 
     /*
     @ModelAttribute(Constants.CART)
@@ -35,15 +37,16 @@ public class WelcomeController {
     */
 
     @Autowired
-    public WelcomeController(TranslationCategoryService translationCategoryService) {
+    public WelcomeController(TranslationCategoryService translationCategoryService,MessageSource messageSource) {
         this.translationCategoryService = translationCategoryService;
+        this.messageSource=messageSource;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model,
                        Locale locale) {
                        //@ModelAttribute(Constants.CART) HashMap<Integer, ProductCart> cart) {
-        model.addAttribute("title", "Bienvenue sur la page d'accueil");
+        model.addAttribute("title",  messageSource.getMessage("title.welcome",null,locale));
         model.addAttribute("classCss", "home");
         //model.addAttribute("cartSize", cart.size());
         model.addAttribute("translations", translationCategoryService.findByLanguageName(locale.getLanguage()));

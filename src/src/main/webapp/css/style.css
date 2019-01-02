@@ -1,5 +1,10 @@
+
 .home .jumbotron {
     background: url('../images/jumbotron.jpg') 0% 30%;
     color: white;
     text-shadow: 0px 0px 20px #000;
+}
+.borderburger {
+    border: solid #F2EDED 1px;
+    border-radius: 10px;
 }

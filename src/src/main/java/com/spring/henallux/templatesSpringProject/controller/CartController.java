@@ -11,6 +11,7 @@ import com.spring.henallux.templatesSpringProject.service.CartService;
 import com.spring.henallux.templatesSpringProject.service.ProductService;
 import com.spring.henallux.templatesSpringProject.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @SessionAttributes({Constants.CART})
@@ -28,6 +30,7 @@ public class CartController {
     private ProductService productService;
     private CartService cartService;
     private PromotionService promotionService;
+    private MessageSource messageSource;
 
     @ModelAttribute(Constants.CART)
     public HashMap<Integer, ProductCart> cart() {
@@ -37,18 +40,21 @@ public class CartController {
     @Autowired
     public CartController(ProductService productService,
                           CartService cartService,
-                          PromotionService promotionService) {
+                          PromotionService promotionService,
+                          MessageSource messageSource) {
         this.productService = productService;
         this.cartService = cartService;
         this.promotionService = promotionService;
+        this.messageSource=messageSource;
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public String getCart(Model model,
+                          Locale locale,
                           @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                           @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart) {
         List<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
-        model.addAttribute("title", "Mon panier");
+        model.addAttribute("title",  messageSource.getMessage("menu.cart",null,locale));
         model.addAttribute("totalPrice", this.cartService.getFormattedTotalPrice(cart, promotions));
         return "integrated:cart";
     }
