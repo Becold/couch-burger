@@ -28,7 +28,6 @@ public class ProductService {
 
     public Double getPrice(Integer quantity, Product product, List<Promotion> promotions) {
         // TODO Promotions
-        // TODO Est ce que la méthode "getUnitPriceWithVat" ne devrait pas plutôt se trouver dans ProductService ?
         return product.getUnitPriceWithVat() * quantity;
     }
 }

@@ -2,6 +2,7 @@ package com.spring.henallux.templatesSpringProject.controller;
 
 import com.spring.henallux.templatesSpringProject.Constants;
 import com.spring.henallux.templatesSpringProject.model.User;
+import com.spring.henallux.templatesSpringProject.model.form.register.RegisterForm;
 import com.spring.henallux.templatesSpringProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -34,7 +35,7 @@ public class RegisterUserController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model,
                        Locale locale,
-                       @ModelAttribute(Constants.USER_REGISTERING_DETAILS) User userRegister,
+                       @ModelAttribute(Constants.USER_REGISTERING_DETAILS) RegisterForm userRegister,
                        BindingResult errors) {
         userRegister.setUsername("Graham");
         userRegister.setPassword("1234");
@@ -54,7 +55,7 @@ public class RegisterUserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String getFormData(Model model,
-                              @Valid @ModelAttribute(Constants.USER_REGISTERING_DETAILS) User userRegister,
+                              @Valid @ModelAttribute(Constants.USER_REGISTERING_DETAILS) RegisterForm userRegister,
                               BindingResult errors) {
         //Erreur affichées dans la console
         for (FieldError error : errors.getFieldErrors() ) {
@@ -77,13 +78,13 @@ public class RegisterUserController {
             return "integrated:register";
         }
 
-        // userRegister.setPassword(new BCryptPasswordEncoder().encode(userRegister.getPassword()));
-        userRegister.getAuthorities().add(new SimpleGrantedAuthority("ROLE_USER"));
+        // userRegister.getAuthorities().add(new SimpleGrantedAuthority("ROLE_USER"));
         userRegister.setAccountNonExpired(true);
         userRegister.setAccountNonLocked(true);
         userRegister.setCredentialsNonExpired(true);
         userRegister.setEnabled(true);
-        userService.save(userRegister);
+
+        // userService.save(userRegister);
         return "redirect:/";
     }
 }
