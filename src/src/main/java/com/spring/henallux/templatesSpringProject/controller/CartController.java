@@ -12,6 +12,7 @@ import com.spring.henallux.templatesSpringProject.service.ProductService;
 import com.spring.henallux.templatesSpringProject.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -128,7 +129,11 @@ public class CartController {
             Product product = productService.findOne(productId);
 
             if (cart.containsKey(productId)) {
-                cart.get(productId).setQuantity(quantity);
+                if (quantity <= 0) {
+                    cart.remove(productId);
+                } else {
+                    cart.get(productId).setQuantity(quantity);
+                }
             }
             else {
                 ProductCart productCart = new ProductCart();
@@ -151,20 +156,38 @@ public class CartController {
 
     @RequestMapping(value = "/cart/confirmCart", method = RequestMethod.POST)
     public String postCartConfirm(Model model,
+                                  Locale locale,
                                   @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
-                                  BindingResult errors) {
-        // TODO Vérifier le panier (que les produits existent toujours, que les quantités soient positifs, etc)
+                                  BindingResult errors,
+                                  Authentication authentication) {
+        if (cart.size() <= 0) {
+            // TODO Erreur "Le carte est vide"
+            return "integrated:keyError";
+        }
+
         // TODO Calcul des Promotions et du prix final
-        // TODO Afficher le formulaire de paiement Paypal
-        return "integrated:cart.paypal";
+        List<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
+
+        // Enregistrer le cart en db (order/orderline)
+        cartService.saveCart(cart, promotions, authentication);
+
+        // Vider le cart
+        cart = new HashMap<>();
+
+        // Afficher le formulaire de paiement Paypal
+        model.addAttribute("title",  messageSource.getMessage("cart.payment.title",null,locale));
+        model.addAttribute("amount", this.cartService.getTotalPrice(cart, promotions));
+        model.addAttribute("item_name", messageSource.getMessage("cart.item_name",null,locale));
+        model.addAttribute("return_url", Constants.PAYMENT_RETURN_URL); // TODO URL payment is successful
+        model.addAttribute("cancel_return_url", Constants.PAYMENT_CANCELLED_URL); // TODO URL payment is cancelled
+        model.addAttribute("currency_code", Constants.CURRENCY_CODE);
+        model.addAttribute("lc", locale.getLanguage());
+        return "integrated:pay";
     }
 
     @RequestMapping(value = "/cart/confirmPaiement", method = RequestMethod.POST)
     public String postCartPaiement(Model model,
-                                  @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                   BindingResult errors) {
-        // TODO Vérifier le panier (que les produits existent toujours, que les quantités soient positifs, etc)
-        // TODO Vérification paiement paypal
         // TODO Si paiement réussi: Enregistrer en DB le panier + message de réussite + vider la session
         // TODO Si paiement refusé: Afficher un message d'erreur
         return "integrated:cart.paypal";

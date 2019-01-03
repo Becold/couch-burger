@@ -19,6 +19,6 @@ public class OrderDAO {
 
     public Order create(OrderEntity orderEntity) {
         OrderEntity orderEntitySaved = this.orderRepository.save(orderEntity);
-        return new ProviderConverter().orderEntityToOrderModel(orderEntity);
+        return new ProviderConverter().orderEntityToOrderModel(orderEntitySaved);
     }
 }

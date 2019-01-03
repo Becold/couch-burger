@@ -81,6 +81,23 @@ public class ProviderConverter {
         return product;
     }
 
+    private ProductEntity productModelToProductEntity(Product product) {
+        ProductEntity productEntity = new ProductEntity();
+        productEntity.setProductId(product.getProductId());
+        productEntity.setName(product.getName());
+        productEntity.setUnitPrice(product.getUnitPrice());
+        productEntity.setVatRate(product.getVatRate());
+        productEntity.setType(product.getType());
+        productEntity.setIsSparkling(product.getIsSparkling());
+        productEntity.setIsSpicy(product.getIsSpicy());
+        productEntity.setIsSweet(product.getIsSweet());
+
+        CategoryEntity category = this.categoryModelToCategoryEntity(product.getCategory());
+        productEntity.setCategory(category);
+
+        return productEntity;
+    }
+
     public TranslationCategory translationCategoryEntityToTranslationCategoryModel(TranslationCategoryEntity translationCategoryEntity) {
         TranslationCategory translationCategory = new TranslationCategory();
         translationCategory.setTranslationId(translationCategoryEntity.getTranslationId());
@@ -106,6 +123,15 @@ public class ProviderConverter {
         return order;
     }
 
+    public OrderEntity orderModelToOrderEntity(Order order) {
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setOrderId(order.getOrderId());
+        orderEntity.setCreationDate(DateProviderConverter.gregorianCalendarToSqlDate(order.getCreationDate()));
+        orderEntity.setUser(this.userModelToUserEntity(order.getUser()));
+        orderEntity.setPaid(order.getPaid());
+        return orderEntity;
+    }
+
     public OrderLine orderLineEntityToOrderLineModel(OrderLineEntity orderLineEntity) {
         OrderLine orderLine = new OrderLine();
         orderLine.setOrderLineId(orderLineEntity.getOrderLineId());
@@ -116,12 +142,13 @@ public class ProviderConverter {
         return orderLine;
     }
 
-    public OrderEntity orderModelToOrderEntity(Order order) {
-        OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setOrderId(order.getOrderId());
-        orderEntity.setCreationDate(DateProviderConverter.gregorianCalendarToSqlDate(order.getCreationDate()));
-        orderEntity.setUser(this.userModelToUserEntity(order.getUser()));
-        orderEntity.setPaid(order.getPaid());
-        return orderEntity;
+    public OrderLineEntity orderLineModelToOrderLineEntity(OrderLine orderLine) {
+        OrderLineEntity orderLineEntity = new OrderLineEntity();
+        orderLineEntity.setOrderLineId(orderLine.getOrderLineId());
+        orderLineEntity.setOrder(this.orderModelToOrderEntity(orderLine.getOrder()));
+        orderLineEntity.setProduct(this.productModelToProductEntity(orderLine.getProduct()));
+        orderLineEntity.setQuantity(orderLine.getQuantity());
+        orderLineEntity.setUnitPrice(orderLine.getUnitPrice());
+        return orderLineEntity;
     }
 }

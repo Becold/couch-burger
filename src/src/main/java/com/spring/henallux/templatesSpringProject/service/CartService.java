@@ -53,26 +53,25 @@ public class CartService {
     public void saveCart(HashMap<Integer, ProductCart> cart,
                          List<Promotion> promotions,
                          Authentication authentication) {
-        // TODO Enregsitrer l'order + les orderline, en faisant une transaction si possible
         Order order = new Order();
         order.setUser(new ProviderConverter().userEntityToUserModel((UserEntity) authentication.getPrincipal()));
         order.setCreationDate(new GregorianCalendar());
         order.setPaid(false);
-        this.orderService.create(order);
+        Order createdOrder = this.orderService.create(order);
 
         for (Map.Entry<Integer, ProductCart> cartItem : cart.entrySet()) {
             ProductCart item = cartItem.getValue();
 
             OrderLine orderLine = new OrderLine();
             orderLine.setProduct(item.getProduct());
-            orderLine.setOrder(order);
+            orderLine.setOrder(createdOrder);
             orderLine.setQuantity(item.getQuantity());
             orderLine.setUnitPrice(this.productService.getPrice(
                     item.getQuantity(),
                     item.getProduct(),
                     promotions
             ));
-            // this.orderLineService.save(orderLine);
+            this.orderLineService.save(orderLine);
         }
     }
 }

@@ -3,7 +3,7 @@ package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "order")
+@Entity(name = "`order`")
 public class OrderEntity {
     @Id
     @GeneratedValue
@@ -14,8 +14,8 @@ public class OrderEntity {
     @JoinColumn(name = "userId",referencedColumnName = "userId")
     private UserEntity user;
 
-    @Column(name = "creationDate", columnDefinition = "DATETIME")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creationDate")
+    @Temporal(TemporalType.DATE)
     private Date creationDate;
 
     @Column(name = "isPaid")

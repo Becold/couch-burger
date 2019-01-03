@@ -34,7 +34,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/register",
             "/login",
 
-            "/cart/**",
+            "/cart",
+            "/cart/addProduct",
+            "/cart/removeProduct",
+            "/cart/setProduct",
             "/category/**",
             "/product/**",
             "/more_details"

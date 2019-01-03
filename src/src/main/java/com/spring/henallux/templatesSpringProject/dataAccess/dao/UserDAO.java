@@ -22,8 +22,8 @@ public class UserDAO {
 
     public User save(User user){
         UserEntity userEntity = new ProviderConverter().userModelToUserEntity(user);
-        this.userRepository.save(userEntity);
-        return user;
+        UserEntity newUser = this.userRepository.save(userEntity);
+        return new ProviderConverter().userEntityToUserModel(newUser);
     }
 
     public User findByUsername(String username) {
