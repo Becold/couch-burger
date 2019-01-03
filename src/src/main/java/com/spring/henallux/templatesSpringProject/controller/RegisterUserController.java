@@ -78,13 +78,24 @@ public class RegisterUserController {
             return "integrated:register";
         }
 
-        // userRegister.getAuthorities().add(new SimpleGrantedAuthority("ROLE_USER"));
-        userRegister.setAccountNonExpired(true);
-        userRegister.setAccountNonLocked(true);
-        userRegister.setCredentialsNonExpired(true);
-        userRegister.setEnabled(true);
+        User newUser = new User();
+        newUser.setUsername(userRegister.getUsername());
+        newUser.setPassword(userRegister.getPassword());
+        newUser.setEmail(userRegister.getEmail());
+        newUser.setFirstname(userRegister.getFirstname());
+        newUser.setName(userRegister.getName());
+        newUser.setAddressStreetName(userRegister.getAddressStreetName());
+        newUser.setAddressNumber(userRegister.getAddressNumber());
+        newUser.setAddressLocality(userRegister.getAddressLocality());
+        newUser.setAddressPostalCode(userRegister.getAddressPostalCode());
+        newUser.setPhoneNumber(userRegister.getPhoneNumber());
+        newUser.getAuthorities().add(new SimpleGrantedAuthority("ROLE_USER"));
+        newUser.setAccountNonExpired(true);
+        newUser.setAccountNonLocked(true);
+        newUser.setCredentialsNonExpired(true);
+        newUser.setEnabled(true);
+        userService.save(newUser);
 
-        // userService.save(userRegister);
         return "redirect:/";
     }
 }
