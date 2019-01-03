@@ -1,7 +1,11 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 
 
+import com.spring.henallux.templatesSpringProject.model.promotion.TypeChoosenItem;
+import com.spring.henallux.templatesSpringProject.model.promotion.TypeReduction;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 @Entity(name = "promotion")
@@ -11,14 +15,16 @@ public class PromotionEntity {
     @GeneratedValue
     private Integer promotionId;
 
-    @Column(name = "startDate")
-    private GregorianCalendar startDate;
+    @Column(name = "startDate", columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startDate;
 
-    @Column(name = "endDate")
-    private GregorianCalendar endDate;
+    @Column(name = "endDate", columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endDate;
 
     @Column(name = "typeChoosenItem")
-    private String typeChoosenItem;
+    private TypeChoosenItem typeChoosenItem;
 
     @ManyToOne
     @JoinColumn(name="categoryId",referencedColumnName = "categoryId")
@@ -29,10 +35,10 @@ public class PromotionEntity {
     private ProductEntity product;
 
     @Column(name = "typeReduction")
-    private String typeReduction;
+    private TypeReduction typeReduction;
 
     @Column(name = "amountReduction")
-    private double amountReduction;
+    private Double amountReduction;
 
     public PromotionEntity() { }
 
@@ -44,27 +50,27 @@ public class PromotionEntity {
         this.promotionId = promotionId;
     }
 
-    public GregorianCalendar getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(GregorianCalendar startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public GregorianCalendar getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(GregorianCalendar endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public String getTypeChoosenItem() {
+    public TypeChoosenItem getTypeChoosenItem() {
         return typeChoosenItem;
     }
 
-    public void setTypeChoosenItem(String typeChoosenItem) {
+    public void setTypeChoosenItem(TypeChoosenItem typeChoosenItem) {
         this.typeChoosenItem = typeChoosenItem;
     }
 
@@ -84,11 +90,11 @@ public class PromotionEntity {
         this.product = product;
     }
 
-    public String getTypeReduction() {
+    public TypeReduction getTypeReduction() {
         return typeReduction;
     }
 
-    public void setTypeReduction(String typeReduction) {
+    public void setTypeReduction(TypeReduction typeReduction) {
         this.typeReduction = typeReduction;
     }
 

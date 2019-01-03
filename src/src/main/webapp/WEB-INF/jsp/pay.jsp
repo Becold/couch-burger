@@ -1,6 +1,6 @@
 <%@ include file="include/importTags.jsp" %>
 
-<div class="mt-5 container text-center">
+<div class="my-5 container text-center">
 
     <form method="POST" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
         <input type="hidden" name="business" value="couch.burger@hotmail.com">
@@ -12,7 +12,6 @@
         <input type="hidden" name="return" value="${return_url}">
         <input type="hidden" name="cancel_return" value="${cancel_return_url}">
         <input type="hidden" name="currency_code" value="${currency_code}">
-        <input type="hidden" name="lc" value="${lc}">
         <input type="submit" class="btn btn-success" value="Payer avec paypal" />
     </form>
 

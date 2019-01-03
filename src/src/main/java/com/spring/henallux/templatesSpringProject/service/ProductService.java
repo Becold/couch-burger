@@ -25,9 +25,4 @@ public class ProductService {
     public Product findOne(Integer productId) throws ProductNotFoundException {
         return this.productDAO.findOne(productId);
     }
-
-    public Double getPrice(Integer quantity, Product product, List<Promotion> promotions) {
-        // TODO Promotions
-        return product.getUnitPriceWithVat() * quantity;
-    }
 }

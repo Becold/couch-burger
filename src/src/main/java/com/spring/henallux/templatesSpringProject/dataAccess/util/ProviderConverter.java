@@ -151,4 +151,19 @@ public class ProviderConverter {
         orderLineEntity.setUnitPrice(orderLine.getUnitPrice());
         return orderLineEntity;
     }
+
+    public Promotion promotionEntityToPromotionModel(PromotionEntity promotionEntity) {
+        Promotion promotion = new Promotion();
+        promotion.setAmountReduction(promotionEntity.getAmountReduction());
+        if (promotionEntity.getCategory() != null)
+            promotion.setCategory(new ProviderConverter().categoryEntityToCategoryModel(promotionEntity.getCategory()));
+        if (promotionEntity.getProduct() != null)
+            promotion.setProduct(new ProviderConverter().productEntityToProductModel(promotionEntity.getProduct()));
+        promotion.setPromotionId(promotionEntity.getPromotionId());
+        promotion.setEndDate(DateProviderConverter.dateToGregorianCalendar(promotionEntity.getEndDate()));
+        promotion.setStartDate(DateProviderConverter.dateToGregorianCalendar(promotionEntity.getStartDate()));
+        promotion.setTypeChoosenItem(promotionEntity.getTypeChoosenItem());
+        promotion.setTypeReduction(promotionEntity.getTypeReduction());
+        return promotion;
+    }
 }

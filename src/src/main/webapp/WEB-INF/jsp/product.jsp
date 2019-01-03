@@ -1,8 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/importTags.jsp" %>
 
-<!-- TODO Traduction sur cette page -->
-
 <div class="container">
     <h2 class="my-5">${product.getName()}</h2>
 
@@ -20,6 +18,23 @@
                                 <c:if test="${product.getIsSweet()}"><li><spring:message code="product.sweet" /></li></c:if>
                             </ul>
                         </p>
+                    </c:if>
+
+                    <c:if test="${promotions.size() gt 0}">
+                        Des promotions sont appliquées sur ce produit :
+                        <ul>
+                            <c:forEach var="promotion" items="${promotions}">
+                                <li>
+                                    -${promotion.getAmountReduction()}
+                                    <c:if test="${promotion.getTypeReduction() eq 'FIXE'}">
+                                        €
+                                    </c:if>
+                                    <c:if test="${promotion.getTypeReduction() eq 'POURCENTAGE'}">
+                                        %
+                                    </c:if>
+                                </li>
+                            </c:forEach>
+                        </ul>
                     </c:if>
                     <p class="card-text">
                         <spring:message code="product.price" /> ${product.getFormattedUnitPriceWithVat()} €

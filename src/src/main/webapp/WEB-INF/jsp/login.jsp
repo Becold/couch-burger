@@ -1,7 +1,7 @@
 <%@ include file="include/importTags.jsp" %>
 
 
-<div class="container">
+<div class="mt-5 container">
     <c:if test="${param.error}">
         <div class="alert alert-danger">
             <spring:message code="login.invalid" />

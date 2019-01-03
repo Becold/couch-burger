@@ -1,11 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/importTags.jsp" %>
 
-
-
-<div class="container">
-    <h2 class="mt-5"><spring:message code="cart.myCart" /></h2>
-    <h3 class="mb-5"><spring:message code="cart.youHave" /> ${cart.size()} <spring:message code="cart.articles" /><c:if test="cart.size() > 1">s</c:if></h3>
+<div class="my-3 container">
+    <h2><spring:message code="cart.myCart" /></h2>
+    <h3 class="mb-5"><spring:message code="cart.youHave" />
+        ${cart.size()} <spring:message code="cart.articles" /><c:if test="${cart.size() gt 1}">s</c:if>
+    </h3>
 
     <div class="row justify-content-center">
         <div class="col-8">
@@ -83,7 +83,7 @@
                         <div class="col-3">
 
                             <form:form action="/cart/confirmCart"
-                                       method="post">
+                                       method="get">
                                 <input type="submit"
                                        class="btn btn-success btn-block"
                                        value="<spring:message code="cart.pay" />"

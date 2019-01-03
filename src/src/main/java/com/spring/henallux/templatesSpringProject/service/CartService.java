@@ -40,7 +40,7 @@ public class CartService {
         for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
             Product item = entry.getValue().getProduct();
             Integer quantity = entry.getValue().getQuantity();
-            totalPrice += this.productService.getPrice(quantity, item, promotions);
+            totalPrice += this.orderLineService.getPrice(quantity, item, promotions);
         }
         return totalPrice;
     }
@@ -66,11 +66,13 @@ public class CartService {
             orderLine.setProduct(item.getProduct());
             orderLine.setOrder(createdOrder);
             orderLine.setQuantity(item.getQuantity());
-            orderLine.setUnitPrice(this.productService.getPrice(
-                    item.getQuantity(),
-                    item.getProduct(),
-                    promotions
-            ));
+            orderLine.setUnitPrice(
+                    orderLineService.getPrice(
+                            item.getQuantity(),
+                            item.getProduct(),
+                            promotions
+                    )
+            );
             this.orderLineService.save(orderLine);
         }
     }

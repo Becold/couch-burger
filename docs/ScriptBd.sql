@@ -45,7 +45,7 @@ CREATE TABLE `category` (
 CREATE TABLE `order` (
 	`orderId` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`userId` int(255) UNSIGNED NOT NULL,
-	`creationDate` Date NOT NULL,
+	`creationDate` date NOT NULL,
 	`isPaid` tinyint(1) UNSIGNED NOT NULL,
 	CONSTRAINT orderId_pk PRIMARY KEY(orderId),
 	CONSTRAINT userId_fk FOREIGN KEY (userId) REFERENCES persistableUser(userId),
@@ -94,7 +94,7 @@ CREATE TABLE `orderLine` (
 
 CREATE TABLE `promotion` (
 	`promotionId` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-	`starDate` datetime NOT NULL,
+	`startDate` datetime NOT NULL,
 	`endDate` datetime NOT NULL,
 	`typeChoosenItem` varchar(100) NOT NULL,
 	`categoryId` int(255) UNSIGNED,
@@ -193,8 +193,9 @@ INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSpa
 	(7,'Fries',1.00,12.00,'Sides',0,0,0),
 	(7,'Nuggets',4.00,12.00,'Sides',0,0,0);
 
-INSERT INTO `promotion` (`starDate`, `endDate`, `typeChoosenItem`, `categoryId`, `productId`, `typeReduction`, `amountReduction`)
+INSERT INTO `promotion` (`startDate`, `endDate`, `typeChoosenItem`, `categoryId`, `productId`, `typeReduction`, `amountReduction`)
 	VALUES
-	('2018-12-15 00:00:01.000', '2019-09-20 23:59:59.000', 1, 1, null, 1, 0.5),
-	('2018-12-16 00:00:01.000', '2019-10-30 23:59:59.000', 1, 2, null, 2, 2),
-	('2019-01-30 00:00:01.000', '2019-02-01 23:59:59.000', 1, 4, null, 1, 0.25);
+	('2018-12-15 00:00:01.000', '2019-09-20 23:59:59.000', 1, null, 1, 1, 0.5),
+	('2018-12-15 00:00:01.000', '2019-09-20 23:59:59.000', 0, 1, null, 1, 0.5),
+	('2018-12-16 00:00:01.000', '2019-10-30 23:59:59.000', 0, 2, null, 0, 2),
+	('2019-01-30 00:00:01.000', '2019-02-01 23:59:59.000', 0, 4, null, 1, 0.25);

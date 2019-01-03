@@ -1,5 +1,7 @@
 package com.spring.henallux.templatesSpringProject.model;
 
+import com.spring.henallux.templatesSpringProject.model.promotion.TypeChoosenItem;
+import com.spring.henallux.templatesSpringProject.model.promotion.TypeReduction;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,17 +27,17 @@ public class Promotion {
     private GregorianCalendar endDate;
 
     @NotBlank
-    private String typeChoosenItem;
+    private TypeChoosenItem typeChoosenItem;
 
     private Category category;
 
     private Product product;
 
     @NotNull
-    private String typeReduction;
+    private TypeReduction typeReduction;
 
     @NotNull
-    private double amountReduction;
+    private Double amountReduction;
 
     public Promotion() {}
 
@@ -63,14 +65,13 @@ public class Promotion {
         this.endDate = endDate;
     }
 
-    public String getTypeChoosenItem() {
+    public TypeChoosenItem getTypeChoosenItem() {
         return typeChoosenItem;
     }
 
-    public void setTypeChoosenItem(String typeChoosenItem) {
+    public void setTypeChoosenItem(TypeChoosenItem typeChoosenItem) {
         this.typeChoosenItem = typeChoosenItem;
     }
-
 
     public Category getCategory() {
         return category;
@@ -88,11 +89,11 @@ public class Promotion {
         this.product = product;
     }
 
-    public String getTypeReduction() {
+    public TypeReduction getTypeReduction() {
         return typeReduction;
     }
 
-    public void setTypeReduction(String typeReduction) {
+    public void setTypeReduction(TypeReduction typeReduction) {
         this.typeReduction = typeReduction;
     }
 

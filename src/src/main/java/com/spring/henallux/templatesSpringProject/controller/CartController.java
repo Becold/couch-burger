@@ -154,7 +154,7 @@ public class CartController {
         }
     }
 
-    @RequestMapping(value = "/cart/confirmCart", method = RequestMethod.POST)
+    @RequestMapping(value = "/cart/confirmCart", method = RequestMethod.GET)
     public String postCartConfirm(Model model,
                                   Locale locale,
                                   @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
@@ -171,9 +171,6 @@ public class CartController {
         // Enregistrer le cart en db (order/orderline)
         cartService.saveCart(cart, promotions, authentication);
 
-        // Vider le cart
-        cart = new HashMap<>();
-
         // Afficher le formulaire de paiement Paypal
         model.addAttribute("title",  messageSource.getMessage("cart.payment.title",null,locale));
         model.addAttribute("amount", this.cartService.getTotalPrice(cart, promotions));
@@ -182,6 +179,10 @@ public class CartController {
         model.addAttribute("cancel_return_url", Constants.PAYMENT_CANCELLED_URL); // TODO URL payment is cancelled
         model.addAttribute("currency_code", Constants.CURRENCY_CODE);
         model.addAttribute("lc", locale.getLanguage());
+
+        // Vider le cart
+        cart = new HashMap<>();
+
         return "integrated:pay";
     }
 

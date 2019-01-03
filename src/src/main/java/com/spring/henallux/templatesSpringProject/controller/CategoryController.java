@@ -23,17 +23,17 @@ import java.util.Locale;
 public class CategoryController {
 
     private CategoryService categoryService;
-    private ProductService productsService;
+    private ProductService productService;
     private MessageSource messageSource;
     private TranslationCategoryService translationCategoryService;
 
     @Autowired
     public CategoryController(CategoryService categoryService,
-                              ProductService productsService,
+                              ProductService productService,
                               MessageSource messageSource,
                               TranslationCategoryService translationCategoryService) {
         this.categoryService = categoryService;
-        this.productsService = productsService;
+        this.productService = productService;
         this.messageSource=messageSource;
         this.translationCategoryService=translationCategoryService;
     }
@@ -51,7 +51,7 @@ public class CategoryController {
             TranslationCategory translationCategory=translationCategoryService.findByCategoryCategoryIdAndLanguageName(categoryId,locale.getLanguage());
             model.addAttribute("categoryTrans",translationCategory.getContent());
 
-            List<Product> products = this.productsService.findByCategoryId(categoryId);
+            List<Product> products = this.productService.findByCategoryId(categoryId);
             if (products.isEmpty()){
                 throw new NoProductInCategoryException();
             }

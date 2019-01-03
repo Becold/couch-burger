@@ -1,7 +1,7 @@
 <%@ include file="include/importTags.jsp" %>
 
 
-<div class="container">
+<div class="my-5 container">
     <div class="card card-default">
         <div class="card-header"><spring:message code="register.register" /></div>
         <div class="card-body">
