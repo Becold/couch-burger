@@ -51,7 +51,7 @@
                     <a class="btn btn-outline mr-sm-2" href="<spring:url value='/register'/>"><spring:message code="menu.register" /></a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    ${pageContext.request.userPrincipal.name}
+                    <spring:message code="menu.welcomeUser" />${pageContext.request.userPrincipal.name}
 
                     <div>
                         <li class="d-inline dropdown">
