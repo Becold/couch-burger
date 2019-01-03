@@ -126,7 +126,11 @@ CREATE TABLE `translationCategory` (
 ) ENGINE = InnoDB;
 
 INSERT INTO `persistableUser` (`username`, `password`, `authorities`, `nonExpired`, `nonLocked`, `credentialsNonExpired`, `enabled`, `email`, `firstName`, `name`, `addressStreetName`, `addressNumber`, `addressLocality`, `addressPostalCode`, `phoneNumber`, `sexe`)
-	VALUES ('Romain', '$2a$10$wLOkmVQNUE.BBKWIPfB94ubutR0yyzq.GepE632M6u6XJgEEuzR9e', 'ROLE_ADMIN', '1', '1', '1', '1', 'contact@rm.be', 'Romain', 'Marbaix', 'Rue du nord', '50', 'Ath', '5000', '0123456789', 'M');
+	VALUES
+	('Romain', '$2a$10$wLOkmVQNUE.BBKWIPfB94ubutR0yyzq.GepE632M6u6XJgEEuzR9e', 'ROLE_ADMIN', '1', '1', '1', '1', 'contact@rm.be', 'Romain', 'Marbaix', 'Rue du nord', '50', 'Ath', '5000', '0485893465', 'M'),
+	('Graham', '$2a$10$wLOkmVQNUE.BBKWIPfB94ubutR0yyzq.GepE632M6u6XJgEEuzR9e', null, '1', '1', '1', '1', 'graham.berger@hotmail.com', 'Graham', 'Berger', 'Rue des quatre vents', '6', 'Beuzet', '5030', '0485893465', 'M'),
+	('Maxime', '$2a$10$wLOkmVQNUE.BBKWIPfB94ubutR0yyzq.GepE632M6u6XJgEEuzR9e', null, '1', '1', '1', '1', 'maxime.letecheur@gmail.com', 'Maxime', 'Letecheur', 'Rue des Grands Saules', '42', 'Godinne', '5000', '0485893465', 'M');
+
 
 
 INSERT INTO `language` (`name`)	VALUES ('fr'); #id= 1
@@ -191,4 +195,6 @@ INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSpa
 
 INSERT INTO `promotion` (`starDate`, `endDate`, `typeChoosenItem`, `categoryId`, `productId`, `typeReduction`, `amountReduction`)
 	VALUES
-	('2018-12-15 00:00:01.000', '2018-09-30 23:59:59.000', 1, 1, null, 1, 0.5);
+	('2018-12-15 00:00:01.000', '2019-09-20 23:59:59.000', 1, 1, null, 1, 0.5),
+	('2018-12-16 00:00:01.000', '2019-10-30 23:59:59.000', 1, 2, null, 2, 2),
+	('2019-01-30 00:00:01.000', '2019-02-01 23:59:59.000', 1, 4, null, 1, 0.25);

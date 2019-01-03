@@ -81,6 +81,7 @@
                             <h4 class="text-right"><spring:message code="cart.total" /> <strong>${totalPrice} €</strong></h4>
                         </div>
                         <div class="col-3">
+
                             <form:form action="/cart/confirmCart"
                                        method="post">
                                 <input type="submit"
