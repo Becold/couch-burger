@@ -39,7 +39,18 @@ public class Promotion {
     @NotNull
     private Double amountReduction;
 
-    public Promotion() {}
+
+
+    public Promotion(Integer promotionId, GregorianCalendar startDate, GregorianCalendar endDate, TypeChoosenItem typeChoosenItem, Category category, Product product, TypeReduction typeReduction, Double amountReduction) {
+        this.promotionId = promotionId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.typeChoosenItem = typeChoosenItem;
+        this.category = category;
+        this.product = product;
+        this.typeReduction = typeReduction;
+        this.amountReduction = amountReduction;
+    }
 
     public Integer getPromotionId() {
         return promotionId;

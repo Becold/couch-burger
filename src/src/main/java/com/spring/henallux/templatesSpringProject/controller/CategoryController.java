@@ -5,10 +5,12 @@ import com.spring.henallux.templatesSpringProject.exception.CategoryNotFoundExce
 import com.spring.henallux.templatesSpringProject.exception.NoProductInCategoryException;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import com.spring.henallux.templatesSpringProject.model.Product;
+import com.spring.henallux.templatesSpringProject.model.Promotion;
 import com.spring.henallux.templatesSpringProject.model.TranslationCategory;
 import com.spring.henallux.templatesSpringProject.model.form.cart.ProductForm;
 import com.spring.henallux.templatesSpringProject.service.CategoryService;
 import com.spring.henallux.templatesSpringProject.service.ProductService;
+import com.spring.henallux.templatesSpringProject.service.PromotionService;
 import com.spring.henallux.templatesSpringProject.service.TranslationCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,16 +30,19 @@ public class CategoryController {
     private ProductService productService;
     private MessageSource messageSource;
     private TranslationCategoryService translationCategoryService;
+    private PromotionService promotionService;
 
     @Autowired
     public CategoryController(CategoryService categoryService,
                               ProductService productService,
                               MessageSource messageSource,
-                              TranslationCategoryService translationCategoryService) {
+                              TranslationCategoryService translationCategoryService,
+                              PromotionService promotionService) {
         this.categoryService = categoryService;
         this.productService = productService;
         this.messageSource=messageSource;
         this.translationCategoryService=translationCategoryService;
+        this.promotionService=promotionService;
     }
 
     @RequestMapping(value = "/category/{categoryId}",
@@ -48,6 +55,28 @@ public class CategoryController {
             Category category = categoryService.find(categoryId);
             model.addAttribute("category", category);
 
+            List<Promotion> promotions= promotionService.findCurrentPromotions(new GregorianCalendar(),null,categoryId);
+            if(!promotions.isEmpty()) {
+                // Recupération de la promotion la plus élevée dans les 2 types
+                Promotion promotionPourc;
+                Promotion promotionFix;
+                double pourcMax = 0;
+                double fixMax = 0;
+                for (Promotion promo :
+                        promotions) {
+                    if (promo.getTypeReduction().equals(0)) {
+                        if (promo.getAmountReduction() >= fixMax) {
+                            fixMax = promo.getAmountReduction();
+                            promotionFix = promo;
+                        }
+                    } else {
+                        if (promo.getAmountReduction() >= pourcMax) {
+                            pourcMax = promo.getAmountReduction();
+                            promotionPourc = promo;
+                        }
+                    }
+                }
+            }
             TranslationCategory translationCategory=translationCategoryService.findByCategoryCategoryIdAndLanguageName(categoryId,locale.getLanguage());
             model.addAttribute("categoryTrans",translationCategory.getContent());
 
