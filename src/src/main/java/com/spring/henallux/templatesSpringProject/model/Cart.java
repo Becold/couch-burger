@@ -3,12 +3,12 @@ package com.spring.henallux.templatesSpringProject.model;
 import java.util.List;
 
 public class Cart {
-    private List<Product> products;
-    private List<Promotion> promotions;
+    private ArrayList<Product> products;
+    private ArrayList<Promotion> promotions;
 
     public Cart() { }
 
-    public List<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
@@ -16,11 +16,11 @@ public class Cart {
         this.products = products;
     }
 
-    public List<Promotion> getPromotions() {
+    public ArrayList<Promotion> getPromotions() {
         return promotions;
     }
 
-    public void setPromotions(List<Promotion> promotions) {
+    public void setPromotions(ArrayList<Promotion> promotions) {
         this.promotions = promotions;
     }
 }

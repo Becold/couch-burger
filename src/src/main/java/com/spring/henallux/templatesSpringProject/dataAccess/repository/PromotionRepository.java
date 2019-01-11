@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface PromotionRepository extends JpaRepository<PromotionEntity, Integer> {
-    List<PromotionEntity> findByProductProductId(Integer productId);
-    List<PromotionEntity> findByStartDateBeforeAndEndDateAfterAndProductProductIdOrCategoryCategoryId(Date startDate, Date endDate, Integer productId, Integer categoryId);
+    ArrayList<PromotionEntity> findByProductProductId(Integer productId);
+    ArrayList<PromotionEntity> findByStartDateBeforeAndEndDateAfterAndProductProductIdOrCategoryCategoryId(Date startDate, Date endDate, Integer productId, Integer categoryId);
 }

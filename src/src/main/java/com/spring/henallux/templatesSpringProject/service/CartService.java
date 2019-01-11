@@ -34,7 +34,7 @@ public class CartService {
         this.orderLineService = orderLineService;
     }
 
-    public Double getTotalPrice(HashMap<Integer, ProductCart> cart, List<Promotion> promotions) {
+    public Double getTotalPrice(HashMap<Integer, ProductCart> cart, ArrayList<Promotion> promotions) {
         // TODO Promotions
         Double totalPrice = 0.00;
         for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
@@ -45,13 +45,13 @@ public class CartService {
         return totalPrice;
     }
 
-    public String getFormattedTotalPrice(HashMap<Integer, ProductCart> cart, List<Promotion> promotions) {
+    public String getFormattedTotalPrice(HashMap<Integer, ProductCart> cart, ArrayList<Promotion> promotions) {
         return String.format("%.2f", this.getTotalPrice(cart, promotions));
     }
 
     @Transactional
     public void saveCart(HashMap<Integer, ProductCart> cart,
-                         List<Promotion> promotions,
+                         ArrayList<Promotion> promotions,
                          Authentication authentication) {
         Order order = new Order();
         order.setUser(new ProviderConverter().userEntityToUserModel((UserEntity) authentication.getPrincipal()));

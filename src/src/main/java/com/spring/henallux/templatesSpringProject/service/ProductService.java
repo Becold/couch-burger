@@ -18,7 +18,7 @@ public class ProductService {
         this.productDAO = productDAO;
     }
 
-    public List<Product> findByCategoryId(Integer categoryId) {
+    public ArrayList<Product> findByCategoryId(Integer categoryId) {
         return this.productDAO.findByCategoryId(categoryId);
     }
 

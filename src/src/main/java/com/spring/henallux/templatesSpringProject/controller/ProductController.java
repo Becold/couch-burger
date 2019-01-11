@@ -43,7 +43,7 @@ public class ProductController {
             GregorianCalendar currentDate = new GregorianCalendar();
 
             Product product = productService.findOne(productId);
-            List<Promotion> currentPromotions = promotionService.findCurrentPromotions(
+            ArrayList<Promotion> currentPromotions = promotionService.findCurrentPromotions(
                     currentDate,
                     productId,
                     product.getCategory().getCategoryId()

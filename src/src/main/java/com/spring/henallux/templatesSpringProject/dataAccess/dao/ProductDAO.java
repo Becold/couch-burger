@@ -22,9 +22,9 @@ public class ProductDAO {
         this.productRepository = productRepository;
     }
 
-    public List<Product> findByCategoryId(Integer categoryId) {
-        List<Product> products = new ArrayList<Product>();
-        List<ProductEntity> productsEntity = this.productRepository.findByCategoryCategoryId(categoryId);
+    public ArrayList<Product> findByCategoryId(Integer categoryId) {
+        ArrayList<Product> products = new ArrayList<Product>();
+        ArrayList<ProductEntity> productsEntity = this.productRepository.findByCategoryCategoryId(categoryId);
         for (ProductEntity productEntity : productsEntity) {
             products.add(new ProviderConverter().productEntityToProductModel(productEntity));
         }

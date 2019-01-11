@@ -55,7 +55,7 @@ public class CategoryController {
             Category category = categoryService.find(categoryId);
             model.addAttribute("category", category);
 
-            List<Promotion> promotions= promotionService.findCurrentPromotions(new GregorianCalendar(),null,categoryId);
+            ArrayList<Promotion> promotions= promotionService.findCurrentPromotions(new GregorianCalendar(),null,categoryId);
             if(!promotions.isEmpty()) {
                 // Recupération de la promotion la plus élevée dans les 2 types
                 Promotion promotionPourc;
@@ -80,7 +80,7 @@ public class CategoryController {
             TranslationCategory translationCategory=translationCategoryService.findByCategoryCategoryIdAndLanguageName(categoryId,locale.getLanguage());
             model.addAttribute("categoryTrans",translationCategory.getContent());
 
-            List<Product> products = this.productService.findByCategoryId(categoryId);
+            ArrayList<Product> products = this.productService.findByCategoryId(categoryId);
             if (products.isEmpty()){
                 throw new NoProductInCategoryException();
             }

@@ -17,7 +17,7 @@ public class TranslationCategoryService {
         this.translationCategoryDAO = translationCategoryDAO;
     }
 
-    public List<TranslationCategory> findByLanguageName(String langCode) {
+    public ArrayList<TranslationCategory> findByLanguageName(String langCode) {
         return this.translationCategoryDAO.findByLanguageName(langCode);
     }
 

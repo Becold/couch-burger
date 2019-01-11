@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface TranslationCategoryRepository extends JpaRepository<TranslationCategoryEntity, Integer> {
-    List<TranslationCategoryEntity> findByLanguageName(String langCode);
+    ArrayList<TranslationCategoryEntity> findByLanguageName(String langCode);
     TranslationCategoryEntity findByCategoryCategoryIdAndLanguageName(Integer categoryId,String langCode);
 }

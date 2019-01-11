@@ -29,7 +29,7 @@ public class OrderLineService {
         return this.orderLineDAO.save(orderLine);
     }
 
-    public Double getPrice(Integer quantity, Product product, List<Promotion> promotions) {
+    public Double getPrice(Integer quantity, Product product, ArrayList<Promotion> promotions) {
         // TODO Promotion
         return product.getUnitPriceWithVat() * (double)quantity;
     }

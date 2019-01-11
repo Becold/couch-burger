@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
-    List<ProductEntity> findByCategoryCategoryId(Integer categoryId);
+    ArrayList<ProductEntity> findByCategoryCategoryId(Integer categoryId);
 }

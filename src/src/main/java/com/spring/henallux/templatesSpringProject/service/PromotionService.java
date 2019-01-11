@@ -23,11 +23,11 @@ public class PromotionService {
         this.promotionDAO = promotionDAO;
     }
 
-    public List<Promotion> findByProductProductId(Integer productId) {
+    public ArrayList<Promotion> findByProductProductId(Integer productId) {
         return this.promotionDAO.findByProductProductId(productId);
     }
 
-    public List<Promotion> findCurrentPromotions(GregorianCalendar currentDate, Integer productId, Integer categoryId) {
+    public ArrayList<Promotion> findCurrentPromotions(GregorianCalendar currentDate, Integer productId, Integer categoryId) {
         return this.promotionDAO.findCurrentPromotions(currentDate, productId, categoryId);
     }
 
@@ -38,7 +38,7 @@ public class PromotionService {
         double bestPriceCate=(bestPromo.getTypeReduction().equals(0)?product.getUnitPrice()-bestPromo.getAmountReduction():product.getUnitPrice()-product.getUnitPrice()*bestPromo.getAmountReduction());
         double bestPriceProd;
         // On récupère les promotions propres à ce produit uniquement
-        List<Promotion> promotions =findCurrentPromotions(new GregorianCalendar(),product.getProductId(),null);
+        ArrayList<Promotion> promotions =findCurrentPromotions(new GregorianCalendar(),product.getProductId(),null);
         double pourcMax=0;
         double fixMax=0;
         Promotion promoFixProd = null;

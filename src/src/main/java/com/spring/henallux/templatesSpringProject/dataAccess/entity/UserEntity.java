@@ -77,7 +77,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        ArrayList<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
         if (!isEmpty(authorities)) {
             String[] authoritiesAsArray = authorities.split(",");

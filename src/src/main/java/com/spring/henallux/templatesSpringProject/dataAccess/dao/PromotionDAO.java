@@ -23,19 +23,19 @@ public class PromotionDAO {
         this.promotionRepository = promotionRepository;
     }
 
-    public List<Promotion> findByProductProductId(Integer productId) {
-        List<Promotion> promotions = new ArrayList<>();
-        List<PromotionEntity> promotionEntities = this.promotionRepository.findByProductProductId(productId);
+    public ArrayList<Promotion> findByProductProductId(Integer productId) {
+        ArrayList<Promotion> promotions = new ArrayList<>();
+        ArrayList<PromotionEntity> promotionEntities = this.promotionRepository.findByProductProductId(productId);
         for (PromotionEntity promotionEntity : promotionEntities) {
             promotions.add(new ProviderConverter().promotionEntityToPromotionModel(promotionEntity));
         }
         return promotions;
     }
 
-    public List<Promotion> findCurrentPromotions(GregorianCalendar currentDate, Integer productId, Integer categoryId) {
+    public ArrayList<Promotion> findCurrentPromotions(GregorianCalendar currentDate, Integer productId, Integer categoryId) {
         Date currentDateDate = DateProviderConverter.gregorianCalendarToSqlDate(currentDate);
-        List<Promotion> promotions = new ArrayList<>();
-        List<PromotionEntity> promotionEntities = this.promotionRepository.findByStartDateBeforeAndEndDateAfterAndProductProductIdOrCategoryCategoryId(currentDateDate, currentDateDate, productId, categoryId);
+        ArrayList<Promotion> promotions = new ArrayList<>();
+        ArrayList<PromotionEntity> promotionEntities = this.promotionRepository.findByStartDateBeforeAndEndDateAfterAndProductProductIdOrCategoryCategoryId(currentDateDate, currentDateDate, productId, categoryId);
         for (PromotionEntity promotionEntity : promotionEntities) {
             promotions.add(new ProviderConverter().promotionEntityToPromotionModel(promotionEntity));
         }

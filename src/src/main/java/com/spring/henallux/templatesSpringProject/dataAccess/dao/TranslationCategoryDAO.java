@@ -20,9 +20,9 @@ public class TranslationCategoryDAO {
         this.translationCategoryRepository = translationCategoryRepository;
     }
 
-    public List<TranslationCategory> findByLanguageName(String langCode) {
-        List<TranslationCategory> categories = new ArrayList<>();
-        List<TranslationCategoryEntity> categoriesEntity = this.translationCategoryRepository.findByLanguageName(langCode);
+    public ArrayList<TranslationCategory> findByLanguageName(String langCode) {
+        ArrayList<TranslationCategory> categories = new ArrayList<>();
+        ArrayList<TranslationCategoryEntity> categoriesEntity = this.translationCategoryRepository.findByLanguageName(langCode);
         for (TranslationCategoryEntity categoryEntity : categoriesEntity) {
             categories.add(new ProviderConverter().translationCategoryEntityToTranslationCategoryModel(categoryEntity));
         }

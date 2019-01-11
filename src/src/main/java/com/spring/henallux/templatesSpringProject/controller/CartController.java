@@ -54,7 +54,7 @@ public class CartController {
                           Locale locale,
                           @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                           @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart) {
-        List<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
+        ArrayList<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
         model.addAttribute("title",  messageSource.getMessage("menu.cart",null,locale));
         model.addAttribute("totalPrice", this.cartService.getFormattedTotalPrice(cart, promotions));
         return "integrated:cart";
@@ -166,7 +166,7 @@ public class CartController {
         }
 
         // TODO Calcul des Promotions et du prix final
-        List<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
+        ArrayList<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
 
         // Enregistrer le cart en db (order/orderline)
         cartService.saveCart(cart, promotions, authentication);

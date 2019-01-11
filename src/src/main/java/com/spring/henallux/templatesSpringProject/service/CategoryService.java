@@ -19,7 +19,7 @@ public class CategoryService {
         this.categoryDAO = categoryDAO;
     }
 
-    public List<Category> findAll() {
+    public ArrayList<Category> findAll() {
         return this.categoryDAO.findAll();
     }
 
