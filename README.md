@@ -16,3 +16,4 @@ Page/logique à créer :
 - [x] affichage d'un article
 - [x] confirmer le panier et le paiement
 - [ ] promotions
+- [ ] gestion des cas d'erreurs
