@@ -25,7 +25,7 @@ public class CategoryDAO {
 
     public ArrayList<Category> findAll() {
         ArrayList<Category> categories = new ArrayList<>();
-        ArrayList<CategoryEntity> categoriesEntity = this.categoryRepository.findAll();
+        ArrayList<CategoryEntity> categoriesEntity = (ArrayList<CategoryEntity>) this.categoryRepository.findAll();
         for (CategoryEntity categoryEntity : categoriesEntity) {
             Category category = new ProviderConverter().categoryEntityToCategoryModel(categoryEntity);
             categories.add(category);

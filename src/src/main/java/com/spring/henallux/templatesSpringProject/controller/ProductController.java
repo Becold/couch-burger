@@ -5,6 +5,7 @@ import com.spring.henallux.templatesSpringProject.exception.ProductNotFoundExcep
 import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.model.Promotion;
 import com.spring.henallux.templatesSpringProject.model.form.cart.ProductForm;
+import com.spring.henallux.templatesSpringProject.service.CartService;
 import com.spring.henallux.templatesSpringProject.service.ProductService;
 import com.spring.henallux.templatesSpringProject.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -22,14 +23,17 @@ public class ProductController {
 
     private ProductService productService;
     private PromotionService promotionService;
+    private CartService cartService;
     private MessageSource messageSource;
 
     @Autowired
     public ProductController(ProductService productService,
                              PromotionService promotionService,
+                             CartService cartService,
                              MessageSource messageSource) {
         this.productService = productService;
         this.promotionService = promotionService;
+        this.cartService = cartService;
         this.messageSource = messageSource;
     }
 
@@ -49,8 +53,10 @@ public class ProductController {
                     product.getCategory().getCategoryId()
             );
 
+            Double reductionAmount = this.cartService.findBestPromotionForProduct(product, currentPromotions);
+
             model.addAttribute("product", product);
-            model.addAttribute("promotions", currentPromotions);
+            model.addAttribute("reductionAmount", reductionAmount);
             model.addAttribute("title",  messageSource.getMessage("title.articles",null,locale));
             return "integrated:product";
         }

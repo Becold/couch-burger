@@ -7,6 +7,8 @@ import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.model.Promotion;
 import com.spring.henallux.templatesSpringProject.model.form.cart.ProductForm;
 import com.spring.henallux.templatesSpringProject.model.form.cart.ProductCart;
+import com.spring.henallux.templatesSpringProject.model.promotion.FinalAmountCart;
+import com.spring.henallux.templatesSpringProject.model.promotion.TypeReduction;
 import com.spring.henallux.templatesSpringProject.service.CartService;
 import com.spring.henallux.templatesSpringProject.service.ProductService;
 import com.spring.henallux.templatesSpringProject.service.PromotionService;
@@ -19,10 +21,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Controller
 @SessionAttributes({Constants.CART})
@@ -54,9 +53,11 @@ public class CartController {
                           Locale locale,
                           @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                           @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart) {
-        ArrayList<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
+        FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
+
         model.addAttribute("title",  messageSource.getMessage("menu.cart",null,locale));
-        model.addAttribute("totalPrice", this.cartService.getFormattedTotalPrice(cart, promotions));
+        model.addAttribute("totalAmountReduction", String.format("%.2f", finalAmountCart.getReduction()));
+        model.addAttribute("totalPrice", String.format("%.2f", finalAmountCart.getTotal()));
         return "integrated:cart";
     }
 
@@ -165,15 +166,15 @@ public class CartController {
             return "integrated:keyError";
         }
 
-        // TODO Calcul des Promotions et du prix final
-        ArrayList<Promotion> promotions = new ArrayList<Promotion>(); // TODO Récupérer les promotions qui s'appliquent au panier
+        // Calcul du montant total et du montant de la réduction
+        FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
 
         // Enregistrer le cart en db (order/orderline)
-        cartService.saveCart(cart, promotions, authentication);
+        cartService.saveCart(cart, authentication);
 
         // Afficher le formulaire de paiement Paypal
         model.addAttribute("title",  messageSource.getMessage("cart.payment.title",null,locale));
-        model.addAttribute("amount", this.cartService.getTotalPrice(cart, promotions));
+        model.addAttribute("amount", finalAmountCart.getTotal());
         model.addAttribute("item_name", messageSource.getMessage("cart.item_name",null,locale));
         model.addAttribute("return_url", Constants.PAYMENT_RETURN_URL); // TODO URL payment is successful
         model.addAttribute("cancel_return_url", Constants.PAYMENT_CANCELLED_URL); // TODO URL payment is cancelled
@@ -184,13 +185,5 @@ public class CartController {
         cart = new HashMap<>();
 
         return "integrated:pay";
-    }
-
-    @RequestMapping(value = "/cart/confirmPaiement", method = RequestMethod.POST)
-    public String postCartPaiement(Model model,
-                                  BindingResult errors) {
-        // TODO Si paiement réussi: Enregistrer en DB le panier + message de réussite + vider la session
-        // TODO Si paiement refusé: Afficher un message d'erreur
-        return "integrated:cart.paypal";
     }
 }

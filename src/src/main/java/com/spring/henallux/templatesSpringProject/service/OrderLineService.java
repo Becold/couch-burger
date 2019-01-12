@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Provider;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,8 +30,7 @@ public class OrderLineService {
         return this.orderLineDAO.save(orderLine);
     }
 
-    public Double getPrice(Integer quantity, Product product, ArrayList<Promotion> promotions) {
-        // TODO Promotion
+    public Double getPrice(Integer quantity, Product product) {
         return product.getUnitPriceWithVat() * (double)quantity;
     }
 }

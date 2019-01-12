@@ -3,6 +3,7 @@ package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 import com.spring.henallux.templatesSpringProject.model.Product;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity(name = "product")
 public class ProductEntity {

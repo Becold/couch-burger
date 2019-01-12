@@ -78,6 +78,10 @@
                 <div class="card-footer">
                     <div class="row text-center">
                         <div class="col-9">
+                            <!-- TODO Traduction -->
+                            <h4 class="text-right">Vous avez économisé <strong>${totalAmountReduction} €</strong></h4>
+                        </div>
+                        <div class="col-9">
                             <h4 class="text-right"><spring:message code="cart.total" /> <strong>${totalPrice} €</strong></h4>
                         </div>
                         <div class="col-3">

@@ -1,6 +1,7 @@
 package com.spring.henallux.templatesSpringProject.dataAccess.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity(name = "category")
 public class CategoryEntity {

@@ -20,22 +20,12 @@
                         </p>
                     </c:if>
 
-                    <c:if test="${promotions.size() gt 0}">
-                        Des promotions sont appliquées sur ce produit :
-                        <ul>
-                            <c:forEach var="promotion" items="${promotions}">
-                                <li>
-                                    -${promotion.getAmountReduction()}
-                                    <c:if test="${promotion.getTypeReduction() eq 'FIXE'}">
-                                        €
-                                    </c:if>
-                                    <c:if test="${promotion.getTypeReduction() eq 'POURCENTAGE'}">
-                                        %
-                                    </c:if>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </c:if>
+
+                    Des promotions sont appliquées sur ce produit :
+                    <ul>
+                        -${reductionAmount} €
+                    </ul>
+
                     <p class="card-text">
                         <spring:message code="product.price" /> ${product.getFormattedUnitPriceWithVat()} €
                     </p>

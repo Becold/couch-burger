@@ -55,28 +55,6 @@ public class CategoryController {
             Category category = categoryService.find(categoryId);
             model.addAttribute("category", category);
 
-            ArrayList<Promotion> promotions= promotionService.findCurrentPromotions(new GregorianCalendar(),null,categoryId);
-            if(!promotions.isEmpty()) {
-                // Recupération de la promotion la plus élevée dans les 2 types
-                Promotion promotionPourc;
-                Promotion promotionFix;
-                double pourcMax = 0;
-                double fixMax = 0;
-                for (Promotion promo :
-                        promotions) {
-                    if (promo.getTypeReduction().equals(0)) {
-                        if (promo.getAmountReduction() >= fixMax) {
-                            fixMax = promo.getAmountReduction();
-                            promotionFix = promo;
-                        }
-                    } else {
-                        if (promo.getAmountReduction() >= pourcMax) {
-                            pourcMax = promo.getAmountReduction();
-                            promotionPourc = promo;
-                        }
-                    }
-                }
-            }
             TranslationCategory translationCategory=translationCategoryService.findByCategoryCategoryIdAndLanguageName(categoryId,locale.getLanguage());
             model.addAttribute("categoryTrans",translationCategory.getContent());
 

@@ -35,7 +35,7 @@ public class PromotionDAO {
     public ArrayList<Promotion> findCurrentPromotions(GregorianCalendar currentDate, Integer productId, Integer categoryId) {
         Date currentDateDate = DateProviderConverter.gregorianCalendarToSqlDate(currentDate);
         ArrayList<Promotion> promotions = new ArrayList<>();
-        ArrayList<PromotionEntity> promotionEntities = this.promotionRepository.findByStartDateBeforeAndEndDateAfterAndProductProductIdOrCategoryCategoryId(currentDateDate, currentDateDate, productId, categoryId);
+        ArrayList<PromotionEntity> promotionEntities = this.promotionRepository.findByStartDateBeforeAndEndDateAfterAndProductProductIdOrStartDateBeforeAndEndDateAfterAndCategoryCategoryId(currentDateDate, currentDateDate, productId, currentDateDate, currentDateDate, categoryId);
         for (PromotionEntity promotionEntity : promotionEntities) {
             promotions.add(new ProviderConverter().promotionEntityToPromotionModel(promotionEntity));
         }

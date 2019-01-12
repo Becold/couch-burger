@@ -39,7 +39,7 @@ public class Promotion {
     @NotNull
     private Double amountReduction;
 
-
+    public Promotion() { }
 
     public Promotion(Integer promotionId, GregorianCalendar startDate, GregorianCalendar endDate, TypeChoosenItem typeChoosenItem, Category category, Product product, TypeReduction typeReduction, Double amountReduction) {
         this.promotionId = promotionId;
