@@ -69,7 +69,7 @@ CREATE TABLE `product` (
 	CHECK(`productId`>=0),
 	CHECK(`categoryId`>=0),
 	CHECK(`unitPrice`>=0),
-	CHECK(`vatRate`>=0),
+	CHECK(`vatRate` between 0 and 100),
 	CHECK(`type` in ('Burger','Drink','Sauce','Sides')),
 	CHECK(`isSparkling` IS NULL OR `isSparkling` in (0,1)),
 	CHECK(`isSpicy` IS NULL OR `isSpicy` in (0,1)),
