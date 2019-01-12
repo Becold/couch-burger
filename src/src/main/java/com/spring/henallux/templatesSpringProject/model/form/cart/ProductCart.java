@@ -13,7 +13,10 @@ public class ProductCart {
     @Min(0)
     private Integer quantity;
 
-    public ProductCart() {}
+    public ProductCart(Product product, Integer quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
 
     public Product getProduct() {
         return product;
