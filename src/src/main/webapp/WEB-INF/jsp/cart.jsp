@@ -31,13 +31,13 @@
                                 <img class="borderburger img-responsive" width="100px" height="auto" src="/images/products/${item.value.getProduct().category.getCategoryId()}/${item.value.getProduct().getProductId()}.png" alt="${item.value.getProduct().getName()}">
                             </div>
                             <div class="col-4">
-                                <!-- TODO retirer strong -->
-                                <h4 class="product-name"><strong>${item.value.getProduct().getName()}</strong></h4>
+
+                                <h4 class="product-name"><a style="font-weight: bold">${item.value.getProduct().getName()}</a></h4>
                                 <h4><small>TVA: ${item.value.getProduct().getVatRate()}%</small></h4>
                             </div>
                             <div class="col text-right">
-                                <!-- TODO retirer strong -->
-                                <h6><strong>${item.value.getProduct().getFormattedUnitPriceWithVat()} <span class="text-muted">x</span></strong></h6>
+
+                                <h6><a style="font-weight: bold">${item.value.getProduct().getFormattedUnitPriceWithVat()} <span class="text-muted">x</span></a></h6>
                             </div>
                             <div class="col-2">
                                 <form:form action="/cart/setProduct"
