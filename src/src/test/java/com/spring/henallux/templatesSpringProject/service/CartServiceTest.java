@@ -28,6 +28,7 @@ public class CartServiceTest {
     public void findBestPromotionForProductTest() {
         Product product = new Product();
         // TODO Faire tous les setters pour créer un faux produit
+        product.set
 
         ArrayList<Promotion> promotions = new ArrayList<Promotion>();
         // TODO Remplir la array list de fausse promotions

@@ -78,11 +78,10 @@
                 <div class="card-footer">
                     <div class="row text-center">
                         <div class="col-9">
-                            <!-- TODO Traduction -->
-                            <h4 class="text-right">Vous avez économisé <strong>${totalAmountReduction} €</strong></h4>
+                            <h4 class="text-right"><spring:message code="cart.spare" /> <a style="font-weight: bold">${totalAmountReduction} €</a></h4>
                         </div>
                         <div class="col-9">
-                            <h4 class="text-right"><spring:message code="cart.total" /> <strong>${totalPrice} €</strong></h4>
+                            <h4 class="text-right"><spring:message code="cart.total" /> <a style="font-weight: bold">${totalPrice} €</a></h4>
                         </div>
                         <div class="col-3">
 
@@ -91,7 +90,7 @@
                                 <input type="submit"
                                        class="btn btn-success btn-block"
                                        value="<spring:message code="cart.pay" />"
-                                       onclick="return confirm('Etes vous sûr de vouloir passer la commande?');"
+                                       onclick="return confirm(<spring:message code="cart.confirm" />);"
                                 />
                             </form:form>
                         </div>
