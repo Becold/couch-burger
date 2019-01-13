@@ -3,6 +3,7 @@ package com.spring.henallux.templatesSpringProject.controller;
 import com.spring.henallux.templatesSpringProject.Constants;
 import com.spring.henallux.templatesSpringProject.exception.ProductNotFoundException;
 import com.spring.henallux.templatesSpringProject.exception.QuantityIsNegativeException;
+import com.spring.henallux.templatesSpringProject.exception.UnknowTypeReductionException;
 import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.model.Promotion;
 import com.spring.henallux.templatesSpringProject.model.form.cart.ProductForm;
@@ -50,13 +51,19 @@ public class CartController {
                           Locale locale,
                           @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                           @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart) {
-        FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
+        try {
+            FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
 
-        model.addAttribute("title",  messageSource.getMessage("menu.cart",null,locale));
-        model.addAttribute("totalAmountReduction", finalAmountCart.getReduction());
-        model.addAttribute("totalAmountReductionFormatted", String.format("%.2f", finalAmountCart.getReduction()));
-        model.addAttribute("totalPrice", String.format("%.2f", finalAmountCart.getTotal()));
-        return "integrated:cart";
+            model.addAttribute("title", messageSource.getMessage("menu.cart", null, locale));
+            model.addAttribute("totalAmountReduction", finalAmountCart.getReduction());
+            model.addAttribute("totalAmountReductionFormatted", String.format("%.2f", finalAmountCart.getReduction()));
+            model.addAttribute("totalPrice", String.format("%.2f", finalAmountCart.getTotal()));
+            return "integrated:cart";
+        }
+        catch (UnknowTypeReductionException exception) {
+            model.addAttribute("errorMessage", "invalid.promo.unknown");
+            return "integrated:keyError";
+        }
     }
 
     @RequestMapping(value = "/cart/addProduct",
@@ -161,24 +168,30 @@ public class CartController {
             return "integrated:keyError";
         }
 
-        // Calcul du montant total et du montant de la réduction
-        FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
+        try {
+            // Calcul du montant total et du montant de la réduction
+            FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
 
-        // Enregistrer le cart en db (order/orderline)
-        cartService.saveCart(cart, authentication);
+            // Enregistrer le cart en db (order/orderline)
+            cartService.saveCart(cart, authentication);
 
-        // Afficher le formulaire de paiement Paypal
-        model.addAttribute("title",  messageSource.getMessage("cart.payment.title",null,locale));
-        model.addAttribute("amount", finalAmountCart.getTotal());
-        model.addAttribute("item_name", messageSource.getMessage("cart.item_name",null,locale));
-        model.addAttribute("return_url", Constants.PAYMENT_RETURN_URL); // TODO URL payment is successful
-        model.addAttribute("cancel_return_url", Constants.PAYMENT_CANCELLED_URL); // TODO URL payment is cancelled
-        model.addAttribute("currency_code", Constants.CURRENCY_CODE);
-        model.addAttribute("lc", locale.getLanguage());
+            // Afficher le formulaire de paiement Paypal
+            model.addAttribute("title", messageSource.getMessage("cart.payment.title", null, locale));
+            model.addAttribute("amount", finalAmountCart.getTotal());
+            model.addAttribute("item_name", messageSource.getMessage("cart.item_name", null, locale));
+            model.addAttribute("return_url", Constants.PAYMENT_RETURN_URL); // TODO URL payment is successful
+            model.addAttribute("cancel_return_url", Constants.PAYMENT_CANCELLED_URL); // TODO URL payment is cancelled
+            model.addAttribute("currency_code", Constants.CURRENCY_CODE);
+            model.addAttribute("lc", locale.getLanguage());
 
-        // Vider le cart
-        cart = new HashMap<>();
+            // Vider le cart
+            cart = new HashMap<>();
 
-        return "integrated:pay";
+            return "integrated:pay";
+        }
+        catch (UnknowTypeReductionException exception) {
+            model.addAttribute("errorMessage", "invalid.promo.unknown");
+            return "integrated:keyError";
+        }
     }
 }

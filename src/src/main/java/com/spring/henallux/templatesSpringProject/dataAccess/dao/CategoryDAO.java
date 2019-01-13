@@ -6,9 +6,11 @@ import com.spring.henallux.templatesSpringProject.dataAccess.util.ProviderConver
 import com.spring.henallux.templatesSpringProject.exception.CategoryNotFoundException;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateJdbcException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
