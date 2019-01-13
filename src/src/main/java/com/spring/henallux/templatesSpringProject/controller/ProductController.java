@@ -66,7 +66,7 @@ public class ProductController {
             return "integrated:keyError";
         }
         catch (UnknowTypeReductionException exception) {
-            // TODO Erreur "Type de reduction inconnue"
+            model.addAttribute("errorMessage", "invalid.promo.unknown");
             return "integrated:keyError";
         }
     }
