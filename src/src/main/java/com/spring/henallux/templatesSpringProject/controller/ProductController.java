@@ -62,12 +62,10 @@ public class ProductController {
             return "integrated:product";
         }
         catch (ProductNotFoundException exception) {
-            model.addAttribute("errorMessage", messageSource.getMessage("invalid.product.found", null, locale));
-            return "integrated:keyError";
+            return "redirect:/errorOccured?code=invalid.product.found";
         }
         catch (UnknowTypeReductionException exception) {
-            model.addAttribute("errorMessage", messageSource.getMessage("invalid.promo.unknown", null, locale));
-            return "integrated:keyError";
+            return "redirect:/errorOccured?code=invalid.promo.unknown";
         }
     }
 }

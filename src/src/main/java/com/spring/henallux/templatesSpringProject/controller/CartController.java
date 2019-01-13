@@ -61,8 +61,7 @@ public class CartController {
             return "integrated:cart";
         }
         catch (UnknowTypeReductionException exception) {
-            model.addAttribute("errorMessage",  messageSource.getMessage("invalid.promo.unknown", null, locale));
-            return "integrated:keyError";
+            return "redirect:/errorOccured?code=invalid.promo.unknown";
         }
     }
 
@@ -74,14 +73,9 @@ public class CartController {
                                  BindingResult errorsForm,
                                  @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                  BindingResult errors) {
-        /*
+
         if (errorsForm.hasErrors()) {
-            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
-            return "integrated:keyError";
-        }
-        */
-        if (errorsForm.hasErrors()) {
-            return "redirect:/errorOccured?code=invalid.quantity.minus";
+            return "redirect:/errorOccured?code=Min.productCart.quantity";
         }
 
         try {
@@ -100,11 +94,9 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (ProductNotFoundException exception) {
-            model.addAttribute("errorMessage",  messageSource.getMessage("invalid.product.exist", null, locale));
-            return "integrated:keyError";
+            return "redirect:/errorOccured?code=invalid.product.exist";
         } catch (QuantityIsNegativeException e) {
-            model.addAttribute("errorMessage",   messageSource.getMessage("Min.productCart.quantity", null, locale));
-            return "integrated:keyError";
+            return "redirect:/errorOccured?code=Min.productCart.quantity";
         }
     }
 
@@ -123,7 +115,7 @@ public class CartController {
         }
         */
         if (errorsForm.hasErrors()) {
-            return "redirect:/errorOccured?code=invalid.quantity.minus";
+            return "redirect:/errorOccured?code=Min.productCart.quantity";
         }
 
         try {
@@ -140,8 +132,7 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (QuantityIsNegativeException exception) {
-            model.addAttribute("errorMessage", messageSource.getMessage("Min.productCart.quantity", null, locale));
-            return "integrated:keyError";
+            return "redirect:/errorOccured?code=Min.productCart.quantity";
         }
     }
 
@@ -160,7 +151,7 @@ public class CartController {
         }
         */
         if (errorsForm.hasErrors()) {
-            return "redirect:/errorOccured?code=invalid.quantity.minus";
+            return "redirect:/errorOccured?code=Min.productCart.quantity";
         }
 
         try {
@@ -226,8 +217,7 @@ public class CartController {
             return "integrated:pay";
         }
         catch (UnknowTypeReductionException exception) {
-            model.addAttribute("errorMessage",  messageSource.getMessage("invalid.promo.unknown", null, locale));
-            return "integrated:keyError";
+            return "redirect:/errorOccured?code=invalid.promo.unknown";
         }
     }
 }
