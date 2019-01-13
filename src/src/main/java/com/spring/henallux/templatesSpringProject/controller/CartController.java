@@ -185,7 +185,7 @@ public class CartController {
             model.addAttribute("return_url", Constants.PAYMENT_RETURN_URL); // TODO URL payment is successful
             model.addAttribute("cancel_return_url", Constants.PAYMENT_CANCELLED_URL); // TODO URL payment is cancelled
             model.addAttribute("currency_code", Constants.CURRENCY_CODE);
-            model.addAttribute("lc", locale.getLanguage());
+            model.addAttribute("lc","US");
 
             // Vider le cart
             cart = new HashMap<>();
