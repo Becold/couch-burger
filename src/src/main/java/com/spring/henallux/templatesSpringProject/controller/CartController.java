@@ -81,12 +81,10 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (ProductNotFoundException exception) {
-            // TODO: Afficher "Ce produit n'existe pas."
-            model.addAttribute("errorMessage", "");
+            model.addAttribute("errorMessage", "invalid.product.exist");
             return "integrated:keyError";
         } catch (QuantityIsNegativeException e) {
-            // TODO: Afficher "La quantité ne peut être négatif."
-            model.addAttribute("errorMessage", "");
+            model.addAttribute("errorMessage", "invalid.quantity.minus");
             return "integrated:keyError";
         }
     }
@@ -111,7 +109,7 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (QuantityIsNegativeException exception) {
-            // TODO Afficher "Erreur: La quantité ne peut être négatif."
+            model.addAttribute("errorMessage", "invalid.quantity.minus");
             return "integrated:keyError";
         }
     }
@@ -143,12 +141,11 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (QuantityIsNegativeException exception) {
-            // TODO Afficher "Erreur: La quantité ne peut être négatif."
+            model.addAttribute("errorMessage", "invalid.quantity.minus");
             return "integrated:keyError";
         }
         catch (ProductNotFoundException e) {
-            // TODO: Afficher "Ce produit n'existe pas."
-            model.addAttribute("errorMessage", "");
+            model.addAttribute("errorMessage", "invalid.product.exist");
             return "integrated:keyError";
         }
     }
@@ -160,7 +157,7 @@ public class CartController {
                                   BindingResult errors,
                                   Authentication authentication) {
         if (cart.size() <= 0) {
-            // TODO Erreur "Le carte est vide"
+            model.addAttribute("errorMessage", "invalid.cart.empty");
             return "integrated:keyError";
         }
 

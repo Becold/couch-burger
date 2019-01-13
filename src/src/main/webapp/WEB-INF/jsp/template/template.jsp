@@ -40,7 +40,7 @@
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="<spring:url value='/promotions' />">
-                        Promotions <!-- TODO Traduction -->
+                        <spring:message code="menu.promo" />
                     </a>
                 </li>
             </ul>

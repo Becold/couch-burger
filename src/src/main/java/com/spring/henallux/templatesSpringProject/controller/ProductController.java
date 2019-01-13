@@ -61,7 +61,7 @@ public class ProductController {
             return "integrated:product";
         }
         catch (ProductNotFoundException exception) {
-            // TODO Erreur "Produit non trouvé"
+            model.addAttribute("errorMessage", "invalid.product.found");
             return "integrated:keyError";
         }
     }

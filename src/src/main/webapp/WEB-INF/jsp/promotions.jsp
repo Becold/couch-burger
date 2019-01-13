@@ -2,8 +2,7 @@
 <%@ include file="include/importTags.jsp" %>
 
 <div class="container">
-    <!-- TODO Traductions -->
-    <h2 class="my-5">Promotions</h2>
+    <h2 class="my-5"><spring:message code="menu.promo" /></h2>
 
     <div class="row">
         <div class="row justify-content-center">
@@ -13,24 +12,24 @@
                     <div class="card-body">
                         <h5 class="card-title">
                             <c:if test="${promotion.getTypeChoosenItem() eq 'CATEGORY'}">
-                                Réduction sur plusieurs articles
+                                <spring:message code="promo.several" />
                             </c:if>
                             <c:if test="${promotion.getTypeChoosenItem() eq 'PRODUCT'}">
-                                Réduction sur les <a href="/product/${promotion.getProduct().getProductId()}">${promotion.getProduct().getName()}</a>
+                                <spring:message code="promo.on" /><a href="/product/${promotion.getProduct().getProductId()}">${promotion.getProduct().getName()}</a>
                             </c:if>
                         </h5>
                         <p class="card-text">
                             <c:if test="${promotion.getTypeReduction() eq 'FIXE'}">
-                                Réduction de ${promotion.getAmountReduction()}€<br>
+                                <spring:message code="promo.of" /> ${promotion.getAmountReduction()}€<br>
                             </c:if>
                             <c:if test="${promotion.getTypeReduction() eq 'POURCENTAGE'}">
-                                Réduction de -${promotion.getAmountReduction()}%<br>
+                                <spring:message code="promo.of" /> ${promotion.getAmountReduction()}%<br>
                             </c:if>
 
 
                             <c:if test="${promotion.getTypeChoosenItem() eq 'CATEGORY'}">
                                 <a href="/category/${promotion.getCategory().getCategoryId()}">
-                                    Voir les articles en promotion
+                                    <spring:message code="promo.articles" />
                                 </a>
                             </c:if>
                         </p>
