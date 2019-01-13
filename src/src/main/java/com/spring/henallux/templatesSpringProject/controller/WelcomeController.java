@@ -23,18 +23,11 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping (value="/")
-// @SessionAttributes({Constants.CART})
 public class WelcomeController {
 
     private TranslationCategoryService translationCategoryService;
     private MessageSource messageSource;
 
-    /*
-    @ModelAttribute(Constants.CART)
-    public HashMap<Integer, ProductCart> cart() {
-        return new HashMap<>();
-    }
-    */
 
     @Autowired
     public WelcomeController(TranslationCategoryService translationCategoryService,MessageSource messageSource) {
@@ -45,10 +38,8 @@ public class WelcomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model,
                        Locale locale) {
-                       //@ModelAttribute(Constants.CART) HashMap<Integer, ProductCart> cart) {
         model.addAttribute("title",  messageSource.getMessage("title.welcome",null,locale));
         model.addAttribute("classCss", "home");
-        //model.addAttribute("cartSize", cart.size());
         model.addAttribute("translations", translationCategoryService.findByLanguageName(locale.getLanguage()));
         return "integrated:welcome";
     }

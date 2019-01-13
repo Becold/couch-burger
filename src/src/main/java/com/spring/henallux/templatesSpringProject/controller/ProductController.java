@@ -61,7 +61,7 @@ public class ProductController {
             return "integrated:product";
         }
         catch (ProductNotFoundException exception) {
-            // TODO Afficher "Produit non trouvé"
+            // TODO Erreur "Produit non trouvé"
             return "integrated:keyError";
         }
     }

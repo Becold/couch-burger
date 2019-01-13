@@ -4,6 +4,7 @@ import com.spring.henallux.templatesSpringProject.Constants;
 import com.spring.henallux.templatesSpringProject.configuration.WebSecurityConfiguration;
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.UserEntity;
 import com.spring.henallux.templatesSpringProject.service.UserDetailsServiceImplementation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import java.util.Locale;
 public class LoginController {
     private MessageSource messageSource;
 
+    @Autowired
     public LoginController(MessageSource messageSource) {
         this.messageSource = messageSource;
     }

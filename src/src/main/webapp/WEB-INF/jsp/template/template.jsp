@@ -29,16 +29,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="<spring:url value='/' />"><spring:message code="menu.home" /></a>
+                    <a class="nav-link" href="<spring:url value='/' />">
+                        <spring:message code="menu.home" />
+                    </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="<spring:url value='/cart' />">
                         <spring:message code="menu.cart" />
-                        <c:if test="${cartSize} > 0">
-                            <span class="badge badge-danger">
-                                    ${cartSize}
-                            </span>
-                        </c:if>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<spring:url value='/promotions' />">
+                        Promotions <!-- TODO Traduction -->
                     </a>
                 </li>
             </ul>
@@ -48,7 +50,9 @@
                     <a class="btn btn-primary mr-sm-2" href="<spring:url value='/login'/>">
                         <spring:message code="menu.login" />
                     </a>
-                    <a class="btn btn-outline mr-sm-2" href="<spring:url value='/register'/>"><spring:message code="menu.register" /></a>
+                    <a class="btn btn-outline mr-sm-2" href="<spring:url value='/register'/>">
+                        <spring:message code="menu.register" />
+                    </a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <spring:message code="menu.welcomeUser" />${pageContext.request.userPrincipal.name}

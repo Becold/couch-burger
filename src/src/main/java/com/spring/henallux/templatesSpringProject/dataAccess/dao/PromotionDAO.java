@@ -41,4 +41,14 @@ public class PromotionDAO {
         }
         return promotions;
     }
+
+    public ArrayList<Promotion> findCurrentPromotions(GregorianCalendar currentDate) {
+        Date currentDateDate = DateProviderConverter.gregorianCalendarToSqlDate(currentDate);
+        ArrayList<Promotion> promotions = new ArrayList<>();
+        ArrayList<PromotionEntity> promotionEntities = this.promotionRepository.findByStartDateBeforeAndEndDateAfter(currentDateDate, currentDateDate);
+        for (PromotionEntity promotionEntity : promotionEntities) {
+            promotions.add(new ProviderConverter().promotionEntityToPromotionModel(promotionEntity));
+        }
+        return promotions;
+    }
 }

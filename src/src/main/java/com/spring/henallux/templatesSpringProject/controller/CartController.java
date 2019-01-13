@@ -29,7 +29,6 @@ public class CartController {
 
     private ProductService productService;
     private CartService cartService;
-    private PromotionService promotionService;
     private MessageSource messageSource;
 
     @ModelAttribute(Constants.CART)
@@ -40,12 +39,10 @@ public class CartController {
     @Autowired
     public CartController(ProductService productService,
                           CartService cartService,
-                          PromotionService promotionService,
                           MessageSource messageSource) {
         this.productService = productService;
         this.cartService = cartService;
-        this.promotionService = promotionService;
-        this.messageSource=messageSource;
+        this.messageSource = messageSource;
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)

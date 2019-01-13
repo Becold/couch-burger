@@ -30,4 +30,8 @@ public class PromotionService {
     public ArrayList<Promotion> findCurrentPromotions(GregorianCalendar currentDate, Integer productId, Integer categoryId) {
         return this.promotionDAO.findCurrentPromotions(currentDate, productId, categoryId);
     }
+
+    public ArrayList<Promotion> findCurrentPromotions(GregorianCalendar currentDate) {
+        return this.promotionDAO.findCurrentPromotions(currentDate);
+    }
 }

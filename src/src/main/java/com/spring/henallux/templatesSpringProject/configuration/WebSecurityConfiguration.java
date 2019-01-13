@@ -40,6 +40,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/cart/setProduct",
             "/category/**",
             "/product/**",
+
+            "/promotions",
             "/more_details"
     };
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/admin"};
