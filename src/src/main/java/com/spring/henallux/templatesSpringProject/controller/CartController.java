@@ -103,7 +103,7 @@ public class CartController {
             model.addAttribute("errorMessage",  messageSource.getMessage("invalid.product.exist", null, locale));
             return "integrated:keyError";
         } catch (QuantityIsNegativeException e) {
-            model.addAttribute("errorMessage",   messageSource.getMessage("invalid.quantity.minus", null, locale));
+            model.addAttribute("errorMessage",   messageSource.getMessage("Min.productCart.quantity", null, locale));
             return "integrated:keyError";
         }
     }
@@ -140,7 +140,7 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (QuantityIsNegativeException exception) {
-            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
+            model.addAttribute("errorMessage", messageSource.getMessage("Min.productCart.quantity", null, locale));
             return "integrated:keyError";
         }
     }
@@ -184,7 +184,7 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (QuantityIsNegativeException exception) {
-            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
+            model.addAttribute("errorMessage", messageSource.getMessage("Min.productCart.quantity", null, locale));
             return "integrated:keyError";
         }
         catch (ProductNotFoundException e) {
