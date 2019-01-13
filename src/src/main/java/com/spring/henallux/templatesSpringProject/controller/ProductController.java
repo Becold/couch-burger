@@ -2,6 +2,7 @@ package com.spring.henallux.templatesSpringProject.controller;
 
 import com.spring.henallux.templatesSpringProject.Constants;
 import com.spring.henallux.templatesSpringProject.exception.ProductNotFoundException;
+import com.spring.henallux.templatesSpringProject.exception.UnknowTypeReductionException;
 import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.model.Promotion;
 import com.spring.henallux.templatesSpringProject.model.form.cart.ProductForm;
@@ -62,6 +63,10 @@ public class ProductController {
         }
         catch (ProductNotFoundException exception) {
             model.addAttribute("errorMessage", "invalid.product.found");
+            return "integrated:keyError";
+        }
+        catch (UnknowTypeReductionException exception) {
+            // TODO Erreur "Type de reduction inconnue"
             return "integrated:keyError";
         }
     }

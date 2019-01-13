@@ -2,6 +2,7 @@ package com.spring.henallux.templatesSpringProject.service;
 
 import com.spring.henallux.templatesSpringProject.dataAccess.entity.UserEntity;
 import com.spring.henallux.templatesSpringProject.dataAccess.util.ProviderConverter;
+import com.spring.henallux.templatesSpringProject.exception.UnknowTypeReductionException;
 import com.spring.henallux.templatesSpringProject.model.Order;
 import com.spring.henallux.templatesSpringProject.model.OrderLine;
 import com.spring.henallux.templatesSpringProject.model.Product;
@@ -9,7 +10,6 @@ import com.spring.henallux.templatesSpringProject.model.Promotion;
 import com.spring.henallux.templatesSpringProject.model.form.cart.ProductCart;
 import com.spring.henallux.templatesSpringProject.model.promotion.FinalAmountCart;
 import com.spring.henallux.templatesSpringProject.model.promotion.TypeReduction;
-import org.apache.tiles.request.collection.MapEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -62,7 +62,7 @@ public class CartService {
         }
     }
 
-    public Double findBestPromotionForProduct(Product product, ArrayList<Promotion> promotions) {
+    public Double findBestPromotionForProduct(Product product, ArrayList<Promotion> promotions) throws UnknowTypeReductionException {
         Double bestAmountReduction = 0.00;
         if (!promotions.isEmpty()) {
             Double amountReduction = 0.00;
@@ -74,7 +74,7 @@ public class CartService {
                     amountReduction = product.getUnitPriceWithVat() * promotion.getAmountReduction();
                 }
                 else {
-                    // TODO Exception : "Ce type de reduction n'existe pas"
+                    throw new UnknowTypeReductionException();
                 }
 
                 if (bestAmountReduction < amountReduction) {
@@ -85,10 +85,10 @@ public class CartService {
         return bestAmountReduction;
     }
 
-    public FinalAmountCart getFinalAmountCart(HashMap<Integer, ProductCart> cart) {
+    public FinalAmountCart getFinalAmountCart(HashMap<Integer, ProductCart> cart) throws UnknowTypeReductionException {
         FinalAmountCart finalAmountCart = new FinalAmountCart();
         GregorianCalendar currentDate = new GregorianCalendar();
-        for(Map.Entry<Integer, ProductCart> item : cart.entrySet()) {
+        for (Map.Entry<Integer, ProductCart> item : cart.entrySet()) {
             Product product = item.getValue().getProduct();
             Integer quantity = item.getValue().getQuantity();
 
@@ -100,8 +100,8 @@ public class CartService {
 
             Double amountReduction = this.findBestPromotionForProduct(product, currentPromotions);
 
-            finalAmountCart.setReduction(finalAmountCart.getTotal() + amountReduction * (double)quantity);
-            finalAmountCart.setTotal(finalAmountCart.getTotal() + (product.getUnitPriceWithVat() - amountReduction) * (double)quantity);
+            finalAmountCart.setReduction(finalAmountCart.getTotal() + amountReduction * (double) quantity);
+            finalAmountCart.setTotal(finalAmountCart.getTotal() + (product.getUnitPriceWithVat() - amountReduction) * (double) quantity);
         }
         if (finalAmountCart.getTotal() < 0) {
             finalAmountCart.setTotal(1.00);
