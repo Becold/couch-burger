@@ -12,6 +12,7 @@ import com.spring.henallux.templatesSpringProject.model.promotion.FinalAmountCar
 import com.spring.henallux.templatesSpringProject.model.promotion.TypeReduction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,17 +21,14 @@ import java.util.*;
 @Service
 public class CartService {
 
-    private ProductService productService;
     private OrderService orderService;
     private OrderLineService orderLineService;
     private PromotionService promotionService;
 
     @Autowired
-    public CartService(ProductService productService,
-                       OrderService orderService,
+    public CartService(OrderService orderService,
                        OrderLineService orderLineService,
                        PromotionService promotionService) {
-        this.productService = productService;
         this.orderService = orderService;
         this.orderLineService = orderLineService;
         this.promotionService = promotionService;

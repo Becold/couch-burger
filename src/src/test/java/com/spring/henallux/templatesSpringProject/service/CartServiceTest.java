@@ -1,5 +1,6 @@
 package com.spring.henallux.templatesSpringProject.service;
 
+import com.spring.henallux.templatesSpringProject.exception.UnknowTypeReductionException;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.model.Promotion;
@@ -8,36 +9,38 @@ import com.spring.henallux.templatesSpringProject.model.promotion.FinalAmountCar
 import com.spring.henallux.templatesSpringProject.model.promotion.TypeChoosenItem;
 import com.spring.henallux.templatesSpringProject.model.promotion.TypeReduction;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
-
+@RunWith(SpringJUnit4ClassRunner.class)
 public class CartServiceTest {
 
-    private CartService cartService;
+    public static Product product;
+    public static Category category;
+    public static Category categoryFalse;
+    public static Product productFalse;
 
-    @Before
     @Autowired
-    public void setUp(CartService cartService) throws Exception {
-        this.cartService = cartService;
-    }
+    public static CartService cartService;
 
-    @Test
-    public void findBestPromotionForProductTest() {
-        Product product = new Product();
-        Category category=new Category();
-        Category categoryFalse=new Category();
-        Product productFalse=new Product();
-
+    @BeforeClass
+    public static void setUp() throws Exception {
+        category = new Category();
         category.setCategoryId(1);
+        categoryFalse = new Category();
         categoryFalse.setCategoryId(2);
 
+        product = new Product();
         product.setProductId(1);
         product.setCategory(category);
         product.setUnitPrice(10.00);
@@ -47,6 +50,7 @@ public class CartServiceTest {
         product.setIsSweet(true);
         product.setName("ChickenTestBurger");
 
+        productFalse = new Product();
         productFalse.setProductId(2);
         productFalse.setCategory(categoryFalse);
         productFalse.setUnitPrice(15.00);
@@ -55,22 +59,67 @@ public class CartServiceTest {
         productFalse.setIsSpicy(true);
         productFalse.setIsSweet(true);
         productFalse.setName("BeefTestBurger");
+    }
 
-
-        ArrayList<Promotion> promotions = new ArrayList<Promotion>();
-
-        //Correcte
+    @Test
+    public void findBestPromotionForProductTest1() {
+        ArrayList<Promotion> promotions = new ArrayList<>();
         promotions.add(new Promotion(1,new GregorianCalendar(2018,12,1),new GregorianCalendar(2019,2,1), TypeChoosenItem.CATEGORY,category,null,TypeReduction.FIXE,2.00));
         promotions.add(new Promotion(1,new GregorianCalendar(2019,1,1),new GregorianCalendar(2019,3,1), TypeChoosenItem.PRODUCT,null,product,TypeReduction.POURCENTAGE,0.5));
-        //Périmée
+
+        Double reductionAmount = null;
+        try {
+            System.out.println(promotions.size());
+            System.out.println(product.getName());
+            reductionAmount = cartService.findBestPromotionForProduct(product, promotions);
+        } catch (UnknowTypeReductionException e) { }
+
+        Assert.assertEquals(6.20, reductionAmount, 0.01);
+    }
+
+    @Test
+    public void findBestPromotionForProductTest2() {
+        ArrayList<Promotion> promotions = new ArrayList<Promotion>();
+
+         //Périmée
         promotions.add(new Promotion(1,new GregorianCalendar(2018,12,1),new GregorianCalendar(2019,1,1), TypeChoosenItem.CATEGORY,category,null,TypeReduction.FIXE,1000.00));
+
+        Double reductionAmount = null;
+        try {
+            reductionAmount = cartService.findBestPromotionForProduct(product, promotions);
+        } catch (UnknowTypeReductionException e) { }
+
+
+        Assert.assertEquals(6.20, reductionAmount, 0.01);
+    }
+
+    @Test
+    public void findBestPromotionForProductTest3() {
+        ArrayList<Promotion> promotions = new ArrayList<Promotion>();
+
         //Pas encore active
         promotions.add(new Promotion(1,new GregorianCalendar(2019,12,1),new GregorianCalendar(2019,12,5), TypeChoosenItem.CATEGORY,category,null,TypeReduction.FIXE,1000.00));
+
+        Double reductionAmount = null;
+        try {
+            reductionAmount = cartService.findBestPromotionForProduct(product, promotions);
+        } catch (UnknowTypeReductionException e) { }
+
+        Assert.assertEquals(0.00, reductionAmount, 0.01);
+    }
+
+    @Test
+    public void findBestPromotionForProductTest4() {
+        ArrayList<Promotion> promotions = new ArrayList<Promotion>();
+
         //Pas correspondante
         promotions.add(new Promotion(1,new GregorianCalendar(2018,12,1),new GregorianCalendar(2019,2,1), TypeChoosenItem.CATEGORY,categoryFalse,null,TypeReduction.FIXE,10000.00));
         promotions.add(new Promotion(1,new GregorianCalendar(2018,12,1),new GregorianCalendar(2019,2,1), TypeChoosenItem.PRODUCT,null,productFalse,TypeReduction.POURCENTAGE,0.90));
 
-        Double reductionAmount = this.cartService.findBestPromotionForProduct(product, promotions);
+        Double reductionAmount = null;
+        try {
+            reductionAmount = cartService.findBestPromotionForProduct(product, promotions);
+        } catch (UnknowTypeReductionException e) { }
 
 
         Assert.assertEquals(6.20, reductionAmount, 0.01);
@@ -119,7 +168,12 @@ public class CartServiceTest {
         cart.put(1,new ProductCart(product2,4));
         cart.put(1,new ProductCart(product3,2));
 
-        FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
+        FinalAmountCart finalAmountCart = null;
+        try {
+            finalAmountCart = cartService.getFinalAmountCart(cart);
+        } catch (UnknowTypeReductionException e) {
+            e.printStackTrace();
+        }
 
         // TODO A la place de 5.01, mettre le montant de la reduction calculé ci-dessus
         // TODO 0.01 correspond, à changer peut-être
