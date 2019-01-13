@@ -56,7 +56,8 @@ public class CartController {
         FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
 
         model.addAttribute("title",  messageSource.getMessage("menu.cart",null,locale));
-        model.addAttribute("totalAmountReduction", String.format("%.2f", finalAmountCart.getReduction()));
+        model.addAttribute("totalAmountReduction", finalAmountCart.getReduction());
+        model.addAttribute("totalAmountReductionFormatted", String.format("%.2f", finalAmountCart.getReduction()));
         model.addAttribute("totalPrice", String.format("%.2f", finalAmountCart.getTotal()));
         return "integrated:cart";
     }

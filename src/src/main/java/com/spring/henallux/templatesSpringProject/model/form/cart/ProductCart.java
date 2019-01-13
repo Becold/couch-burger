@@ -18,6 +18,8 @@ public class ProductCart {
         this.quantity = quantity;
     }
 
+    public ProductCart() { }
+
     public Product getProduct() {
         return product;
     }

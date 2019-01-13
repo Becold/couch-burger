@@ -77,11 +77,13 @@
                 </div>
                 <div class="card-footer">
                     <div class="row text-center">
+                        <c:if test="${totalAmountReduction gt 0.00}">
+                            <div class="col-9">
+                                <h4 class="text-right text-success"><spring:message code="cart.spare" /> <span class="font-weight-bold">${totalAmountReductionFormatted} €</span></h4>
+                            </div>
+                        </c:if>
                         <div class="col-9">
-                            <h4 class="text-right"><spring:message code="cart.spare" /> <a style="font-weight: bold">${totalAmountReduction} €</a></h4>
-                        </div>
-                        <div class="col-9">
-                            <h4 class="text-right"><spring:message code="cart.total" /> <a style="font-weight: bold">${totalPrice} €</a></h4>
+                            <h4 class="text-right"><spring:message code="cart.total" /> <span class="font-weight-bold">${totalPrice} €</span></h4>
                         </div>
                         <div class="col-3">
 
