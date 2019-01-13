@@ -12,6 +12,7 @@ import com.spring.henallux.templatesSpringProject.model.promotion.FinalAmountCar
 import com.spring.henallux.templatesSpringProject.model.promotion.TypeReduction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

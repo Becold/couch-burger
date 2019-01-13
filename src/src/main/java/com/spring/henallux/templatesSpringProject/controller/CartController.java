@@ -71,8 +71,19 @@ public class CartController {
     public String postAddProduct(Model model,
                                  Locale locale,
                                  @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
+                                 BindingResult errorsForm,
                                  @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                  BindingResult errors) {
+        /*
+        if (errorsForm.hasErrors()) {
+            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
+            return "integrated:keyError";
+        }
+        */
+        if (errorsForm.hasErrors()) {
+            return "redirect:/errorOccured?code=invalid.quantity.minus";
+        }
+
         try {
             Integer productId = productForm.getProductId();
             Integer quantity = productForm.getQuantity();
@@ -102,8 +113,19 @@ public class CartController {
     public String postRemoveProduct(Model model,
                                     Locale locale,
                                     @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
+                                    BindingResult errorsForm,
                                     @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                     BindingResult errors) {
+        /*
+        if (errorsForm.hasErrors()) {
+            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
+            return "integrated:keyError";
+        }
+        */
+        if (errorsForm.hasErrors()) {
+            return "redirect:/errorOccured?code=invalid.quantity.minus";
+        }
+
         try {
             Integer productId = productForm.getProductId();
             Integer quantity = productForm.getQuantity();
@@ -128,8 +150,19 @@ public class CartController {
     public String postSetProduct(Model model,
                                     Locale locale,
                                     @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
+                                    BindingResult errorsForm,
                                     @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                     BindingResult errors) {
+        /*
+        if (errorsForm.hasErrors()) {
+            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
+            return "integrated:keyError";
+        }
+        */
+        if (errorsForm.hasErrors()) {
+            return "redirect:/errorOccured?code=invalid.quantity.minus";
+        }
+
         try {
             Integer productId = productForm.getProductId();
             Integer quantity = productForm.getQuantity();
