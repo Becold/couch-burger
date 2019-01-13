@@ -37,17 +37,7 @@ public class RegisterUserController {
                        Locale locale,
                        @ModelAttribute(Constants.USER_REGISTERING_DETAILS) RegisterForm userRegister,
                        BindingResult errors) {
-        userRegister.setUsername("Graham");
-        userRegister.setPassword("1234");
-        userRegister.setConfirmPassword("1234");
-        userRegister.setEmail("gr@gr.com");
-        userRegister.setFirstname("Graham");
-        userRegister.setName("Berger");
-        userRegister.setAddressStreetName("Rue du nord");
-        userRegister.setAddressNumber(50);
-        userRegister.setAddressLocality("Bruxelles");
-        userRegister.setAddressPostalCode("1000");
-        userRegister.setPhoneNumber("0123456789");
+
 
         model.addAttribute("title",  messageSource.getMessage("menu.register",null,locale));
         return "integrated:register";
@@ -57,10 +47,6 @@ public class RegisterUserController {
     public String getFormData(Model model,
                               @Valid @ModelAttribute(Constants.USER_REGISTERING_DETAILS) RegisterForm userRegister,
                               BindingResult errors) {
-        //Erreur affichées dans la console
-        for (FieldError error : errors.getFieldErrors() ) {
-            System.out.println (error.getField() + " - " + error.getDefaultMessage());
-        }
 
         if (!userRegister.getPassword().equals(userRegister.getConfirmPassword())) {
             errors.rejectValue("confirmPassword", "invalid.register.differentPassword");

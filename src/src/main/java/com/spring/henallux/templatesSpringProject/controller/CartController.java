@@ -61,7 +61,7 @@ public class CartController {
             return "integrated:cart";
         }
         catch (UnknowTypeReductionException exception) {
-            model.addAttribute("errorMessage", "invalid.promo.unknown");
+            model.addAttribute("errorMessage",  messageSource.getMessage("invalid.promo.unknown", null, locale));
             return "integrated:keyError";
         }
     }
@@ -69,6 +69,7 @@ public class CartController {
     @RequestMapping(value = "/cart/addProduct",
                     method = RequestMethod.POST)
     public String postAddProduct(Model model,
+                                 Locale locale,
                                  @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                                  @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                  BindingResult errors) {
@@ -88,10 +89,10 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (ProductNotFoundException exception) {
-            model.addAttribute("errorMessage", "invalid.product.exist");
+            model.addAttribute("errorMessage",  messageSource.getMessage("invalid.product.exist", null, locale));
             return "integrated:keyError";
         } catch (QuantityIsNegativeException e) {
-            model.addAttribute("errorMessage", "invalid.quantity.minus");
+            model.addAttribute("errorMessage",   messageSource.getMessage("invalid.quantity.minus", null, locale));
             return "integrated:keyError";
         }
     }
@@ -99,6 +100,7 @@ public class CartController {
     @RequestMapping(value = "/cart/removeProduct",
                     method = RequestMethod.POST)
     public String postRemoveProduct(Model model,
+                                    Locale locale,
                                     @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                                     @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                     BindingResult errors) {
@@ -116,7 +118,7 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (QuantityIsNegativeException exception) {
-            model.addAttribute("errorMessage", "invalid.quantity.minus");
+            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
             return "integrated:keyError";
         }
     }
@@ -124,6 +126,7 @@ public class CartController {
     @RequestMapping(value = "/cart/setProduct",
                     method = RequestMethod.POST)
     public String postSetProduct(Model model,
+                                    Locale locale,
                                     @Valid @ModelAttribute(Constants.PRODUCT_TO_CART_FORM) ProductForm productForm,
                                     @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                     BindingResult errors) {
@@ -148,11 +151,11 @@ public class CartController {
             return "redirect:/cart";
         }
         catch (QuantityIsNegativeException exception) {
-            model.addAttribute("errorMessage", "invalid.quantity.minus");
+            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
             return "integrated:keyError";
         }
         catch (ProductNotFoundException e) {
-            model.addAttribute("errorMessage", "invalid.product.exist");
+            model.addAttribute("errorMessage", messageSource.getMessage("invalid.product.exist", null, locale));
             return "integrated:keyError";
         }
     }
@@ -164,7 +167,7 @@ public class CartController {
                                   BindingResult errors,
                                   Authentication authentication) {
         if (cart.size() <= 0) {
-            model.addAttribute("errorMessage", "invalid.cart.empty");
+            model.addAttribute("errorMessage", messageSource.getMessage("invalid.cart.empty", null, locale));
             return "integrated:keyError";
         }
 
@@ -190,7 +193,7 @@ public class CartController {
             return "integrated:pay";
         }
         catch (UnknowTypeReductionException exception) {
-            model.addAttribute("errorMessage", "invalid.promo.unknown");
+            model.addAttribute("errorMessage",  messageSource.getMessage("invalid.promo.unknown", null, locale));
             return "integrated:keyError";
         }
     }

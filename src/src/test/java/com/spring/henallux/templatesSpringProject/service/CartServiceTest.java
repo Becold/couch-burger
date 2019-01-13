@@ -1,5 +1,6 @@
 package com.spring.henallux.templatesSpringProject.service;
 
+import com.spring.henallux.templatesSpringProject.exception.UnknowTypeReductionException;
 import com.spring.henallux.templatesSpringProject.model.Category;
 import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.model.Promotion;
@@ -70,7 +71,12 @@ public class CartServiceTest {
         promotions.add(new Promotion(1,new GregorianCalendar(2018,12,1),new GregorianCalendar(2019,2,1), TypeChoosenItem.CATEGORY,categoryFalse,null,TypeReduction.FIXE,10000.00));
         promotions.add(new Promotion(1,new GregorianCalendar(2018,12,1),new GregorianCalendar(2019,2,1), TypeChoosenItem.PRODUCT,null,productFalse,TypeReduction.POURCENTAGE,0.90));
 
-        Double reductionAmount = this.cartService.findBestPromotionForProduct(product, promotions);
+        Double reductionAmount = null;
+        try {
+            reductionAmount = this.cartService.findBestPromotionForProduct(product, promotions);
+        } catch (UnknowTypeReductionException e) {
+            e.printStackTrace();
+        }
 
 
         Assert.assertEquals(6.20, reductionAmount, 0.01);
@@ -119,7 +125,12 @@ public class CartServiceTest {
         cart.put(1,new ProductCart(product2,4));
         cart.put(1,new ProductCart(product3,2));
 
-        FinalAmountCart finalAmountCart = this.cartService.getFinalAmountCart(cart);
+        FinalAmountCart finalAmountCart = null;
+        try {
+            finalAmountCart = this.cartService.getFinalAmountCart(cart);
+        } catch (UnknowTypeReductionException e) {
+            e.printStackTrace();
+        }
 
         // TODO A la place de 5.01, mettre le montant de la reduction calculé ci-dessus
         // TODO 0.01 correspond, à changer peut-être
