@@ -32,12 +32,12 @@
                             </div>
                             <div class="col-4">
 
-                                <h4 class="product-name"><a style="font-weight: bold">${item.value.getProduct().getName()}</a></h4>
+                                <h4 class="product-name"><span class="font-weight-bold">${item.value.getProduct().getName()}</span></h4>
                                 <h4><small>TVA: ${item.value.getProduct().getVatRate()}%</small></h4>
                             </div>
                             <div class="col text-right">
 
-                                <h6><a style="font-weight: bold">${item.value.getProduct().getFormattedUnitPriceWithVat()} <span class="text-muted">x</span></a></h6>
+                                <h6 class="font-weight-bold">${item.value.getProduct().getFormattedUnitPriceWithVat()} <span class="text-muted">x</span></h6>
                             </div>
                             <div class="col-2">
                                 <form:form action="/cart/setProduct"
