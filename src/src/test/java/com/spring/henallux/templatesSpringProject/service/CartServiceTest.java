@@ -171,9 +171,7 @@ public class CartServiceTest {
         FinalAmountCart finalAmountCart = null;
         try {
             finalAmountCart = cartService.getFinalAmountCart(cart);
-        } catch (UnknowTypeReductionException e) {
-            e.printStackTrace();
-        }
+        } catch (UnknowTypeReductionException e) { }
 
         // TODO A la place de 5.01, mettre le montant de la reduction calculé ci-dessus
         // TODO 0.01 correspond, à changer peut-être

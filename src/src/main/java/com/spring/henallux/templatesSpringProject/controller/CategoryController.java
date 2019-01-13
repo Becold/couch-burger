@@ -67,10 +67,10 @@ public class CategoryController {
             model.addAttribute("title",  messageSource.getMessage("menu.category",null,locale));
             return "integrated:category";
         } catch (CategoryNotFoundException e) {
-            model.addAttribute("errorMessage", "invalid.category.exist");
+            model.addAttribute("errorMessage",  messageSource.getMessage("invalid.category.exist", null, locale));
             return "redirect:/";
         } catch (NoProductInCategoryException e) {
-            model.addAttribute("errorMessage", "invalid.quantity.empty");
+            model.addAttribute("errorMessage",  messageSource.getMessage("invalid.quantity.empty", null, locale));
             return "redirect:/";
         }
     }
