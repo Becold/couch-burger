@@ -19,10 +19,6 @@ public class CategoryService {
         this.categoryDAO = categoryDAO;
     }
 
-    public ArrayList<Category> findAll() {
-        return this.categoryDAO.findAll();
-    }
-
     public Category find(Integer categoryId) throws CategoryNotFoundException {
         return this.categoryDAO.find(categoryId);
     }

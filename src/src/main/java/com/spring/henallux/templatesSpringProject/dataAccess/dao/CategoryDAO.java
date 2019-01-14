@@ -25,16 +25,6 @@ public class CategoryDAO {
         this.categoryRepository = categoryRepository;
     }
 
-    public ArrayList<Category> findAll() {
-        ArrayList<Category> categories = new ArrayList<>();
-        ArrayList<CategoryEntity> categoriesEntity = (ArrayList<CategoryEntity>) this.categoryRepository.findAll();
-        for (CategoryEntity categoryEntity : categoriesEntity) {
-            Category category = new ProviderConverter().categoryEntityToCategoryModel(categoryEntity);
-            categories.add(category);
-        }
-        return categories;
-    }
-
     public Category find(Integer categoryId) throws CategoryNotFoundException {
         CategoryEntity categoryEntity = this.categoryRepository.findByCategoryId(categoryId);
         if (categoryEntity == null) {

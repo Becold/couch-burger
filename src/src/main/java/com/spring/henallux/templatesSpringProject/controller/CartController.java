@@ -108,12 +108,6 @@ public class CartController {
                                     BindingResult errorsForm,
                                     @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                     BindingResult errors) {
-        /*
-        if (errorsForm.hasErrors()) {
-            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
-            return "integrated:keyError";
-        }
-        */
         if (errorsForm.hasErrors()) {
             return "redirect:/errorOccured?code=Min.productCart.quantity";
         }
@@ -144,12 +138,6 @@ public class CartController {
                                     BindingResult errorsForm,
                                     @ModelAttribute(Constants.CART)HashMap<Integer, ProductCart> cart,
                                     BindingResult errors) {
-        /*
-        if (errorsForm.hasErrors()) {
-            model.addAttribute("errorMessage", messageSource.getMessage("invalid.quantity.minus", null, locale));
-            return "integrated:keyError";
-        }
-        */
         if (errorsForm.hasErrors()) {
             return "redirect:/errorOccured?code=Min.productCart.quantity";
         }

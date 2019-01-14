@@ -168,7 +168,7 @@ INSERT INTO `product` (`categoryId`,`name`, `unitPrice`, `vatRate`,`type`,`isSpa
 	(1,'Spicytender Burger',6.00,12.00,'Burger',0,1,0),
 	(1,'Birdy Burger',5.00,12.00,'Burger',0,0,0),
 	(2,'Classic Burger',2.00,12.00,'Burger',0,0,0),
-	(2,'Tiny Burger',0.50,12.00,'Burger',0,0,0),
+	(2,'Tiny Burger',1.50,12.00,'Burger',0,0,0),
 	(2,'Spicy Burger',3.00,12.00,'Burger',0,1,1),
 	(3,'Fish Burger',5.00,12.00,'Burger',0,0,0),
 	(3,'Flipper Burger',4.00,12.00,'Burger',0,0,0),
@@ -197,5 +197,5 @@ INSERT INTO `promotion` (`startDate`, `endDate`, `typeChoosenItem`, `categoryId`
 	VALUES
 	('2018-12-15 00:00:01.000', '2019-09-20 23:59:59.000', 1, null, 1, 1, 0.5),
 	('2018-12-15 00:00:01.000', '2019-09-20 23:59:59.000', 0, 1, null, 1, 0.5),
-	('2018-12-16 00:00:01.000', '2019-10-30 23:59:59.000', 0, 2, null, 0, 2),
+	('2018-12-16 00:00:01.000', '2019-10-30 23:59:59.000', 0, 2, null, 0, 1),
 	('2019-01-30 00:00:01.000', '2019-02-01 23:59:59.000', 0, 4, null, 1, 0.25);

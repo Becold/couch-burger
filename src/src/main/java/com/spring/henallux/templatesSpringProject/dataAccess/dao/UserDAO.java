@@ -28,8 +28,7 @@ public class UserDAO {
 
     public User findByUsername(String username) {
         UserEntity userEntity = this.userRepository.findByUsername(username);
-        User user = new ProviderConverter().userEntityToUserModel(userEntity);
-        return user;
+        return new ProviderConverter().userEntityToUserModel(userEntity);
     }
 
     public boolean existsByUsername(String username) {

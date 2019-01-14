@@ -29,19 +29,6 @@ public class AuthenticatedController {
                        Authentication authentication) {
         UserEntity userDetails = (UserEntity) authentication.getPrincipal();
         model.addAttribute("title",  messageSource.getMessage("menu.profile",null,locale));
-
-        return "integrated:profil";
-    }
-
-    @RequestMapping(value = "/profil/changeAddress", method = RequestMethod.POST)
-    public String postChangeAddress(Model model,
-                                    BindingResult errors) {
-        return "integrated:profil";
-    }
-
-    @RequestMapping(value = "/profil/changePassword", method = RequestMethod.POST)
-    public String postChangePassword(Model model,
-                                    BindingResult errors) {
         return "integrated:profil";
     }
 }
