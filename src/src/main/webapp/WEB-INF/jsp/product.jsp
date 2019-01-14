@@ -21,10 +21,10 @@
                     </c:if>
 
                     <c:if test="${reductionAmount != '0.00'}">
-                    Des promotions sont appliquées sur ce produit :
-                    <ul>
-                        -${reductionAmount} €
-                    </ul>
+                        Des promotions sont appliquées sur ce produit :
+                        <ul>
+                            -${reductionAmount} €
+                        </ul>
                     </c:if>
 
                     <p class="card-text">

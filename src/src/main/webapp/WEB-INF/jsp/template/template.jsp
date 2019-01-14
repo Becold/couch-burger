@@ -80,8 +80,18 @@
                         <spring:message code="menu.language" />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="langDropdown">
-                        <spring:url var="localeFr" value=""><spring:param name="locale" value="fr" /></spring:url>
-                        <spring:url var="localeEn" value=""><spring:param name="locale" value="en" /></spring:url>
+                        <spring:url var="localeFr" value="">
+                            <spring:param name="locale" value="fr" />
+                            <c:if test="${param.code != null}">
+                                <spring:param name="code" value="${param.code}" />
+                            </c:if>
+                        </spring:url>
+                        <spring:url var="localeEn" value="">
+                            <spring:param name="locale" value="en" />
+                            <c:if test="${param.code != null}">
+                                <spring:param name="code" value="${param.code}" />
+                            </c:if>
+                        </spring:url>
                         <a class="dropdown-item" href="${localeFr}">
                             <img src="/images/flag/fr.png" width="32px" height="auto" /> <spring:message code="language.french" />
                         </a>

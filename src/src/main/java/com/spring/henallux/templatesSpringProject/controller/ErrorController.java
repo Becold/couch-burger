@@ -31,7 +31,7 @@ public class ErrorController {
         }
 
         model.addAttribute("errorMessage", errorMessage);
-        model.addAttribute("title", messageSource.getMessage("error.title", null, locale)); // TODO Traduction
+        model.addAttribute("title", messageSource.getMessage("title.error", null, locale));
         return "integrated:keyError";
     }
 
