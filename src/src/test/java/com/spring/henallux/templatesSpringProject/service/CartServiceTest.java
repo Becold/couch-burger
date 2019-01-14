@@ -4,8 +4,6 @@ import com.spring.henallux.templatesSpringProject.exception.UnknowTypeReductionE
 import com.spring.henallux.templatesSpringProject.model.Category;
 import com.spring.henallux.templatesSpringProject.model.Product;
 import com.spring.henallux.templatesSpringProject.model.Promotion;
-import com.spring.henallux.templatesSpringProject.model.form.cart.ProductCart;
-import com.spring.henallux.templatesSpringProject.model.promotion.FinalAmountCart;
 import com.spring.henallux.templatesSpringProject.model.promotion.TypeChoosenItem;
 import com.spring.henallux.templatesSpringProject.model.promotion.TypeReduction;
 import org.junit.Assert;
@@ -13,15 +11,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CartServiceTest {

@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <c:if test="${product.getIsSparkling() || product.getIsSpicy() || product.getIsSweet()}">
                         <p class="card-text">
-                                <spring:message code="product.is" />
+                            <spring:message code="product.is" />
                             <ul>
                                 <c:if test="${product.getIsSparkling()}"><li><spring:message code="product.sparkling" /></li></c:if>
                                 <c:if test="${product.getIsSpicy()}"><li><spring:message code="product.spicy" /></li></c:if>
@@ -19,14 +19,12 @@
                             </ul>
                         </p>
                     </c:if>
-
                     <c:if test="${reductionAmount != '0.00'}">
-                        Des promotions sont appliquées sur ce produit :
-                        <ul>
+                        <p class="card-text">
+                            <spring:message code="product.productunderpromo" />
                             -${reductionAmount} €
-                        </ul>
+                        </p>
                     </c:if>
-
                     <p class="card-text">
                         <spring:message code="product.price" /> ${product.getFormattedUnitPriceWithVat()} €
                     </p>
